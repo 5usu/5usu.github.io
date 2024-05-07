@@ -36,35 +36,19 @@
       }
     }
 
-    /* Styles for the blur bubble */
-    .blur-bubble {
-      width: 300px;
-      height: 300px;
-      background: rgba(233, 40, 40, 0.2);
-      backdrop-filter: blur(20px);
-      border-radius: 50%;
-      position: absolute;
-      left: 20%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      animation: hover 10s infinite alternate;
-    }
+    a {
+    color: #4299e1; /* Change this value to your desired color */
+    text-decoration: none; /* Remove underline */
+  }
 
-    @keyframes hover {
-      0% {
-        transform: translate(-50%, -50%) translateY(-50px);
-      }
-      50% {
-        transform: translate(-50%, -50%) translateY(50px);
-      }
-      100% {
-        transform: translate(-50%, -50%) translateY(-50px);
-      }
-    }
+  a:hover {
+    text-decoration: underline; /* Add underline on hover */
+  }
   </style>
+
+
 </head>
 <body class="bg-gray-100 font-sans relative">
-  <div class="blur-bubble absolute"></div>
   <div class="max-w-3xl mx-auto py-20 px-4">
     <header class="bg-white shadow rounded-lg p-6 animate-slide-in">
       <h1 class="text-3xl font-bold text-gray-800 mb-4">Sujal Dwivedi</h1>
