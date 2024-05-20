@@ -91,7 +91,7 @@
                     <li class="dropdown">
                         <a href="#">Contact</a>
                         <ul class="dropdown-menu hidden">
-                            <li><a href="#">Email</a></li>
+                            <li><a href="#" id="emailLink">Email (click-to-copy)</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -115,6 +115,10 @@
         </div>
     </div>
 
+    <div id="emailCopiedMessage" class="fixed bottom-4 left-4 bg-green-500 text-white px-4 py-2 rounded-md hidden">
+        Email copied: <span id="emailCopiedText"></span>
+    </div>
+
     <script>
         const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -128,6 +132,29 @@
             dropdown.addEventListener('mouseout', () => {
                 menu.classList.add('hidden');
             });
+        });
+
+        const emailLink = document.getElementById('emailLink');
+        const email = 'sujaldwivedi1114@gmail.com';
+        const emailCopiedMessage = document.getElementById('emailCopiedMessage');
+        const emailCopiedText = document.getElementById('emailCopiedText');
+
+        emailLink.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    emailCopiedText.textContent = email;
+                    emailCopiedMessage.classList.remove('hidden');
+
+                    // Hide the message after 3 seconds
+                    setTimeout(() => {
+                        emailCopiedMessage.classList.add('hidden');
+                    }, 3000);
+                })
+                .catch((err) => {
+                    console.error('Failed to copy email: ', err);
+                });
         });
     </script>
 </body>
