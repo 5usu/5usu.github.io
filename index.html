@@ -1,68 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5usu</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .animate-slide-in {
-      animation: slide-in 1s ease-out;
-    }
-
-    @keyframes slide-in {
-      0% {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    .animate-slide-in2 {
-      animation: slide-in 1s ease-in;
-    }
-
-    @keyframes slide-in {
-      0% {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    a {
-    color: #4299e1; /* Change this value to your desired color */
-    text-decoration: none; /* Remove underline */
-  }
-
-  a:hover {
-    text-decoration: underline; /* Add underline on hover */
-  }
-  </style>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5usu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .animate-slide-in {
+            animation: slide-in 1s ease-out;
+        }
+        @keyframes slide-in {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-in2 {
+            animation: slide-in 1s ease-in;
+        }
+        @keyframes slide-in {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        a {
+            color: #4299e1; /* Change this value to your desired color */
+            text-decoration: none; /* Remove underline */
+        }
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+        .hidden {
+            display: none;
+        }
+        .sidebar-content {
+            font-size: 1.2rem; /* Increase font size to 1.2rem (19.2px) */
+        }
+        .sidebar-content h3 {
+            font-size: 1.4rem; /* Increase font size of headings to 1.4rem (22.4px) */
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans relative">
-  <div class="max-w-3xl mx-auto py-20 px-4">
-    <header class="bg-white shadow rounded-lg p-6 animate-slide-in">
-      <h1 class="text-3xl font-bold text-gray-800 mb-4">Sujal Dwivedi</h1>
-    </header>
-    <main class="bg-white shadow rounded-lg p-10 mt-6 animate-slide-in2">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">About Me</h2>
-      <p class="text-gray-600 mb-4">
-        I'm a web developer who really knows their stuff when it comes to building cool websites and apps. One of my recent projects was a full-stack video chat app that let people chat face-to-face in real-time - pretty nifty, right? But that's not all, I'm also super into this fascinating new world of Large Language Models (LLMs). I can't get enough of learning about how these advanced language models work and what they're capable of. It's like a whole new frontier of tech, and I'm stoked to be exploring it.
-      </p>
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">Contact Information</h2>
-      <ul class="list-disc pl-5 text-gray-600">
-        kurostr2806@gmail.com || <a href="https://github.com/5usu/">git</a> || <a href="https://twitter.com/bos0nN">twitter</a>
-      </ul>
-    </main>
-  </div>
+    <div class="flex">
+        <div style="width: 16rem; min-height: 100vh; background-color: #EBF8FF; padding: 1rem; position: relative;">
+            <div class="sidebar-content">
+                <h3 class="text-lg font-bold mb-2">Sections</h3>
+                <ul class="text-gray-600">
+                    <li class="dropdown">
+                        <a href="#">Projects</a>
+                        <ul class="dropdown-menu hidden">
+                            <li><a href="https://github.com/5usu/aaspaas">Video-chat-aap</a></li>
+                            <li><a href="#">Wall-e(self-balancing-robot)</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">About</a>
+                        <ul class="dropdown-menu hidden">
+                            <li><a href="#">About Me</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Contact</a>
+                        <ul class="dropdown-menu hidden">
+                            <li><a href="#">Email</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 class="text-lg font-bold mb-2 mt-4">Links</h3>
+                <ul class="text-gray-600">
+                    <li><a href="https://github.com/5usu/">GitHub</a></li>
+                    <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto py-20 px-4">
+            <header class="bg-white shadow rounded-lg p-6 animate-slide-in">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">Sujal Dwivedi</h1>
+            </header>
+            <main class="bg-white shadow rounded-lg p-10 mt-6 animate-slide-in2">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">About Me</h2>
+                <p class="text-gray-600 mb-4">
+                    I'm a web developer who really knows their stuff when it comes to building cool websites and apps. One of my recent projects was a full-stack video chat app that let people chat face-to-face in real-time - pretty nifty, right? But that's not all, I'm also super into this fascinating new world of Large Language Models (LLMs). I can't get enough of learning about how these advanced language models work and what they're capable of. It's like a whole new frontier of tech, and I'm stoked to be exploring it.
+                </p>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const menu = dropdown.querySelector('.dropdown-menu');
+
+            dropdown.addEventListener('mouseover', () => {
+                menu.classList.remove('hidden');
+            });
+
+            dropdown.addEventListener('mouseout', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
