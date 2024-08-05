@@ -3,159 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5usu</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <title>Sujal's Portfolio</title>
     <style>
-        .animate-slide-in {
-            animation: slide-in 1s ease-out;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #F5F5DC;
+            color: #333;
         }
-        @keyframes slide-in {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .animate-slide-in2 {
-            animation: slide-in 1s ease-in;
-        }
-        @keyframes slide-in {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .content {
+            max-width: 1000px;
+            margin: 0;
+            padding: 7rem;
         }
         a {
-            color: #4299e1; /* Change this value to your desired color */
-            text-decoration: none; /* Remove underline */
+            color: #1e88e5;
+            text-decoration: none;
         }
         a:hover {
-            text-decoration: underline; /* Add underline on hover */
+            text-decoration: underline;
         }
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-menu {
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        .dropdown-menu a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-menu a:hover {
-            background-color: #f1f1f1;
-        }
-        .hidden {
-            display: none;
-        }
-        .sidebar-content {
-            font-size: 1.2rem; /* Increase font size to 1.2rem (19.2px) */
-        }
-        .sidebar-content h3 {
-            font-size: 1.4rem; /* Increase font size of headings to 1.4rem (22.4px) */
+        .montserrat-content {
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans relative">
-    <div class="flex">
-        <div style="width: 16rem; min-height: 100vh; background-color: #EBF8FF; padding: 1rem; position: relative;">
-            <div class="sidebar-content">
-                <h3 class="text-lg font-bold mb-2">Sections</h3>
-                <ul class="text-gray-600">
-                    <li class="dropdown">
-                        <a href="#">Projects</a>
-                        <ul class="dropdown-menu hidden">
-                            <li><a href="https://github.com/5usu/aaspaas">Video-chat-aap</a></li>
-                            <li><a href="https://github.com/5usu/Wall-E">Wall-e(self-balancing-robot)</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">About</a>
-                        <ul class="dropdown-menu hidden">
-                            <li><a href="#">About Me</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Contact</a>
-                        <ul class="dropdown-menu hidden">
-                            <li><a href="#" id="emailLink">Email (click-to-copy)</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h3 class="text-lg font-bold mb-2 mt-4">Links</h3>
-                <ul class="text-gray-600">
-                    <li><a href="https://github.com/5usu/">GitHub</a></li>
-                    <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-3xl mx-auto py-20 px-4">
-            <header class="bg-white shadow rounded-lg p-6 animate-slide-in">
-                <h1 class="text-3xl font-bold text-gray-800 mb-4">Sujal Dwivedi</h1>
-            </header>
-            <main class="bg-white shadow rounded-lg p-10 mt-6 animate-slide-in2">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">About Me</h2>
-                <p class="text-gray-600 mb-4">
-                    I'm a web developer who really knows their stuff when it comes to building cool websites and apps. One of my recent projects was a full-stack video chat app that let people chat face-to-face in real-time - pretty nifty, right? But that's not all, I'm also super into this fascinating new world of Large Language Models (LLMs). I can't get enough of learning about how these advanced language models work and what they're capable of. It's like a whole new frontier of tech, and I'm stoked to be exploring it.
-                </p>
-            </main>
-        </div>
+<body>
+    <div class="content montserrat-content">
+        <h1>Sujal..</h1>
+        
+        <h2>About Me</h2>
+        <p> I'm 20 right now, pursuing my undergraduate from <b>Mumbai</b>, keen interest about <b>Robotics</b> and <b>Machine learning</b>.   </p>
+        <p>My journey is driven by a curiosity to explore the intersections of technology and innovation. Here, you'll find my projects, achievements, and aspirations as I strive to push the boundaries of what's possible.</p>
+        
+        <h2>Projects</h2>
+        <ul>
+            <li><a href="https://github.com/5usu/aaspaas">Video-chat-app</a></li>
+            <li><a href="https://github.com/5usu/Wall-E">Wall-e (self-balancing-robot)</a></li>
+        </ul>
+        
+        <hr>
+        
+        <ul>
+            <li><a href="https://github.com/5usu/">GitHub</a></li>
+            <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
+        </ul>
+        <b>Programing languages/frameworks</b>
+        <li>C++</li>
+        <li>Javascript (Reactjs , express) and Svelte.</li>
+        <li>Golang</li>
+        <li>verilog</li>
+        <li>Python</li>
     </div>
-
-    <div id="emailCopiedMessage" class="fixed bottom-4 left-4 bg-green-500 text-white px-4 py-2 rounded-md hidden">
-        Email copied: <span id="emailCopiedText"></span>
-    </div>
-
-    <script>
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        dropdowns.forEach(dropdown => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-
-            dropdown.addEventListener('mouseover', () => {
-                menu.classList.remove('hidden');
-            });
-
-            dropdown.addEventListener('mouseout', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        const emailLink = document.getElementById('emailLink');
-        const email = 'sujaldwivedi1114@gmail.com';
-        const emailCopiedMessage = document.getElementById('emailCopiedMessage');
-        const emailCopiedText = document.getElementById('emailCopiedText');
-
-        emailLink.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            navigator.clipboard.writeText(email)
-                .then(() => {
-                    emailCopiedText.textContent = email;
-                    emailCopiedMessage.classList.remove('hidden');
-
-                    // Hide the message after 3 seconds
-                    setTimeout(() => {
-                        emailCopiedMessage.classList.add('hidden');
-                    }, 3000);
-                })
-                .catch((err) => {
-                    console.error('Failed to copy email: ', err);
-                });
-        });
-    </script>
 </body>
 </html>
