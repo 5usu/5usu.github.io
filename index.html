@@ -3,151 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sujal </title>
+    <title>Sujal</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: #F5F5DC;
+            background: #ffffff;
             color: #333;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            font-size: 1.1em;
-            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        .content {
-            max-width: 1000px;
-            padding: 3rem;
-            margin-left: 2rem;
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
         }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            font-weight: 500;
+        }
+
         a {
-            color: #1e88e5;
+            color: #333;
             text-decoration: none;
+            border-bottom: 2px solid #ff6b00;
+            padding-bottom: 2px;
+            transition: color 0.2s;
         }
+
         a:hover {
-            text-decoration: underline;
+            color: #ff6b00;
         }
-        .montserrat-content {
-            font-family: "Montserrat", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
-        .ascii-art {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-family: monospace;
-            white-space: pre;
-            font-size: 12px;
-            line-height: 1;
+
+        .nav a {
+            font-weight: 500;
+        }
+
+        .divider {
+            border-top: 1px dotted #ccc;
+            margin: 2rem 0;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 0 4px;
+        }
+
+        .underline {
+            border-bottom: 2px solid #ff6b00;
+            padding-bottom: 2px;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.9rem;
             color: #666;
-            z-index: 1;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-top: 2rem;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="ascii-art">
+    <h1>SUJAL</h1>
 
-
-        @@@@@@@@@@@%@@@@@@@@%%%%%%#%::::.:*++###*#*...::###+*#+++**+##*****##***##***++**++++*+**----:==----
-        @@+-:..:......-+-%%#%#%%%%#*+=:*--*#*%%%%##+=:++=+==*-==***###***########++++*###+++++:----=+=+-::--
-        %#***+===:......+*###%%**%#++#%#*++**%-=-:.=+**+*####***==+*######*#***+*++*++*++=+*+==-=++=+++--:-=
-        :+==+-=-.:....:-=**##==*=*#--%%%*=***#:==*###**###**##***+*****##%#*+=+*-=++*+=+=+***==--==-=*+::::+
-        .+-+-===......--.:-+=:.#%%=+#+%##+*++*+-+#+=*#*##*++++*+*#****##%+++**---+***#*=+==+=--:=====*+::::+
-        ...:......  ..:...-=...%%%#*#*=-======-:==+++=##%#+#=*=+####+-+=**+++=-********+--++---=+==-=*+:::-+
-        ......   .......===-=:-###++:=--=--==-.=::::-+==+--+*=+++++*++**+**+-=-+***+=+++-*+*=-==+=-=+**===++
-        .....   ....--:.::=.:---++=++==:::::::.::-::-::..:-::+******+*+++-++=+=**#**++*+-+***-====-==+=:=***
-        *.-:......+-:=......-+=-=****-++-::--:::+=::--+*=*++=:=-++++*++++**+++++*+***+++=+**++++*+-===+:-#+#
-        *****+:=+++=*==:::=*=++#++---:::::.:::+:-:::---::::--=-:-=+++*++=+*++===+++****+=*+*+++=*=--**+-+*+#
-        +=+###**+-++-==-:####+#%#%%#*:-:-::--::::-=:::::::-+#%%%#%#%##+++=++*++++*****+*+**++++++:-+#**+****
-        %#=+-##+=**----=#****###%##:::.:=::==---:-=--:=+*+*##%%%%%@@%%#*++**++++**+****+*##*+++*=--*#+#*+#+*
-        +#++#%#+==:-=--#%%%#%#++#++-::+-+-:=*=-:=-::.:-+**##%@@%@%@@@%+=++**+*+*##**#+*=**#+++=+=--=+=#***+*
-        @%%%*#*=---+-+%@@%@%%@%##+=-:-:-+@@@@#**%**+#%%*#%%%%%@@%%@%%#-:+=+*+***#*********#*+++=-::==+#***+#
-        %#++=+:---==+#%@%%%@%@@@=+::+----*%%%@@@@@@@@@@@@@@@@@@%%%%%%%=:=*#**##***#*+***+**++==-::-=*****+*#
-        =::++-::::-++%*%%###@@+*:*=#++-=+---===#-=%%@@@@@@@@%%##***##@%%%+*+#*++***++#*#=++====----+*##**+**
-        -::::::::-==%%%%%@%=###%#*=@@@@%-+**-##%@@@@@@@@@@###****++++*%%%++*#+++*+*++*+++=+==----:+***#*=+##
-        :::--:---:-=%@#@@@@@%#%#:*@@@@@@@%@%@@@@@@@@@@@@%##****+++++=--*%*+**+++*++=++*+-=+=-=--:=#*+*+++##*
-        ::::::--:-==@@%@@@*=#%@@#@@@@@@@@@@@@@@%%%@@%@%##*******=--=--::+*+*=+*++++=++*+====-----++==+==*##%
-        ---===----=-@%@@@@%%%@@@@@@@@@@@@%%%##########*******++=-:-==+*=-#++++++=====+*=======-::==+*+++*###
-        -----------=%%@@@@@@@@@@@@@@@@@@####*********#******++++==+*##**+:+*+++=====+=*=--==------=*##***###
-        --------=--=+%@@@@@@@@@@@@@@@@@%##****************++++++*#%@*++==-.:::----==+*+=---=---::-++*****##*
-        --------=====%@@@@@@@@@@@@@@@%##********####***+++++++*##@***::.=-+=.-=-+=-==++--=-=----:-==++++=**+
-        -------======-@@@@@@@@@@@@@@@%##****#####*****++***++**##+=.*+==+=:=:=-=+===+++=-==---:--++++++=+++=
-        :-----==+=====+@@@@@@@@@@@@@@%##**########*##%%%%######*+=*##+%%*=-====+=-===+==-==-----=++++=*++**+
-        ----===+*++++==%@@%@@@%%@%@@%#***#####%%%@@@@@%##*##%#*##**+=+*+==::====:-=-==--===-----==*++++=++*+
-        ---===++*+++++==#%@@@%%%%%%#*****###@@@@%#***%*+++####*+#****+++=:.::===:-==+======------=*++++***++
-        ===-=+++*+*++*+=**%@@@@%%%%******#%%%#*+*#+%#%%%###*##+++#+=++==-..::==::=====-=--==--:--=++++*****#
-        -===+**++++++*+++**%@@@%%%%********+++*+***=%#@%%#####+-::=----::::::--.:=====-----------+*+****#**#
-        -=-=++**+++++++++**#@@@%%@@%##**++=*===*%+=*#*#####%##*-:...-:-::::...:==--:-:--=---:-:--=**++****##
-        ---+++**+==+++=++**#%%@@@@@@#*+++++#+++**+++++***+*#*#*=-:::.::::.::::=.-====-:--==---::--+=++#*#*##
-        --=**++++=++++++**++*+++**@%#%@@@#*#+******+++++++**%#*++======-----::==--===----=----:---+==+#*#*##
-        --=++++====+*+++***#*****++@@#+++++++=+**+++++++++*+%*==*===**-:----::=+----=--=----::::-====***####
-        -=++*+++==++*+=++**+%++*#%##@%*+++++++:=====+++++++*+=+##*++#@%:::::-=+*--=-=-=+-==--:---===+****##%
-        =**++====++**+=++**++#+%@#**@@#++++++===========+++**#%%@@@#@@%###+=-=**=-===-=---=-----=--=+****###
-        -*+++=++++***++++**++=**+*%*+@@#*++=============++**#%@@@@@%%***+*##*=*%:---=-==--=--::-=-=++****###
-        +*++=-=++**#*++=***++=+***###*@@#*++===========++**#@@%%*+*+++#@%@*+*+#%--:=====--==-:----=++#**####
-        **+====++****++++*+=++*#*++++*%@@#**++=========++*%%%#+++*+#@@@%*#*+++%%:---====--==-----==++******+
-        ++=====++****+++**+==+###*#####%@@%#*++=========+*##+**@@@@%#*+++*++++%%:.:-==-=--++-:-==-=++-::-+::
-        +==--==******++***===+*##*######%@%%%##++**==+===+*+#%#+**++++==**++*%@#...:--==:-++---==-::--=-=:==
-        =+--==+****+*++**+===**#*#########%%%%##**#**+++==++++++++=++*@@%***#%%:....::-=-=+=--==+*+####*++##
-        ===-==*#**+**++**====**##*****#*###%%#%*######*++======++*@@@#%@#**#%@+........-=+++*###**+####**+#*
-        -=-===***++**++++=-=+*#********#*#*#%########**+++*+=+++*#%%#*#####%%%#+..:..:...-***#%%*+*###*+=+*=
-        =----=***++**+*+=--=*#************##-=%%%#%%###**##*****#*#%%%@%#%%@@%#*:::::::::...-+**++*+**+++*#*
-        =---=+**+++**+++=--+***************##*:*#%%%@#%%%##%###%%#*#%@@%@%@@@%##::::::......................
-        ---==+*+++**+++==-=+**#****+****#*##-*%%****%%%@%%%@@@%@%%%%@@@@@@@@@%##::::......:.:...............
-        --==+**+++**++===--=++=-::-===:=++=:#%@@@********##%@@@@@@@@@@@@@@@@%%#*:.........:..:::............
-        =--=+**++**++++=----::-*-==+****++.#%@@@@%%######%%%@@@@@@@@@@@@@@@@%#**:.......:=:-::..............
-        =-==+**+***=--=++==++**=++*##***=.*%@@@@@@@%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@*+#*+@@@:..........:......
-        =+==--+*##*+++#%%%###%%#%*****#.:*%@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@@@@%-:.:-=-::........:::::::..::
-        ++*+**#%%%@%%###%=-=-*+=****#*.*%%@@@@@@@%##%%%%%%%%%@@@@@@@@@@@@@@@@@%#:-==-:........::::::::::::-=
-        ++*%%#***#*=+++*+=**++==:....*#%%@@@@@@@@@%######%%@@@@@@@@@@@@@@@@@@%%%=::........:::::::::::::--+#
-        ==**=#*###*+++*+===-::..::::##%@@@@@@@@@@@@%#####%@@@@@@@@@@@@@@@@@@@%%=........::::---::-::::-=++*@
-        +%#+*#*###*****=:::...:::.:#%@@@@@@@@@@@@@@@%##@@@@@@@@@@@@@@@@@@@@@%#*:......:---======-====++++*#%
-        %%%#%%###*+=::::::..::::.-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%##:....:-======+++*######*+#*++
-        +==+*###*:::::::::::::::-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#*-*=:-===--::::--=+*#%%%%#%#++*
-        ==+*###-::::::::::::::::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%##:-%%++-::::::::::::-=+*%###*#==
-        =++****-:--::::::::::::*%#%%%@@@@@@@@@@@@@@@@@%%%@@@@@@@@@@@@@@@@@@@@##@@**+-:::::::::.::::::==**++*
-        =+++==-=----:::::-::::*#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#=#%:::==-:::::.........::--=#%
-        
-         
+    <div class="nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
     </div>
-    <div class="content montserrat-content">
-        <h1>Sujal</h1>
 
-        <h2>About Me</h2>
-	<p> I'm 20 right now and pursuing my bachelors degree from <b>Mumbai</b> <a href="https://vjti.ac.in/">VJTI</a>, keen interest about <b>Robotics</b> and <b>Machine learning</b>.   </p>
-        <p>My journey is driven by curiosity to explore the intersections of technology. Here, you'll find my projects, achievements, and aspirations as I strive to push the boundaries of what's possible.</p>
+    <div class="divider"></div>
 
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/5usu/aaspaas">Video-chat-app</a></li>
-            <li><a href="https://github.com/5usu/Wall-E">Wall-e (self-balancing-robot)</a></li>
-            <li><a href="https://github.com/5usu/convolutions-on-fpga">Convolution-on-fpga</a></li>
-            <li><a href="https://github.com/5usu/lekh-e-awaz"">speech-to-text</a></li>
-            <li>Currently working on a EcoMender-bot</li>
-        </ul>
+    <h2>About Me</h2>
+    <p>
+        I'm 20 right now and pursuing my bachelors degree from <span class="underline">Mumbai</span> 
+        <a href="https://vjti.ac.in/">VJTI</a>, keen interest about <span class="underline">Robotics</span> 
+        and <span class="underline">Machine learning</span>.
+    </p>
+    <p>
+        My journey is driven by curiosity to explore the intersections of technology. 
+        Here, you'll find my projects, achievements, and aspirations as I strive to push 
+        the boundaries of what's possible.
+    </p>
 
-        <h2>Contact</h2>
-        <ul>
-            <li><a href="https://github.com/5usu/">GitHub</a></li>
-            <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
-            <li><a href="#">sujaldwivedi1114@gmail.com</a></li>
-        </ul>
-        <b>Programing languages/frameworks</b>
-        <ul>
-            <li>C++</li>
-            <li>Javascript (Reactjs , express) and Svelte.</li>
-            <li>Golang</li>
-            <li>verilog</li>
-            <li>Python</li>
-        </ul>
-        <hr>
-        <a href="blogs.html">blogs</a>
+    <h2>Projects</h2>
+    <ul>
+        <li><a href="https://github.com/5usu/aaspaas">Video-chat-app</a></li>
+        <li><a href="https://github.com/5usu/Wall-E">Wall-e (self-balancing-robot)</a></li>
+        <li><a href="https://github.com/5usu/convolutions-on-fpga">Convolution-on-fpga</a></li>
+        <li><a href="https://github.com/5usu/lekh-e-awaz">speech-to-text</a></li>
+        <li><span class="highlight">Currently working on a EcoMender-bot</span></li>
+    </ul>
+
+    <h2>Contact</h2>
+    <ul>
+        <li><a href="https://github.com/5usu/">GitHub</a></li>
+        <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
+        <li><a href="mailto:sujaldwivedi1114@gmail.com">sujaldwivedi1114@gmail.com</a></li>
+    </ul>
+
+    <h2>Programming Languages/Frameworks</h2>
+    <ul>
+        <li>C++</li>
+        <li>Javascript (Reactjs, express) and Svelte</li>
+        <li>Golang</li>
+        <li>Verilog</li>
+        <li>Python</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <p><a href="blogs.html">Blogs</a></p>
+
+    <div class="footer">
+        Made with ♥ by Sujal
     </div>
 </body>
 </html>

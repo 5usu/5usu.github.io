@@ -3,59 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kuro - Blogs</title>
+    <title>Blogs - Sujal</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: #F5F5DC;
+            background: #ffffff;
             color: #333;
-            justify-content: center;
-            font-size: 1.1em;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        .content {
-            max-width: 1000px;
-            padding: 3rem;
-            background: #F5F5DC;
-        }
-        a {
-            color: #1e88e5;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .montserrat-content {
-            font-family: "Montserrat", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
-        .blog-post {
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 3rem;
             margin-bottom: 2rem;
+            font-weight: 700;
         }
-        .blog-post h3 {
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            font-weight: 500;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 2px solid #ff6b00;
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #ff6b00;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+        }
+
+        .divider {
+            border-top: 1px dotted #ccc;
+            margin: 2rem 0;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
             margin-bottom: 0.5rem;
         }
-        .blog-post p {
-            margin-top: 0.5rem;
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-top: 2rem;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="content montserrat-content">
-        <h1>Blogs</h1>
-        
-        <div class="blog-post">
-            <li><a href="brainrot.html">Brainrot</a></li>
-        </div>
-        
-        <hr>
-        
-        <a href="index.html">Back to Home</a>
+    <h1>Blogs</h1>
+
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="#blogs">Blogs</a>
     </div>
+
+    <div class="divider"></div>
+
+    <h2>Recent Posts</h2>
+    <ul>
+        <li><a href="brainrot.html">Brainrot</a></li>
+    </ul>
+
+    <div class="divider"></div>
 </body>
 </html>
