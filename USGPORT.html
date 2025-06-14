@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Deep Dive into FPGA-Based Portable Ultrasound</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                background: #ffffff;
+                color: #333;
+                font-family: "Montserrat", sans-serif;
+                line-height: 1.6;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                text-align: center;
+                margin-top: 3rem;
+                margin-bottom: 2rem;
+                font-weight: 700;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+                color: #1a1a1a;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                font-weight: 500;
+                color: #1a1a1a;
+            }
+
+            p {
+                margin-bottom: 1.5rem;
+            }
+
+            ul,
+            ol {
+                margin-left: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .metaphor {
+                margin: 1.5rem 2rem;
+                padding: 1rem 1.5rem;
+                background: #f4f4f4;
+                border-left: 4px solid #ccc;
+                font-style: italic;
+                color: #555;
+            }
+
+            .highlight {
+                border-bottom: 2px solid #ff6b00;
+                padding-bottom: 2px;
+            }
+
+            a {
+                color: #333;
+                text-decoration: none;
+                border-bottom: 2px solid #ff6b00;
+                padding-bottom: 2px;
+                transition: color 0.2s;
+            }
+
+            a:hover {
+                color: #ff6b00;
+            }
+
+            .divider {
+                border-top: 1px dotted #ccc;
+                margin: 2rem 0;
+            }
+
+            .footer {
+                text-align: center;
+                margin-top: 3rem;
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            @media screen and (max-width: 600px) {
+                body {
+                    padding: 1rem;
+                }
+
+                h1 {
+                    font-size: 2rem;
+                    margin-top: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            My Deep Dive into
+            <span class="highlight">FPGA-Based Portable Ultrasound</span>
+        </h1>
+
+        <p>
+            Hello, let's deep dive into the
+            <span class="highlight">paper</span> that builds a
+            <span class="highlight">single-FPGA portable ultrasound</span>
+            system—perfect for point-of-care diagnostics. If you’re new to
+            <span class="highlight">Field-Programmable Gate Arrays (FPGAs)</span
+            >, don’t worry. I’ll guide you with simple metaphors and rich
+            details, so by the end of this read (about eight minutes), you’ll
+            feel like you’ve peeked inside the
+            <span class="highlight">FPGA </span> and seen it transform into a
+            real medical gadget.
+        </p>
+
+        <h2>
+            1. Peeking Behind the Curtain: What Is an
+            <span class="highlight">Ultrasound</span>?
+        </h2>
+        <p>
+            Before we meet the FPGA hero, let’s understand the story’s setting:
+            ultrasound imaging. Think of ultrasound like a
+            <span class="highlight">bat’s echolocation</span>. A handheld probe
+            sends out high-frequency sound waves into your body; they bounce off
+            tissues and return as echoes. The device then interprets these
+            echoes to draw real-time images of organs, blood flow, or even a
+            baby’s first smile.
+        </p>
+        <p>
+            Traditional ultrasound machines are large, expensive, and tied to
+            hospital walls. The innovation we’re exploring squeezes all the
+            signal processing, beamforming, and image rendering into a
+            <span class="highlight">single chip</span> you could carry in a coat
+            pocket—no rolling carts required.
+        </p>
+
+        <h2>
+            2. Enter the <span class="highlight">FPGA</span>: The Master of
+            Flexibility
+        </h2>
+        <p>
+            An FPGA is like a blank canvas of logic blocks and inerconnects.
+            Unlike a fixed chip (ASIC), which is baked at the factory, an FPGA
+            arrives ready to be configured—wires rerouted, blocks repurposed—so
+            you can tailor it to your exact application. Imagine if your
+            smartphone could rewire itself overnight to become a camera one day
+            and a drone controller the next; that’s the power of reconfigurable
+            logic.
+        </p>
+        <blockquote class="metaphor">
+            “An FPGA is the
+            <span class="highlight">Swiss Army knife of electronics</span>—one
+            tool, countless functions.”
+        </blockquote>
+        <p>
+            In our portable ultrasound, the FPGA replaces dozens of dedicated
+            signal-processing chips. That translates to
+            <span class="highlight">lower cost</span>,
+            <span class="highlight">smaller size</span>, and the ability to
+            tweak the design even after you’ve built the hardware.
+        </p>
+
+        <h2>
+            3. Anatomy of the <span class="highlight">Portable System</span>
+        </h2>
+        <p>
+            The paper’s prototype is nestled inside a rugged enclosure measuring
+            just 245 × 190 mm and weighing under 600 g. Inside, you’ll find:
+        </p>
+        <ul>
+            <li>
+                <strong><span class="highlight">FPGA board</span>:</strong> The
+                heart of the system, hosting all beamforming, filtering, and
+                control logic.
+            </li>
+            <li>
+                <strong
+                    ><span class="highlight">High-voltage pulser</span>:</strong
+                >
+                Generates short voltage bursts to excite the ultrasound probe
+                elements.
+            </li>
+            <li>
+                <strong
+                    ><span class="highlight">Analog front-end (AFE)</span
+                    >:</strong
+                >
+                Amplifies and conditions the weak echo signals before they reach
+                the FPGA’s ADC inputs.
+            </li>
+            <li>
+                <strong><span class="highlight">Battery pack</span>:</strong> A
+                rechargeable Li-ion module that powers the device for over 90
+                minutes of continuous scanning.
+            </li>
+            <li>
+                <strong
+                    ><span class="highlight">Display &amp; interface</span
+                    >:</strong
+                >
+                A compact LCD (or HDMI output) and simple buttons allow
+                real-time viewing and parameter adjustments.
+            </li>
+        </ul>
+        <p>
+            The genius lies in packing all of this into something you could
+            carry onto an ambulance or into a disaster site.
+        </p>
+
+        <h3>3.1 <span class="highlight">Hardware Block Diagram</span></h3>
+        <p>
+            The block diagram flows from
+            <span class="highlight"
+                >pulser → probe array → AFE → ADC → FPGA → LCD</span
+            >. At each stage, the signals transform from electrical pulses to
+            digitized samples, then to pixelated images. The FPGA orchestrates
+            this entire pipeline, stitching together pieces like a conductor
+            leading an orchestra.
+        </p>
+
+        <h2>
+            4. Inside the FPGA:
+            <span class="highlight">Design Blocks &amp; Strategies</span>
+        </h2>
+        <p>
+            Let’s zoom into the FPGA itself. The authors split their design into
+            three main domains:
+        </p>
+        <ol>
+            <li>
+                <strong><span class="highlight">Transmit control</span></strong
+                >—driving the pulser to generate precise bursts.
+            </li>
+            <li>
+                <strong
+                    ><span class="highlight">Receive beamforming</span></strong
+                >—aligning and summing echoes from multiple channels.
+            </li>
+            <li>
+                <strong><span class="highlight">Image processing</span></strong
+                >—filtering, envelope detection, compression, and scan
+                conversion.
+            </li>
+        </ol>
+
+        <h3>4.1 <span class="highlight">Transmit Control</span></h3>
+        <p>
+            Here, simple finite-state machines (FSMs) dispatch timed pulses to
+            the probe elements. Think of it as choreographing a flash mob: each
+            dancer (element) must light up at exactly the right beat.
+        </p>
+
+        <h3>
+            4.2 <span class="highlight">Pseudo-Dynamic Focus</span> Beamforming
+        </h3>
+        <p>
+            Beamforming normally requires calculating unique delay values for
+            every image line and depth, which can explode resource usage. The
+            paper introduces a <em>pseudo-dynamic focus</em> scheme: they
+            precompute a handful of focus zones and store delay settings in a
+            lookup table (LUT). At runtime, the FPGA cycles through these zones,
+            interpolating between them—like memorizing main highway exits
+            instead of every street address. This cuts memory use without
+            sacrificing image clarity.
+        </p>
+
+        <h3>4.3 <span class="highlight">Extended Aperture</span> Trick</h3>
+        <p>
+            To boost resolution without doubling hardware, they use the concept
+            of <em>extended aperture</em>. The system fires two half-aperture
+            pulses sequentially and recombines echoes, effectively creating a
+            virtual full-aperture image. It’s like taking two panoramic photos
+            and stitching them into a wider view.
+        </p>
+
+        <h3>
+            4.4
+            <span class="highlight">Digital Signal Processing Pipeline</span>
+        </h3>
+        <p>
+            Once echoes arrive at the ADC inputs, the FPGA’s DSP chain kicks
+            off:
+        </p>
+        <ul>
+            <li>
+                <span class="highlight">DC cancellation</span>: Removes baseline
+                offsets, ensuring echoes center around zero.
+            </li>
+            <li>
+                <span class="highlight">Time-gain compensation (TGC)</span>:
+                Gradually amplifies deeper echoes to compensate for
+                attenuation—like turning up the volume as a concert moves
+                farther away.
+            </li>
+            <li>
+                <span class="highlight">Quadrature demodulation</span>: Converts
+                the RF signal into baseband I/Q components, isolating the echo
+                envelope.
+            </li>
+            <li>
+                <span class="highlight">Log compression</span>: Applies a
+                logarithmic scale to compress dynamic range so both weak and
+                strong echoes display clearly.
+            </li>
+            <li>
+                <span class="highlight">Scan conversion</span>: Maps polar
+                coordinates (fan-shaped data) into a rectangular grid for screen
+                display.
+            </li>
+        </ul>
+
+        <h2>5. <span class="highlight">Performance Highlights</span></h2>
+        <p>The prototype achieves:</p>
+        <ul>
+            <li>
+                <span class="highlight">Frame rate:</span> Up to 30 fps at 128
+                lines, sufficient for real-time cardiac imaging.
+            </li>
+            <li>
+                <span class="highlight">Resolution:</span> Comparable to
+                mid-range commercial systems, thanks to extended aperture and
+                optimized beamforming.
+            </li>
+            <li>
+                <span class="highlight">Power consumption:</span> Under 5 W for
+                the FPGA core and associated logic, enabling long battery life.
+            </li>
+            <li>
+                <span class="highlight">Cost:</span> Under $50 of FPGA fabric,
+                plus modest additional components—an order of magnitude cheaper
+                than traditional boards.
+            </li>
+        </ul>
+        <p>
+            In practice, clinicians reported image quality on par with
+            standalone machines costing thousands of dollars.
+        </p>
+
+        <h2>
+            6. Lessons Learned &amp;
+            <span class="highlight">My Reflections</span>
+        </h2>
+        <p>
+            Diving deep into this design taught me that FPGAs shine when you
+            need both speed and flexibility. By cleverly sharing resources
+            (pseudo-dynamic focus) and reusing channels (extended aperture), you
+            can build sophisticated systems on a tight budget. I also realized
+            the power of thinking algorithmically—finding ways to precompute and
+            lookup instead of brute-forcing every calculation in real time.
+        </p>
+        <p>
+            As a newcomer, I was initially daunted by HDL syntax and timing
+            constraints. But seeing the final system—a pocket-sized imaging
+            device—made all the learning hurdles worth it. It’s one thing to
+            blink LEDs; it’s another to peer inside the human body with your own
+            FPGA design!
+        </p>
+
+        <h2>
+            7. Next Steps for <span class="highlight">FPGA Enthusiasts</span>
+        </h2>
+        <p>If you’re inspired to build something similar, here’s my advice:</p>
+        <ul>
+            <li>
+                <span class="highlight">Start small</span>: implement a toy DSP
+                filter on an FPGA dev board.
+            </li>
+            <li>
+                <span class="highlight">Learn timing</span>: practice meeting
+                clock frequency constraints.
+            </li>
+            <li>
+                <span class="highlight">Modularize</span>: break designs into
+                reusable Verilog/VHDL blocks.
+            </li>
+            <li>
+                <span class="highlight">Simulate early</span>: use ModelSim or
+                open-source tools to validate logic.
+            </li>
+            <li>
+                <span class="highlight">Explore open-source IP cores</span> for
+                ADC interfaces and DMA engines.
+            </li>
+        </ul>
+        <p>
+            Before long, you’ll be ready to tackle projects that make a
+            real-world impact—just like this portable ultrasound.
+        </p>
+
+        <div class="divider"></div>
+        <p><a href="blogs.html">← Back to Blogs</a></p>
+        <div class="footer">Made with ♥ by Sujal</div>
+    </body>
+</html>
