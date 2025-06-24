@@ -26,12 +26,27 @@
             margin-top: 3rem;
             margin-bottom: 2rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .profile-img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 3px solid #ff6b00;
         }
 
         h2 {
             font-size: 1.5rem;
             margin-top: 2rem;
             font-weight: 500;
+            border-bottom: 2px solid #ff6b00;
+            padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
         a {
@@ -55,6 +70,11 @@
 
         .nav a {
             font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav a.active {
+            color: #ff6b00;
         }
 
         .divider {
@@ -63,7 +83,7 @@
         }
 
         .highlight {
-            background-color: #ffeb3b;
+            background-color: orangered;
             padding: 0 4px;
         }
 
@@ -87,6 +107,18 @@
             color: #666;
         }
 
+        .content {
+            min-height: 400px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         @media screen and (max-width: 600px) {
             body {
                 padding: 1rem;
@@ -95,61 +127,280 @@
             h1 {
                 font-size: 2rem;
                 margin-top: 2rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .profile-img {
+                width: 2.5rem;
+                height: 2.5rem;
             }
 
             .nav {
                 flex-wrap: wrap;
                 gap: 1rem;
             }
+
+            h2 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>SUJAL</h1>
+    <h1>
+        SUJAL
+        <img src="WhatsApp Image 2025-06-18 at 1.18.54 AM.jpeg" alt="Sujal" class="profile-img">
+    </h1>
 
     <div class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="project.html">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#" data-page="home">Home</a>
+        <a href="#" data-page="projects">Projects</a>
+        <a href="#" data-page="blogs">Blogs</a>
+        <a href="#" data-page="contact">Contact</a>
     </div>
 
     <div class="divider"></div>
 
-    <h2>About Me</h2>
-    <p>
-        I'm 20 right now and pursuing my bachelors degree from <span class="underline">Mumbai</span> 
-        <a href="https://vjti.ac.in/">VJTI</a>, keen interest about <span class="underline">Robotics</span> 
-        and <span class="underline">Machine learning</span>.
-    </p>
-    <p>
-        My journey is driven by curiosity to explore the intersections of technology. 
-        Here, you'll find my projects, achievements, and aspirations as I strive to push 
-        the boundaries of what's possible.
-    </p>
+    <div class="content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm a 20 right now, pursuing my bachelor's degree from <span class="underline">Mumbai </span> 
+                <a href="https://vjti.ac.in/">VJTI</a>. My world revolves around the fascinating realms of <span class="underline">Robotics</span> 
+                and <span class="underline">Machine Learning</span>, where I spend countless hours exploring how intelligent systems can reshape our future.
+            </p>
+            <p>
+                Beyond the world of algorithms and circuits, I'm an avid <span class="underline">reader</span> who finds solace in books ranging from 
+                technical literature to philosophy and science fiction. There's something magical about how a good book can transport you to different 
+                worlds or introduce revolutionary ideas that reshape your thinking.
+            </p>
+            <p>
+                My journey is driven by an insatiable curiosity to explore the intersections of technology, human behavior, and innovation. 
+                I believe in building solutions that don't just work, but make a meaningful impact. Whether it's implementing neural networks on FPGAs, or writing about emerging technologies, I'm always pushing to understand the 'why' behind the 'how'.
+            </p>
 
-    <h2>Contact</h2>
-    <ul>
-        <li><a href="https://github.com/5usu/">GitHub</a></li>
-        <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
-        <li><a href="mailto:sujaldwivedi1114@gmail.com">sujaldwivedi1114@gmail.com</a></li>
-    </ul>
+            <h2>What I'm Working On</h2>
+            <p>
+                Currently, I'm diving deep into computer vision applications and exploring how we can make 
+                human-computer interaction more intuitive. I'm particularly excited about the potential of edge computing 
+                in robotics applications.
+            </p>
 
-    <h2>Programming Languages/Frameworks</h2>
-    <ul>
-        <li>C++</li>
-        <li>Javascript (Reactjs, express) and Svelte</li>
-        <li>Golang</li>
-        <li>Verilog</li>
-        <li>Python</li>
-    </ul>
+            <h2>My Technical Arsenal</h2>
+            <ul>
+                <li><strong>Systems Programming:</strong> C++ for performance-critical applications</li>
+                <li><strong>Web Technologies:</strong> JavaScript (React.js, Express), Svelte for modern web experiences</li>
+                <li><strong>Backend Development:</strong> Golang for scalable server applications</li>
+                <li><strong>Hardware Description:</strong> Verilog for FPGA implementations</li>
+                <li><strong>AI/ML:</strong> Python with PyTorch, TensorFlow for deep learning projects</li>
+                <li><strong>Embedded Systems:</strong> Working with microcontrollers and real-time systems</li>
+            </ul>
+
+            <h2>Recent Highlights</h2>
+            <div style="margin-top: 1rem;">
+                <p><strong> Latest Project:</strong> Developed a real-time gaze estimation system that enables hands-free computer control</p>
+                <p><strong> Recent Writing:</strong> Exploring the implementation of portable ultrasound systems on FPGA hardware</p>
+                <p><strong> Currently Reading:</strong> Diving into advanced robotics algorithms and their real-world applications</p>
+                <p><strong> Next Goal:</strong> Integrating machine learning models with robotics for autonomous navigation systems</p>
+            </div>
+
+            <h2>Beyond Code</h2>
+            <p>
+                When I'm not immersed in code or buried in technical papers, you'll find me with blogs, exploring everything from 
+                Andrej Karpathy's misc unsorted to the latest research in cognitive science. I believe that great engineering comes from 
+                understanding not just the technical challenges, but also the human stories and philosophical questions behind our innovations.
+            </p>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="https://github.com/5usu/gaze-estimation">Gaze-Activated Virtual Assistant</a> — Computer Vision, Python, AI Integration</li>
+                <li><a href="https://github.com/5usu/convolutions-on-fpga">Image Convolution on FPGA</a> — Verilog, Image Processing</li>
+                <li><a href="https://github.com/5usu/mjkurma">MuJoCo Robotics Simulation</a> — Python, MuJoCo, Robotics</li>
+                <li><a href="https://github.com/5usu/quantization">Neural Network Quantization Framework</a> — PyTorch, Deep Learning</li>
+                <li><a href="https://github.com/5usu/video-chat-app">Video Chat Application</a> — JavaScript, Go, CSS, HTML</li>
+                <li><a href="https://github.com/5usu/lekh-e-awaz">Speech-to-Text Transcription Application</a> — Whisper AI, Python</li>
+                <li><a href="https://github.com/5usu/onyx">Hyperspectral Anomaly Detection System</a> — Python, Machine Learning, Deep Learning</li>
+            </ul>
+        </div>
+
+        <!-- Blogs Page -->
+        <div id="blogs" class="page">
+            <h2>Recent Posts</h2>
+            <ul>
+                <li><a href="#" data-page="brainrot.html">Brainrot</a></li>
+                <li><a href="#" data-page="USGPORT.html">Portable USG on FPGA</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <h2>Contact</h2>
+            <ul>
+                <li><a href="https://github.com/5usu/">GitHub</a></li>
+                <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
+                <li><a href="mailto:sujaldwivedi1114@gmail.com">sujaldwivedi1114@gmail.com</a></li>
+            </ul>
+        </div>
+
+        <!-- Brainrot Blog Page -->
+        <div id="brainrot" class="page">
+            <h2>Brainrot</h2>
+            <p><a href="#" data-page="blogs">← Back to Blogs</a></p>
+            <div id="brainrot-content">
+                <!-- Content will be loaded here -->
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <!-- USGPORT Blog Page -->
+        <div id="usgport" class="page">
+            <h2>Portable USG on FPGA</h2>
+            <p><a href="#" data-page="blogs">← Back to Blogs</a></p>
+            <div id="usgport-content">
+                <!-- Content will be loaded here -->
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
 
     <div class="divider"></div>
-
-    <p><a href="blogs.html">Blogs</a></p>
 
     <div class="footer">
         Made with ♥ by Sujal
     </div>
+
+    <script>
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Set active nav link
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Update URL hash
+            window.location.hash = pageId;
+
+            // Load blog content if needed
+            if (pageId === 'brainrot') {
+                loadBrainrotContent();
+            } else if (pageId === 'usgport') {
+                loadUsgportContent();
+            }
+        }
+
+        // Load brainrot content
+        function loadBrainrotContent() {
+            const content = document.getElementById('brainrot-content');
+            fetch('brainrot.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Extract body content from the HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const bodyContent = doc.body.innerHTML;
+                    
+                    // Remove the title and navigation parts, keep only the main content
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = bodyContent;
+                    
+                    // Remove title and nav elements
+                    const title = tempDiv.querySelector('h1');
+                    const nav = tempDiv.querySelector('.nav');
+                    const dividers = tempDiv.querySelectorAll('.divider');
+                    
+                    if (title) title.remove();
+                    if (nav) nav.remove();
+                    dividers.forEach(div => div.remove());
+                    
+                    content.innerHTML = tempDiv.innerHTML;
+                })
+                .catch(error => {
+                    content.innerHTML = '<p>Content not available</p>';
+                });
+        }
+
+        // Load USGPORT content
+        function loadUsgportContent() {
+            const content = document.getElementById('usgport-content');
+            fetch('USGPORT.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Extract body content from the HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const bodyContent = doc.body.innerHTML;
+                    
+                    // Remove the title and navigation parts, keep only the main content
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = bodyContent;
+                    
+                    // Remove title and nav elements
+                    const title = tempDiv.querySelector('h1');
+                    const nav = tempDiv.querySelector('.nav');
+                    const dividers = tempDiv.querySelectorAll('.divider');
+                    
+                    if (title) title.remove();
+                    if (nav) nav.remove();
+                    dividers.forEach(div => div.remove());
+                    
+                    content.innerHTML = tempDiv.innerHTML;
+                })
+                .catch(error => {
+                    content.innerHTML = '<p>Content not available</p>';
+                });
+        }
+
+        // Event listeners for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle navigation clicks
+            document.querySelectorAll('[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    showPage(hash);
+                } else {
+                    showPage('home');
+                }
+            });
+
+            // Show initial page based on URL hash
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash) {
+                showPage(initialHash);
+            } else {
+                showPage('home');
+            }
+        });
+    </script>
 </body>
 </html>
