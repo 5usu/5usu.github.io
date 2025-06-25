@@ -1,406 +1,631 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sujal</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: #ffffff;
-            color: #333;
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-top: 3rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .profile-img {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 3px solid #ff6b00;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            font-weight: 500;
-            border-bottom: 2px solid #ff6b00;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 2px solid #ff6b00;
-            padding-bottom: 2px;
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: #ff6b00;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .nav a {
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .nav a.active {
-            color: #ff6b00;
-        }
-
-        .divider {
-            border-top: 1px dotted #ccc;
-            margin: 2rem 0;
-        }
-
-        .highlight {
-            background-color: orangered;
-            padding: 0 4px;
-        }
-
-        .underline {
-            border-bottom: 2px solid #ff6b00;
-            padding-bottom: 2px;
-        }
-
-        ul {
-            padding-left: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .content {
-            min-height: 400px;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @media screen and (max-width: 600px) {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sujal Dwivedi | Robotics & ML Portfolio</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --clr-bg: #0f172a;
+                --clr-surface: #1e293b;
+                --clr-primary: #ff6b00;
+                --clr-text: #e2e8f0;
+                --clr-muted: #94a3b8;
+                --radius: 10px;
+                --gap: 2.5rem;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
             body {
-                padding: 1rem;
+                font-family: "Montserrat", sans-serif;
+                background: var(--clr-bg);
+                color: var(--clr-text);
+                line-height: 1.6;
             }
-
-            h1 {
-                font-size: 2rem;
-                margin-top: 2rem;
-                flex-direction: column;
-                gap: 0.5rem;
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1.25rem;
             }
-
-            .profile-img {
-                width: 2.5rem;
-                height: 2.5rem;
+            section {
+                padding: calc(var(--gap) * 2) 0;
             }
-
-            .nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
             h2 {
-                font-size: 1.3rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>
-        SUJAL
-        <img src="WhatsApp Image 2025-06-18 at 1.18.54 AM.jpeg" alt="Sujal" class="profile-img">
-    </h1>
-
-    <div class="nav">
-        <a href="#" data-page="home">Home</a>
-        <a href="#" data-page="projects">Projects</a>
-        <a href="#" data-page="blogs">Blogs</a>
-        <a href="#" data-page="contact">Contact</a>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="content">
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <h2>About Me</h2>
-            <p>
-                Hello! I'm a 20 right now, pursuing my bachelor's degree from <span class="underline">Mumbai </span> 
-                <a href="https://vjti.ac.in/">VJTI</a>. My world revolves around the fascinating realms of <span class="underline">Robotics</span> 
-                and <span class="underline">Machine Learning</span>, where I spend countless hours exploring how intelligent systems can reshape our future.
-            </p>
-            <p>
-                Beyond the world of algorithms and circuits, I'm an avid <span class="underline">reader</span> who finds solace in books ranging from 
-                technical literature to philosophy and science fiction. There's something magical about how a good book can transport you to different 
-                worlds or introduce revolutionary ideas that reshape your thinking.
-            </p>
-            <p>
-                My journey is driven by an insatiable curiosity to explore the intersections of technology, human behavior, and innovation. 
-                I believe in building solutions that don't just work, but make a meaningful impact. Whether it's implementing neural networks on FPGAs, or writing about emerging technologies, I'm always pushing to understand the 'why' behind the 'how'.
-            </p>
-
-            <h2>What I'm Working On</h2>
-            <p>
-                Currently, I'm diving deep into computer vision applications and exploring how we can make 
-                human-computer interaction more intuitive. I'm particularly excited about the potential of edge computing 
-                in robotics applications.
-            </p>
-
-            <h2>My Technical Arsenal</h2>
-            <ul>
-                <li><strong>Systems Programming:</strong> C++ for performance-critical applications</li>
-                <li><strong>Web Technologies:</strong> JavaScript (React.js, Express), Svelte for modern web experiences</li>
-                <li><strong>Backend Development:</strong> Golang for scalable server applications</li>
-                <li><strong>Hardware Description:</strong> Verilog for FPGA implementations</li>
-                <li><strong>AI/ML:</strong> Python with PyTorch, TensorFlow for deep learning projects</li>
-                <li><strong>Embedded Systems:</strong> Working with microcontrollers and real-time systems</li>
-            </ul>
-
-            <h2>Recent Highlights</h2>
-            <div style="margin-top: 1rem;">
-                <p><strong> Latest Project:</strong> Developed a real-time gaze estimation system that enables hands-free computer control</p>
-                <p><strong> Recent Writing:</strong> Exploring the implementation of portable ultrasound systems on FPGA hardware</p>
-                <p><strong> Currently Reading:</strong> Diving into advanced robotics algorithms and their real-world applications</p>
-                <p><strong> Next Goal:</strong> Integrating machine learning models with robotics for autonomous navigation systems</p>
-            </div>
-
-            <h2>Beyond Code</h2>
-            <p>
-                When I'm not immersed in code or buried in technical papers, you'll find me with blogs, exploring everything from 
-                Andrej Karpathy's misc unsorted to the latest research in cognitive science. I believe that great engineering comes from 
-                understanding not just the technical challenges, but also the human stories and philosophical questions behind our innovations.
-            </p>
-        </div>
-
-        <!-- Projects Page -->
-        <div id="projects" class="page">
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="https://github.com/5usu/gaze-estimation">Gaze-Activated Virtual Assistant</a> — Computer Vision, Python, AI Integration</li>
-                <li><a href="https://github.com/5usu/convolutions-on-fpga">Image Convolution on FPGA</a> — Verilog, Image Processing</li>
-                <li><a href="https://github.com/5usu/mjkurma">MuJoCo Robotics Simulation</a> — Python, MuJoCo, Robotics</li>
-                <li><a href="https://github.com/5usu/quantization">Neural Network Quantization Framework</a> — PyTorch, Deep Learning</li>
-                <li><a href="https://github.com/5usu/video-chat-app">Video Chat Application</a> — JavaScript, Go, CSS, HTML</li>
-                <li><a href="https://github.com/5usu/lekh-e-awaz">Speech-to-Text Transcription Application</a> — Whisper AI, Python</li>
-                <li><a href="https://github.com/5usu/onyx">Hyperspectral Anomaly Detection System</a> — Python, Machine Learning, Deep Learning</li>
-            </ul>
-        </div>
-
-        <!-- Blogs Page -->
-        <div id="blogs" class="page">
-            <h2>Recent Posts</h2>
-            <ul>
-                <li><a href="#" data-page="brainrot.html">Brainrot</a></li>
-                <li><a href="#" data-page="USGPORT.html">Portable USG on FPGA</a></li>
-            </ul>
-        </div>
-
-        <!-- Contact Page -->
-        <div id="contact" class="page">
-            <h2>Contact</h2>
-            <ul>
-                <li><a href="https://github.com/5usu/">GitHub</a></li>
-                <li><a href="https://twitter.com/bos0nN">Twitter</a></li>
-                <li><a href="mailto:sujaldwivedi1114@gmail.com">sujaldwivedi1114@gmail.com</a></li>
-            </ul>
-        </div>
-
-        <!-- Brainrot Blog Page -->
-        <div id="brainrot" class="page">
-            <h2>Brainrot</h2>
-            <p><a href="#" data-page="blogs">← Back to Blogs</a></p>
-            <div id="brainrot-content">
-                <!-- Content will be loaded here -->
-                <p>Loading...</p>
-            </div>
-        </div>
-
-        <!-- USGPORT Blog Page -->
-        <div id="usgport" class="page">
-            <h2>Portable USG on FPGA</h2>
-            <p><a href="#" data-page="blogs">← Back to Blogs</a></p>
-            <div id="usgport-content">
-                <!-- Content will be loaded here -->
-                <p>Loading...</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="footer">
-        Made with ♥ by Sujal
-    </div>
-
-    <script>
-        // Page navigation functionality
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Set active nav link
-            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: var(--clr-primary);
             }
 
-            // Update URL hash
-            window.location.hash = pageId;
-
-            // Load blog content if needed
-            if (pageId === 'brainrot') {
-                loadBrainrotContent();
-            } else if (pageId === 'usgport') {
-                loadUsgportContent();
+            /* Navbar */
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(6px);
+                z-index: 999;
             }
-        }
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 1.25rem;
+            }
+            .logo {
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: var(--clr-primary);
+            }
+            nav ul {
+                display: flex;
+                gap: 1.75rem;
+                list-style: none;
+            }
+            nav a {
+                color: var(--clr-text);
+                font-weight: 500;
+                text-decoration: none;
+                position: relative;
+            }
+            nav a::after {
+                content: "";
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                height: 2px;
+                width: 0;
+                background: var(--clr-primary);
+                transition: width 0.3s;
+            }
+            nav a:hover::after {
+                width: 100%;
+            }
 
-        // Load brainrot content
-        function loadBrainrotContent() {
-            const content = document.getElementById('brainrot-content');
-            fetch('brainrot.html')
-                .then(response => response.text())
-                .then(html => {
-                    // Extract body content from the HTML
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const bodyContent = doc.body.innerHTML;
-                    
-                    // Remove the title and navigation parts, keep only the main content
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = bodyContent;
-                    
-                    // Remove title and nav elements
-                    const title = tempDiv.querySelector('h1');
-                    const nav = tempDiv.querySelector('.nav');
-                    const dividers = tempDiv.querySelectorAll('.divider');
-                    
-                    if (title) title.remove();
-                    if (nav) nav.remove();
-                    dividers.forEach(div => div.remove());
-                    
-                    content.innerHTML = tempDiv.innerHTML;
-                })
-                .catch(error => {
-                    content.innerHTML = '<p>Content not available</p>';
-                });
-        }
-
-        // Load USGPORT content
-        function loadUsgportContent() {
-            const content = document.getElementById('usgport-content');
-            fetch('USGPORT.html')
-                .then(response => response.text())
-                .then(html => {
-                    // Extract body content from the HTML
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const bodyContent = doc.body.innerHTML;
-                    
-                    // Remove the title and navigation parts, keep only the main content
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = bodyContent;
-                    
-                    // Remove title and nav elements
-                    const title = tempDiv.querySelector('h1');
-                    const nav = tempDiv.querySelector('.nav');
-                    const dividers = tempDiv.querySelectorAll('.divider');
-                    
-                    if (title) title.remove();
-                    if (nav) nav.remove();
-                    dividers.forEach(div => div.remove());
-                    
-                    content.innerHTML = tempDiv.innerHTML;
-                })
-                .catch(error => {
-                    content.innerHTML = '<p>Content not available</p>';
-                });
-        }
-
-        // Event listeners for navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle navigation clicks
-            document.querySelectorAll('[data-page]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const pageId = this.getAttribute('data-page');
-                    showPage(pageId);
-                });
-            });
-
-            // Handle browser back/forward buttons
-            window.addEventListener('hashchange', function() {
-                const hash = window.location.hash.substring(1);
-                if (hash) {
-                    showPage(hash);
-                } else {
-                    showPage('home');
+            /* Hero */
+            #home {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding-top: 5rem;
+                background:
+                    radial-gradient(
+                        circle at 20% 30%,
+                        #ff6b0033 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 80% 70%,
+                        #ff6b0033 0%,
+                        transparent 50%
+                    );
+            }
+            .hero-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--gap);
+                align-items: center;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            .hero-text p {
+                font-size: 1.15rem;
+                margin-bottom: 1.5rem;
+                max-width: 38ch;
+            }
+            .hero-btn {
+                display: inline-block;
+                background: var(--clr-primary);
+                color: #fff;
+                padding: 0.75rem 1.5rem;
+                border-radius: var(--radius);
+                text-decoration: none;
+                font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                transition: transform 0.25s;
+            }
+            .hero-btn:hover {
+                transform: translateY(-3px);
+            }
+            .hero-img img {
+                width: 100%;
+                max-width: 320px;
+                border-radius: var(--radius);
+                border: 4px solid var(--clr-primary);
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
                 }
-            });
-
-            // Show initial page based on URL hash
-            const initialHash = window.location.hash.substring(1);
-            if (initialHash) {
-                showPage(initialHash);
-            } else {
-                showPage('home');
+                50% {
+                    transform: translateY(-8px);
+                }
             }
-        });
-    </script>
-</body>
+
+            /* About */
+            #about .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--gap);
+            }
+            #about p {
+                margin-bottom: 1rem;
+                color: var(--clr-muted);
+            }
+
+            /* Timeline */
+            .timeline-wrapper {
+                position: relative;
+                margin-top: var(--gap);
+            }
+            .timeline-wrapper::before {
+                content: "";
+                position: absolute;
+                left: 20px;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: var(--clr-primary);
+            }
+            .milestone {
+                position: relative;
+                padding: 1rem 1rem 1rem 3.5rem;
+                margin-bottom: 1.25rem;
+                background: var(--clr-surface);
+                border-radius: var(--radius);
+                opacity: 0;
+                animation: slideIn 0.8s forwards;
+            }
+            .milestone:nth-child(even) {
+                animation-delay: 0.2s;
+            }
+            .milestone:nth-child(odd) {
+                animation-delay: 0.1s;
+            }
+            .milestone::before {
+                content: "";
+                position: absolute;
+                left: 7px;
+                top: 1.1rem;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--clr-bg);
+                border: 3px solid var(--clr-primary);
+            }
+            .milestone h4 {
+                font-weight: 600;
+                margin-bottom: 0.4rem;
+            }
+            .milestone p {
+                color: var(--clr-muted);
+                font-size: 0.95rem;
+            }
+            @keyframes slideIn {
+                from {
+                    transform: translateY(40px);
+                }
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            /* Project Cards with Slider */
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+                gap: var(--gap);
+                margin-top: var(--gap);
+            }
+            .card {
+                background: var(--clr-surface);
+                border-radius: var(--radius);
+                padding: 1.5rem;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+            }
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+            }
+            .card h3 {
+                color: var(--clr-primary);
+                margin-bottom: 0.5rem;
+            }
+            .card p {
+                color: var(--clr-muted);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Slider */
+            .slider {
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 1rem;
+            }
+            .slider img {
+                flex: 0 0 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: var(--radius);
+                scroll-snap-align: start;
+            }
+            .slider::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Blog */
+            .post-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--gap);
+                margin-top: var(--gap);
+            }
+            .post {
+                background: var(--clr-surface);
+                border-radius: var(--radius);
+                padding: 1.5rem;
+            }
+            .post h3 {
+                color: var(--clr-primary);
+                margin-bottom: 0.5rem;
+            }
+            .post p {
+                color: var(--clr-muted);
+                font-size: 0.9rem;
+            }
+
+            /* Skills Section */
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--gap);
+                margin-top: var(--gap);
+            }
+            .skill-category {
+                background: var(--clr-surface);
+                border-radius: var(--radius);
+                padding: 1.5rem;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .skill-category:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+            }
+            .skill-category h3 {
+                color: var(--clr-primary);
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            .skill-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            .skill-tag {
+                background: rgba(255, 107, 0, 0.1);
+                color: var(--clr-primary);
+                padding: 0.4rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                border: 1px solid rgba(255, 107, 0, 0.3);
+                transition: all 0.2s;
+            }
+            .skill-tag:hover {
+                background: rgba(255, 107, 0, 0.2);
+                transform: translateY(-2px);
+            }
+
+            /* Contact & Footer */
+            #contact ul {
+                list-style: none;
+                display: flex;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            #contact a {
+                text-decoration: none;
+                color: var(--clr-primary);
+                font-weight: 600;
+            }
+            footer {
+                text-align: center;
+                padding: var(--gap) 1rem;
+                font-size: 0.85rem;
+                color: var(--clr-muted);
+            }
+
+            @media (max-width: 600px) {
+                .hero-text h1 {
+                    font-size: 2.2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="container">
+                <div class="logo">Sujal</div>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="home">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1>Robotics & AI <br />Crafted with Purpose</h1>
+                    <p>
+                        I'm Sujal Dwivedi — a 20‑year‑old engineer weaving
+                        robotics, machine learning & embedded systems into
+                        intuitive products.
+                    </p>
+                    <a href="#projects" class="hero-btn">Explore Projects</a>
+                </div>
+                <div class="hero-img">
+                    <img
+                        src="images/profile.jpeg"
+                        alt="Sujal"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="grid">
+                    <p>
+                        Currently pursuing a bachelor's at
+                        <strong>VJTI, Mumbai</strong>, my focus lies at the
+                        crossroads of <strong>robotics</strong>,
+                        <strong>machine learning</strong>, and
+                        <strong>edge computing</strong>. From implementing
+                        neural networks on FPGAs to creating real‑time gaze
+                        estimators, I'm driven by the challenge of turning
+                        complex ideas into tangible, user‑centric solutions.
+                    </p>
+                    <p>
+                        Away from the workbench, I'm an avid reader of sci‑fi &
+                        philosophy, believing diverse perspectives spark the
+                        best engineering breakthroughs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey">
+            <div class="container">
+                <h2>My Journey</h2>
+                <div class="timeline-wrapper">
+                    <div class="milestone">
+                        <h4>2023 · First Steps</h4>
+                        <p>
+                            Explored robotics with FPGA/EPS32 & basic
+                            motion‑control projects.
+                        </p>
+                    </div>
+                    <div class="milestone">
+                        <h4>2024 · Vision & Open‑Source</h4>
+                        <p>
+                            Built OpenCV pipelines and contributed to community
+                            projects.
+                        </p>
+                    </div>
+                    <div class="milestone">
+                        <h4>2025 · Edge AI & HCI</h4>
+                        <p>
+                            Created a real‑time gaze‑activated assistant &
+                            portable USG on FPGA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">VHDL</span>
+                            <span class="skill-tag">Verilog</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Frameworks & Libraries</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">OpenCV</span>
+                            <span class="skill-tag">MuJoCo</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Express.js</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Areas of Expertise</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Robotics</span>
+                            <span class="skill-tag">FPGA Design</span>
+                            <span class="skill-tag">Embedded Systems</span>
+                            <span class="skill-tag">Web Development</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Tools & Platforms</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">NeoVim</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Zed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="cards">
+                    <article class="card">
+                        <div class="slider">
+                            <img
+                                src="images/gaze_1.jpg"
+                                alt="Gaze assistant screenshot 1"
+                            />
+                            <img
+                                src="images/gaze_2.jpg"
+                                alt="Gaze assistant screenshot 2"
+                            />
+                        </div>
+                        <h3>Gaze‑Activated Assistant</h3>
+                        <p>
+                            Hands‑free computer control via real‑time gaze
+                            estimation (Python, OpenCV).
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="slider">
+                            <img
+                                src="images/images.jpg"
+                                alt="FPGA convolution board"
+                            />
+                            <img
+                                src="images/screenshot-1.png"
+                                alt="Kernel output demo"
+                            />
+                            <img
+                                src="images/screenshot-2.png"
+                                alt="Kernel output demo"
+                            />
+                        </div>
+                        <h3>FPGA Image Convolution</h3>
+                        <p>
+                            Accelerated convolution kernels on FPGA for edge
+                            vision (Verilog).
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="slider">
+                            <img
+                                src="images/kurma.png"
+                                alt="MuJoCo simulation arm"
+                            />
+                        </div>
+                        <h3>MuJoCo Robotics Simulation</h3>
+                        <p>
+                            Physics‑based arm manipulation with Python & MuJoCo.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="slider">
+                            <img
+                                src="images/hyper1.jpg"
+                                alt="Hyperspectral data viz"
+                            />
+                            <img
+                                src="images/hyper2.jpg"
+                                alt="Anomaly detection heatmap"
+                            />
+                            <img
+                                src="images/hyper3.png"
+                                alt="Anomaly detection heatmap"
+                            />
+                        </div>
+                        <h3>Hyperspectral Anomaly Detection</h3>
+                        <p>
+                            Deep‑learning pipeline for hyperspectral imagery
+                            (PyTorch).
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG SECTION -->
+        <section id="blog">
+            <div class="container">
+                <h2>Latest Blogs</h2>
+                <div class="post-cards">
+                    <article class="post">
+                        <h3>
+                            <a
+                                href="page/USGPORT.html"
+                                target="_blank"
+                                >My Deep Dive into FPGA-Based Portable Ultrasound</a
+                            >
+                        </h3>
+                        <p>
+                            A deep dive into implementing B‑mode imaging on a
+                            Spartan‑7 board and challenges along the way.
+                        </p>
+                    </article>
+                    <article class="post">
+                        <h3>
+                            <a
+                                href="page/brainrot.html"
+                                target="_blank"
+                                >Brain Rot</a
+                            >
+                        </h3>
+                        <p>
+                            Understanding the impact of mindless scrolling and social media on our cognitive abilities and how to fight back.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container"></div>
+        </section>
+    </body>
 </html>
