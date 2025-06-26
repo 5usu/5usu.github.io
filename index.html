@@ -8,6 +8,10 @@
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
         <style>
             :root {
                 --clr-bg: #0f172a;
@@ -139,6 +143,14 @@
             }
             .hero-btn:hover {
                 transform: translateY(-3px);
+            }
+            
+            /* Hero Social Icons */
+            .hero-social-icons {
+                display: flex;
+                gap: 1.5rem;
+                margin: 2rem 0;
+                justify-content: flex-start;
             }
             .hero-img img {
                 width: 100%;
@@ -342,6 +354,54 @@
                 transform: translateY(-2px);
             }
 
+            /* Social Media Section */
+            .social-section {
+                text-align: center;
+                margin-top: 3rem;
+            }
+            .social-icons {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            .social-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 60px;
+                height: 60px;
+                background: var(--clr-surface);
+                border-radius: 50%;
+                color: var(--clr-text);
+                font-size: 1.5rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .social-icon:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+                border-color: var(--clr-primary);
+            }
+            .social-icon.twitter:hover {
+                background: #1da1f2;
+                color: white;
+            }
+            .social-icon.linkedin:hover {
+                background: #0077b5;
+                color: white;
+            }
+            .social-icon.email:hover {
+                background: var(--clr-primary);
+                color: white;
+            }
+            .social-section p {
+                color: var(--clr-muted);
+                margin-bottom: 1rem;
+            }
+
             /* Contact & Footer */
             #contact ul {
                 list-style: none;
@@ -407,6 +467,12 @@
 
                 .hero-img img {
                     max-width: 250px;
+                }
+                
+                /* Hero Social Icons Mobile */
+                .hero-social-icons {
+                    justify-content: center;
+                    margin: 1.5rem 0;
                 }
 
                 /* About Section */
@@ -474,6 +540,17 @@
                     padding: 1.25rem;
                 }
 
+                /* Social Media Mobile */
+                .social-icons {
+                    gap: 1.5rem;
+                }
+                
+                .social-icon {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.3rem;
+                }
+                
                 /* Contact */
                 #contact ul {
                     flex-direction: column;
@@ -565,6 +642,17 @@
                         robotics, machine learning & embedded systems into
                         intuitive products.
                     </p>
+                    <div class="hero-social-icons">
+                        <a href="https://x.com/bos0nN" target="_blank" class="social-icon twitter" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sujal-dwivedi-525175281/" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:sujal.dwivedi@gmail.com" class="social-icon email" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                     <a href="#projects" class="hero-btn">Explore Projects</a>
                 </div>
                 <div class="hero-img">
@@ -595,6 +683,8 @@
                 </div>
             </div>
         </section>
+
+
 
         <section id="journey">
             <div class="container">
@@ -827,6 +917,8 @@
                 </div>
             </div>
         </section>
+
+
 
         <section id="contact">
             <div class="container"></div>
