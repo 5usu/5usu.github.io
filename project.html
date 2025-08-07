@@ -1,102 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - Sujal</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: #ffffff;
-      color: #333;
-      font-family: 'Montserrat', sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-top: 3rem;
-      margin-bottom: 2rem;
-      font-weight: 700;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      font-weight: 500;
-    }
-
-    ul {
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 1rem;
-    }
-
-    a {
-      color: #333;
-      text-decoration: none;
-      border-bottom: 2px solid #ff6b00;
-      padding-bottom: 2px;
-      transition: color 0.2s;
-    }
-
-    a:hover {
-      color: #ff6b00;
-    }
-
-    .divider {
-      border-top: 1px dotted #ccc;
-      margin: 2rem 0;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    @media screen and (max-width: 600px) {
-      body {
-        padding: 1rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* lightweight hover image preview */
+      #hover-preview {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        pointer-events: none;
+        border: 1px solid #111;
+        background: #fff;
+        padding: 4px;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+        z-index: 1000;
       }
-
-      h1 {
-        font-size: 2rem;
-        margin-top: 2rem;
+      #hover-preview img {
+        display: block;
+        max-width: 320px;
+        max-height: 220px;
       }
-    }
-  </style>
-</head>
-<body>
+      @media (max-width: 720px) { #hover-preview { display: none !important; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>projects</h1>
 
-  <h1>Projects</h1>
+      <h2>serious projects</h2>
+      <ul>
+        <li><a class="u" href="https://github.com/5usu/gaze-estimation" data-preview="images/gaze_1.jpg">Gaze-Activated Virtual Assistant</a> — Computer Vision, Python, AI Integration</li>
+        <li><a class="u" href="https://github.com/5usu/convolutions-on-fpga" data-preview="images/screenshot-2.png">Image Convolution on FPGA</a> — Verilog, Image Processing</li>
+        <li><a class="u" href="https://github.com/5usu/mjkurma" data-preview="images/kurma.png">MuJoCo Robotics Simulation</a> — Python, MuJoCo, Robotics</li>
+        <li><a class="u" href="https://github.com/5usu/quantization" data-preview="images/screenshot-1.png">Neural Network Quantization Framework</a> — PyTorch, Deep Learning</li>
+        <li><a class="u" href="https://github.com/5usu/onyx" data-preview="images/hyper1.jpg">Hyperspectral Anomaly Detection System</a> — Python, Machine Learning, Deep Learning</li>
+      </ul>
 
-  <div class="divider"></div>
+      <h2>fun projects</h2>
+      <ul>
+        <li><a class="u" href="https://github.com/5usu/video-chat-app">Video Chat Application</a> — JavaScript, Go, CSS, HTML</li>
+        <li><a class="u" href="https://github.com/5usu/lekh-e-awaz">Speech-to-Text Transcription Application</a> — Whisper AI, Python</li>
+      </ul>
 
-  <ul>
-    <li><a href="https://github.com/5usu/gaze-estimation">Gaze-Activated Virtual Assistant</a> — Computer Vision, Python, AI Integration</li>
-    <li><a href="https://github.com/5usu/convolutions-on-fpga">Image Convolution on FPGA</a> — Verilog, Image Processing</li>
-    <li><a href="https://github.com/5usu/mjkurma">MuJoCo Robotics Simulation</a> — Python, MuJoCo, Robotics</li>
-    <li><a href="https://github.com/5usu/quantization">Neural Network Quantization Framework</a> — PyTorch, Deep Learning</li>
-    <li><a href="https://github.com/5usu/video-chat-app">Video Chat Application</a> — JavaScript, Go, CSS, HTML</li>
-    <li><a href="https://github.com/5usu/lekh-e-awaz">Speech-to-Text Transcription Application</a> — Whisper AI, Python</li>
-    <li><a href="https://github.com/5usu/onyx">Hyperspectral Anomaly Detection System</a> — Python, Machine Learning, Deep Learning</li>
-  </ul>
+      <p><a class="u" href="index.html">← back to home</a></p>
 
-  <div class="divider"></div>
+      <footer class="foot">made with ♥ by sujal</footer>
+    </main>
+    <div id="hover-preview"><img alt="project preview"></div>
+    <script>
+      (function () {
+        const preview = document.getElementById('hover-preview');
+        const img = preview.querySelector('img');
+        const pad = 16;
 
-  <p><a href="index.html">← Back to Home</a></p>
-</body>
+        function place(e) {
+          let x = e.clientX + pad;
+          let y = e.clientY + pad;
+          const vw = window.innerWidth, vh = window.innerHeight;
+          const w = preview.offsetWidth || 320;
+          const h = preview.offsetHeight || 220;
+          if (x + w > vw) x = e.clientX - w - pad;
+          if (y + h > vh) y = e.clientY - h - pad;
+          preview.style.left = x + 'px';
+          preview.style.top = y + 'px';
+        }
+
+        function onEnter(e) {
+          const src = e.currentTarget.getAttribute('data-preview');
+          if (!src) return;
+          img.src = src;
+          preview.style.display = 'block';
+          place(e);
+          window.addEventListener('mousemove', place);
+        }
+
+        function onLeave() {
+          preview.style.display = 'none';
+          img.removeAttribute('src');
+          window.removeEventListener('mousemove', place);
+        }
+
+        document.querySelectorAll('a.u[data-preview]').forEach(a => {
+          a.addEventListener('mouseenter', onEnter);
+          a.addEventListener('mouseleave', onLeave);
+          a.addEventListener('touchstart', onLeave, { passive: true });
+        });
+      })();
+    </script>
+  </body>
 </html>
-
