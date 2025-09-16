@@ -1,0 +1,14 @@
+HTTP/2 200 
+date: Mon, 15 Sep 2025 20:24:07 GMT
+content-type: text/html; charset=UTF-8
+cache-control: max-age=0, must-revalidate, private
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ww4wB08k31nkCfg4Nsn8tdrApNIbNXgrr24RXPUGQ4MVBceOu3a8%2FbaXubzlstrAKSp5CSfDXfSjRe1kEM3nqDhCiDgzuFenAgL%2FD6TZWM99DwF4o9PHk5XsOayi"}]}
+expires: Mon, 15 Sep 2025 20:24:07 GMT
+server: cloudflare
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+cf-cache-status: DYNAMIC
+vary: accept-encoding
+set-cookie: PHPSESSID=s6tqfo5r8s48l91msnoghrcrh1; HttpOnly; SameSite=Lax; Path=/
+cf-ray: 97fad8831e67656f-AMS
+alt-svc: h3=":443"; ma=86400
+

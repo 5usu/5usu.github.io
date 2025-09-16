@@ -2,44 +2,133 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sujal dwivedi</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sujal Dwivedi — developer</title>
+    <meta name="description" content="Sujal Dwivedi — developer. ML, CV, FPGA, robotics." />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="mainpage.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="mainpage.js"></script>
   </head>
   <body>
-    <main class="wrap">
-      <h1>hi, i am <a href="/" class="u">sujal</a>!</h1>
+    <div class="snap-root">
 
-      <p class="lead">
-        i am a pre-final year student at vjti, mumbai. <br/>
-        I fuse code, silicon, and AI—shipping ML-driven apps, FPGA-level signal magic, knowledge-hungry retrievers, robotic sandboxes, and lightning-fast computer vision.      </p>
-
-      <section>
-        <h2>projects</h2>
-        <ul>
-          <li><a class="u" href="project.html">projects</a> : all my projects</li>
-         </ul>
+      <section class="snap hero">
+        <div class="wrap">
+          <h4>Hello world, I'm</h4>
+          <h1 class="my-name">Sujal Dwivedi</h1>
+          <div class="info">
+            <ul>
+              <li>Robotics.</li>
+              <li>Machine learning.</li>
+              <li>FPGA.</li>
+              <li>Dev.</li>
+              <li>opencv</li>
+            </ul>
+          </div>
+          <a class="say-hi" href="#contact">Say Hi! ---&gt;</a>
+          <div class="social">
+            <a href="https://github.com/5usu/" target="_blank" rel="noopener" class="github-link">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+            <a href="https://x.com/bos0nN" target="_blank" rel="noopener" class="x-link">
+              <i class="fa fa-twitter"></i> X
+            </a>
+          </div>
+        </div>
       </section>
 
-      <section>
-        <h2>blogs</h2>
-        <ul>
-          <li><a class="u" href="page/USGPORT.html" target="_blank" rel="noopener noreferrer">my deep dive into fpga-based portable ultrasound</a></li>
-          <li><a class="u" href="page/brainrot.html" target="_blank" rel="noopener noreferrer">brain rot</a></li>
-        </ul>
+      <hr class="rule"/>
+
+      <section id="portfolio" class="snap projects">
+        <div class="wrap">
+          <h3>Fun Projects</h3>
+          <div class="project-grid">
+            <a class="card" href="https://github.com/5usu/gaze-estimation" target="_blank" rel="noopener">
+              <div class="thumb"><img src="images/gaze_1.jpg" alt="Gaze-Activated Virtual Assistant"></div>
+              <div class="body">
+                <h4>Gaze-Activated Virtual Assistant</h4>
+                <div>
+                  <span class="badge">Computer Vision</span>
+                  <span class="badge">Python</span>
+                  <span class="badge">AI</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card" href="https://github.com/5usu/convolutions-on-fpga" target="_blank" rel="noopener">
+              <div class="thumb"><img src="images/screenshot-2.png" alt="Image Convolution on FPGA"></div>
+              <div class="body">
+                <h4>Image Convolution on FPGA</h4>
+                <div>
+                  <span class="badge">Verilog</span>
+                  <span class="badge">Image Processing</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card" href="https://github.com/5usu/mjkurma" target="_blank" rel="noopener">
+              <div class="thumb"><img src="images/kurma.png" alt="MuJoCo Robotics Simulation"></div>
+              <div class="body">
+                <h4>MuJoCo Robotics Simulation</h4>
+                <div>
+                  <span class="badge">Python</span>
+                  <span class="badge">MuJoCo</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card" href="https://github.com/5usu/quantization" target="_blank" rel="noopener">
+              <div class="thumb"><img src="images/screenshot-1.png" alt="Neural Network Quantization Framework"></div>
+              <div class="body">
+                <h4>Neural Network Quantization</h4>
+                <div>
+                  <span class="badge">PyTorch</span>
+                  <span class="badge">Deep Learning</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card" href="https://github.com/5usu/onyx" target="_blank" rel="noopener">
+              <div class="thumb"><img src="images/hyper1.jpg" alt="Hyperspectral Anomaly Detection"></div>
+              <div class="body">
+                <h4>Hyperspectral Anomaly Detection</h4>
+                <div>
+                  <span class="badge">Python</span>
+                  <span class="badge">ML</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <p class="muted" style="margin-top:12px;">See also: <a href="project.html">all projects</a></p>
+        </div>
       </section>
 
-      <section>
-	      <h2>contact<h2>
-		<p class="lead"> sujal1114 at gmail dot com </p>
-      </section>
-      <footer class="foot">
-        <a class="u" href="https://github.com/5usu/" target="_blank" rel="noopener noreferrer">github</a>
-        <span> | </span>
-        <a class="u" href="https://x.com/bos0nN" target="_blank" rel="noopener noreferrer">twitter</a>
-      </footer>
+      <hr class="rule"/>
 
-    </main>
+      <section class="snap projects">
+        <div class="wrap">
+          <h2 class="center">Blogs</h2>
+          <p class="center muted">must read: avg time ~8mins</p>
+          <ul class="list">
+            <li><a href="page/USGPORT.html" target="_blank" rel="noopener">FPGA-based portable ultrasound</a></li>
+            <li><a href="page/brainrot.html" target="_blank" rel="noopener">brain rot</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rule"/>
+
+      <section id="contact" class="snap contact">
+        <div class="wrap contact-inner">
+          <h3>Write me e-letter</h3>
+          <p style="margin-top:14px">
+            <a class="say-hi" href="mailto:sujal1114@gmail.com?subject=Hi%20Sujal">sujal1114 at gmail dot com</a>
+          </p>
+        </div>
+      </section>
+
+    </div>
   </body>
 </html>
+
