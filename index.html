@@ -4,664 +4,295 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sujal Dwivedi — Robotics & ML</title>
-  <meta name="description" content="Sujal Dwivedi — Developer. ML, CV, FPGA, Robotics." />
+  <meta name="description" content="Sujal Dwivedi" />
   
+  <!-- Fonts: JetBrains Mono for the code/terminal aesthetic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      /* Cyber / Industrial Palette */
-      --bg-deep: #050505;
-      --bg-panel: #111111;
-      --bg-card: #161616;
+      --bg: #000000;
+      --text-main: #e4e4e7; /* zinc-200 */
+      --text-muted: #a1a1aa; /* zinc-400 */
+      --link-underline: #3f3f46; /* zinc-700 */
       
-      --accent-primary: #00f2ff; /* Cyan */
-      --accent-secondary: #7000ff; /* Violet */
-      --accent-dim: rgba(0, 242, 255, 0.1);
-      
-      --text-main: #ececec;
-      --text-muted: #888888;
-      
-      --grid-line: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.08);
-      
-      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+      /* Syntax Highlighting Colors */
+      --color-blue: #60a5fa;
+      --color-red: #f87171;
+      --color-yellow: #facc15;
+      --color-green: #4ade80;
+      --color-purple: #c084fc;
+      --color-orange: #fb923c;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
+
     body {
-      background-color: var(--bg-deep);
-      color: var(--text-main);
-      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
       line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* --- Background Grid Animation --- */
-    .bg-grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -1;
-      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-    }
-
-    /* --- Typography Utilities --- */
-    .mono {
-      font-family: 'Space Mono', monospace;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(90deg, #fff, var(--text-muted));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .accent-text {
-      color: var(--accent-primary);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s var(--ease);
-    }
-
-    /* --- Layout --- */
-    .container {
-      max-width: 1200px;
+      font-size: 0.95rem;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 4rem 2rem;
     }
 
-    /* --- Navbar --- */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 20px 0;
-      background: rgba(5, 5, 5, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
+    /* --- Header --- */
+    header {
+      margin-bottom: 5rem;
+      border-bottom: 1px solid #18181b;
+      padding-bottom: 3rem;
     }
 
-    .nav-wrap {
+    .profile-section {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-primary);
-    }
-
-    /* --- Hero Section --- */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 80px;
-      position: relative;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid var(--accent-primary);
-      background: var(--accent-dim);
-      color: var(--accent-primary);
-      border-radius: 4px;
-      font-size: 0.75rem;
-      margin-bottom: 2rem;
-      width: fit-content;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent-primary);
+    .avatar {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      animation: blink 2s infinite;
+      object-fit: cover;
+      transition: filter 0.3s ease;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+    .avatar:hover {
+      filter: grayscale(0%);
     }
 
     h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
-      position: relative;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
+    .bio {
+      font-size: 1rem;
       color: var(--text-muted);
       max-width: 600px;
-      margin-bottom: 3rem;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
-    }
-
-    .btn-primary {
-      background: var(--text-main);
-      color: var(--bg-deep);
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      background: transparent;
+    .highlight-text {
       color: var(--text-main);
     }
 
-    .btn-outline:hover {
-      border-color: var(--text-main);
-      background: rgba(255,255,255,0.05);
-    }
-
-    /* --- Tech Stack Ticker --- */
-    .tech-stack {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    
-    .tech-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .tech-list {
+    /* --- Navigation / Socials --- */
+    .social-links {
+      margin-top: 2rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      list-style: none;
+      gap: 1.5rem;
+      font-size: 0.9rem;
     }
 
-    .tech-item {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      font-size: 0.85rem;
-      border-radius: 4px;
-      transition: 0.3s;
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-    .tech-item:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
+    .social-link {
+      font-weight: 700;
+      color: var(--color-blue);
     }
 
-    /* --- Section Headers --- */
-    .section-header {
-      margin: 8rem 0 3rem 0;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 20px;
+    .social-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Section Styles --- */
+    section {
+      margin-bottom: 4rem;
     }
 
     .section-title {
-      font-size: 2rem;
-      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
     }
 
-    .section-count {
-      font-family: 'Space Mono', monospace;
-      color: var(--accent-primary);
-      font-size: 0.9rem;
+    /* --- Projects List --- */
+    .project-list {
+      list-style: none;
     }
 
-    /* --- Projects Grid (Bento Style) --- */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 20px;
+    .project-item {
+      margin-bottom: 1.5rem;
     }
 
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.4s var(--ease);
-      group: hover;
-    }
-
-    .project-card:hover {
-      border-color: var(--text-muted);
-      transform: translateY(-5px);
-    }
-
-    .card-image-wrap {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .card-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: 0.5s var(--ease);
-    }
-
-    .project-card:hover .card-image-wrap img {
-      filter: grayscale(0%);
-      transform: scale(1.05);
-    }
-
-    .card-content {
-      padding: 24px;
-    }
-
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .folder-icon {
-      color: var(--accent-primary);
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+    .project-link {
       color: var(--text-main);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-underline-offset: 4px;
+      margin-right: 0.5rem;
     }
 
-    .card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .project-link:hover {
+      color: var(--color-blue);
+      text-decoration-color: var(--color-blue);
     }
 
-    .tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .project-desc {
+      display: inline;
     }
 
-    .tag {
-      font-size: 0.7rem;
-      padding: 4px 8px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 4px;
-      color: var(--text-muted);
-    }
+    /* Tech Colors */
+    .tech-robotics { color: var(--color-green); font-weight: 700; }
+    .tech-fpga { color: var(--color-blue); font-weight: 700; }
+    .tech-python { color: var(--color-yellow); font-weight: 700; }
+    .tech-pytorch { color: var(--color-orange); font-weight: 700; }
+    .tech-ml { color: var(--color-purple); font-weight: 700; }
 
-    /* --- Blog List (Terminal Style) --- */
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--border); /* Gap color */
-      border: 1px solid var(--border);
-    }
-
+    /* --- Blogs List --- */
     .blog-item {
-      background: var(--bg-deep);
-      padding: 2rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      transition: 0.3s;
+      margin-bottom: 1.5rem;
+      align-items: baseline;
+    }
+    
+    .blog-title-wrap {
+      flex: 1;
     }
 
-    .blog-item:hover {
-      background: var(--bg-panel);
+    .blog-link {
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-underline-offset: 4px;
+      display: block;
+      margin-bottom: 0.25rem;
     }
 
-    .blog-left {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+    .blog-link:hover {
+      color: var(--color-blue);
+      text-decoration-color: var(--color-blue);
+    }
+
+    .blog-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     .blog-date {
-      font-size: 0.8rem;
-      color: var(--accent-primary);
-    }
-
-    .blog-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .read-arrow {
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: 0.3s;
-      color: var(--accent-primary);
-    }
-
-    .blog-item:hover .read-arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* --- Contact --- */
-    .contact-section {
-      margin: 8rem 0;
-      text-align: center;
-      background: linear-gradient(180deg, transparent, var(--bg-panel));
-      padding: 6rem 2rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .email-display {
-      font-size: clamp(1.5rem, 5vw, 3rem);
-      font-weight: 800;
-      margin: 2rem 0;
-      display: block;
-      color: var(--text-main);
-      position: relative;
-    }
-    
-    .email-display:hover {
-      color: var(--accent-primary);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-muted);
       font-size: 0.85rem;
-      border-top: 1px solid var(--border);
+      color: #52525b; /* zinc-600 */
+      min-width: 100px;
+      text-align: right;
     }
 
-    /* --- Glitch Effect for Name --- */
-    .glitch-wrapper {
-      display: inline-block;
-      position: relative;
-    }
-
-    /* Mobile Tweaks */
-    @media (max-width: 768px) {
-      .nav-links { display: none; } /* Simplified for demo */
-      .blog-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+    /* --- Mobile Tweaks --- */
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.5rem; }
+      .blog-item { flex-direction: column; gap: 0.5rem; }
+      .blog-date { text-align: left; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-grid"></div>
-
-  <nav>
-    <div class="container nav-wrap">
-      <a href="#" class="logo mono">SUJAL_DWIVEDI</a>
-      <div class="nav-links mono">
-        <a href="#work">/WORK</a>
-        <a href="#thoughts">/THOUGHTS</a>
-        <a href="#contact">/CONTACT</a>
+  <header>
+    <div class="profile-section">
+      <img src="images/profile.jpeg" alt="Sujal Dwivedi" class="avatar">
+      <div>
+        <h1>Sujal Dwivedi</h1>
+        <p style="font-size: 0.9rem; color: #71717a;">Mumbai, India</p>
       </div>
     </div>
-  </nav>
-
-  <main class="container">
     
-    <section class="hero">
-      <div>
-        <div class="status-badge mono">
-          <span class="status-dot"></span>
-          SYSTEM ONLINE // MUMBAI, IN
+    <p class="bio">
+      I am exploring the frontiers of <span class="highlight-text">Embodied Cognition</span>.
+      From writing low-level programs to designing complex World Models, I build infrastructure that allows robots to perceive, plan, and act using high-performance <span class="highlight-text">FPGA</span> and <span class="highlight-text">ML</span> systems.
+    </p>
+
+    <div class="social-links">
+      <a href="https://github.com/5usu/" target="_blank" class="social-link">GitHub</a>
+      <a href="https://x.com/bos0nN" target="_blank" class="social-link">Twitter</a>
+      <a href="mailto:sujal1114@gmail.com" class="social-link">Email</a>
+    </div>
+  </header>
+
+  <main>
+    
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <ul class="project-list">
+        
+        <li class="project-item">
+          <a href="#" class="project-link">Auto-Bot</a>
+          <p class="project-desc">
+            Half-scale autonomous robot model featuring full kinematic simulation and embedded control systems, built in <span class="tech-robotics">C++ & ROS</span>
+          </p>
+        </li>
+
+        <li class="project-item">
+          <a href="https://github.com/5usu/convolutions-on-fpga" target="_blank" class="project-link">Image Convolution on FPGA</a>
+          <p class="project-desc">
+            Hardware accelerated image processing pipeline with custom memory controllers, implemented in <span class="tech-fpga">Verilog</span>
+          </p>
+        </li>
+
+        <li class="project-item">
+          <a href="https://github.com/5usu/mjkurma" target="_blank" class="project-link">MuJoCo Simulation</a>
+          <p class="project-desc">
+            Advanced physics simulation environment for testing robotic control algorithms and reinforcement learning agents, built in <span class="tech-python">Python</span>
+          </p>
+        </li>
+
+        <li class="project-item">
+          <a href="#" class="project-link">NVFP4 Implementation</a>
+          <p class="project-desc">
+            Implementation of NVIDIA's quantization paper for optimized deep learning inference on edge devices, built in <span class="tech-pytorch">PyTorch</span>
+          </p>
+        </li>
+
+        <li class="project-item">
+          <a href="https://github.com/5usu/onyx" target="_blank" class="project-link">Hyperspectral Anomaly Detection</a>
+          <p class="project-desc">
+            Machine learning algorithms to detect anomalies in hyperspectral imaging data for remote sensing, built in <span class="tech-ml">Python & Scikit-Learn</span>
+          </p>
+        </li>
+
+      </ul>
+    </section>
+
+    <section id="blogs">
+      <h2 class="section-title">Blogs</h2>
+      
+      <div class="blog-item">
+        <div class="blog-title-wrap">
+          <a href="page/USGPORT.html" class="blog-link">FPGA-based Portable Ultrasound</a>
+          <p class="blog-desc">Architecture, beamforming algorithms, and DSP techniques on hardware.</p>
         </div>
-        
-        <h1>
-          Crafting intelligence <br>
-        </h1>
-        
-       <p class="hero-subtitle">
-  I am exploring the frontiers of <strong>Embodied Cognition</strong>.
-  From writing low-level <strong>programs</strong> to designing complex <strong>World Models</strong>, I build the infrastructure that allows robots to perceive, plan, and act using high-performance.
-	</p>
-	<div class="hero-actions mono">
-          <a href="#contact" class="btn btn-primary">
-            INITIALIZE_CHAT <i class="fas fa-arrow-right"></i>
-          </a>
-          <a href="https://github.com/5usu/" target="_blank" class="btn btn-outline">
-            <i class="fab fa-github"></i> GITHUB
-          </a>
-          <a href="https://x.com/bos0nN" target="_blank" class="btn btn-outline">
-            <i class="fab fa-twitter"></i> TWITTER
-          </a>
+        <span class="blog-date">July 2025</span>
+      </div>
+
+      <div class="blog-item">
+        <div class="blog-title-wrap">
+          <a href="page/brainrot.html" class="blog-link">Inside the Machine</a>
+          <p class="blog-desc">On digital overconsumption and the infinite scroll loop.</p>
         </div>
+        <span class="blog-date">May 2025</span>
       </div>
 
-      <div class="tech-stack">
-        <span class="tech-label mono">CORE ARCHITECTURE</span>
-        <ul class="tech-list mono">
-          <li class="tech-item">Verilog / FPGA</li>
-          <li class="tech-item">Robotics (ROS/ROS2)</li>
-          <li class="tech-item">Computer Vision</li>
-          <li class="tech-item">PyTorch</li>
-          <li class="tech-item">MuJoCo</li>
-          <li class="tech-item">Embedded C</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="section-header">
-        <h2 class="section-title">Selected Works</h2>
-        <span class="section-count mono">01</span>
-      </div>
-
-      <div class="projects-grid">
-        
-        <a href="#" class="project-card">
-          <div class="card-image-wrap">
-            <img src="images/WhatsApp Image 2025-11-15 at 9.35.38 PM.jpeg" alt="Auto-Bot">
-          </div>
-          <div class="card-content">
-            <div class="card-meta mono">
-              <i class="fas fa-robot folder-icon"></i>
-              <span class="tag">HARDWARE</span>
-            </div>
-            <h3 class="card-title">Auto-Bot</h3>
-            <p class="card-desc">Half-scale autonomous robot model featuring full kinematic simulation and embedded control systems.</p>
-            <div class="tags mono">
-              <span class="tag">Robotics</span>
-              <span class="tag">Embedded</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://github.com/5usu/convolutions-on-fpga" target="_blank" class="project-card">
-          <div class="card-image-wrap">
-            <img src="images/images.jpg" alt="FPGA Conv">
-          </div>
-          <div class="card-content">
-            <div class="card-meta mono">
-              <i class="fas fa-microchip folder-icon"></i>
-              <span class="tag">HDL</span>
-            </div>
-            <h3 class="card-title">Image Convolution on FPGA</h3>
-            <p class="card-desc">Hardware accelerated image processing pipeline implemented in Verilog.</p>
-            <div class="tags mono">
-              <span class="tag">Verilog</span>
-              <span class="tag">Image Processing</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://github.com/5usu/mjkurma" target="_blank" class="project-card">
-          <div class="card-image-wrap">
-            <img src="images/kurma.png" alt="MuJoCo">
-          </div>
-          <div class="card-content">
-            <div class="card-meta mono">
-              <i class="fas fa-cube folder-icon"></i>
-              <span class="tag">SIMULATION</span>
-            </div>
-            <h3 class="card-title">MuJoCo Simulation</h3>
-            <p class="card-desc">Advanced physics simulation environment for testing robotic control algorithms.</p>
-            <div class="tags mono">
-              <span class="tag">Python</span>
-              <span class="tag">Physics</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="project-card">
-          <div class="card-image-wrap">
-            <img src="images/G5O-ZoFbIAMWRad.jpg" alt="NVFP4">
-          </div>
-          <div class="card-content">
-            <div class="card-meta mono">
-              <i class="fas fa-brain folder-icon"></i>
-              <span class="tag">RESEARCH</span>
-            </div>
-            <h3 class="card-title">NVFP4 Implementation</h3>
-            <p class="card-desc">Implementation of NVIDIA's quantization paper for optimized deep learning inference.</p>
-            <div class="tags mono">
-              <span class="tag">PyTorch</span>
-              <span class="tag">DL</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://github.com/5usu/onyx" target="_blank" class="project-card">
-          <div class="card-image-wrap">
-            <img src="images/hyper1.jpg" alt="Hyperspectral">
-          </div>
-          <div class="card-content">
-            <div class="card-meta mono">
-              <i class="fas fa-eye folder-icon"></i>
-              <span class="tag">VISION</span>
-            </div>
-            <h3 class="card-title">Hyperspectral Anomaly Detection</h3>
-            <p class="card-desc">ML algorithms to detect anomalies in hyperspectral imaging data.</p>
-            <div class="tags mono">
-              <span class="tag">Python</span>
-              <span class="tag">ML</span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <section id="thoughts">
-      <div class="section-header">
-        <h2 class="section-title">Transmission Log</h2>
-        <span class="section-count mono">02</span>
-      </div>
-
-      <div class="blog-list">
-        <a href="page/USGPORT.html" class="blog-item">
-          <div class="blog-left">
-            <span class="blog-date mono">JUNE 2025</span>
-            <h3 class="blog-title">FPGA-based Portable Ultrasound</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Architecture, beamforming algorithms, and DSP techniques.</p>
-          </div>
-          <div class="read-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="page/brainrot.html" class="blog-item">
-          <div class="blog-left">
-            <span class="blog-date mono">MARCH 2024</span>
-            <h3 class="blog-title">Brain Rot & Digital Decay</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">On digital overconsumption and the infinite scroll loop.</p>
-          </div>
-          <div class="read-arrow">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-      <p class="mono" style="color: var(--accent-primary);">// INITIATE PROTOCOL</p>
-      <h2 style="font-size: 2.5rem; margin: 20px 0;">Ready to build the future?</h2>
-      <a href="mailto:sujal1114@gmail.com" class="email-display">sujal1114@gmail.com</a>
-      <div class="mono" style="color: var(--text-muted);">
-        Based in Mumbai, India • Available for collaboration
-      </div>
     </section>
 
   </main>
-
-  <footer class="mono">
-    <p>© 2025 Sujal Dwivedi. Systems Normal.</p>
-  </footer>
 
 </body>
 </html>
