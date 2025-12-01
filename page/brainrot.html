@@ -1,14 +1,208 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>brain rot</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>brain rot</title>
+  
+  <!-- Fonts: JetBrains Mono for the code/terminal aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --text-main: #e4e4e7; /* zinc-200 */
+      --text-muted: #a1a1aa; /* zinc-400 */
+      --link-underline: #3f3f46; /* zinc-700 */
+      
+      /* Syntax Highlighting Colors */
+      --color-blue: #60a5fa;
+      --color-red: #f87171;
+      --color-yellow: #facc15;
+      --color-green: #4ade80;
+      --color-purple: #c084fc;
+      --color-orange: #fb923c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* --- Header --- */
+    header {
+      margin-bottom: 5rem;
+      border-bottom: 1px solid #18181b;
+      padding-bottom: 3rem;
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    .avatar:hover {
+      filter: grayscale(0%);
+    }
+
+    h1 {
+      color: var(--text-main);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .bio {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    .highlight-text {
+      color: var(--text-main);
+    }
+
+    /* --- Navigation / Socials --- */
+    .social-links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .social-link {
+      font-weight: 700;
+      color: var(--color-blue);
+    }
+
+    .social-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Section Styles --- */
+    section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    /* --- Projects List --- */
+    .project-list {
+      list-style: none;
+    }
+
+    .project-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .project-link {
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-underline-offset: 4px;
+      margin-right: 0.5rem;
+    }
+
+    .project-link:hover {
+      color: var(--color-blue);
+      text-decoration-color: var(--color-blue);
+    }
+
+    .project-desc {
+      display: inline;
+    }
+
+    /* Tech Colors */
+    .tech-robotics { color: var(--color-green); font-weight: 700; }
+    .tech-fpga { color: var(--color-blue); font-weight: 700; }
+    .tech-python { color: var(--color-yellow); font-weight: 700; }
+    .tech-pytorch { color: var(--color-orange); font-weight: 700; }
+    .tech-ml { color: var(--color-purple); font-weight: 700; }
+
+    /* --- Blogs List --- */
+    .blog-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      align-items: baseline;
+    }
+    
+    .blog-title-wrap {
+      flex: 1;
+    }
+
+    .blog-link {
+      color: var(--text-main);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-underline-offset: 4px;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .blog-link:hover {
+      color: var(--color-blue);
+      text-decoration-color: var(--color-blue);
+    }
+
+    .blog-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .blog-date {
+      font-size: 0.85rem;
+      color: #52525b; /* zinc-600 */
+      min-width: 100px;
+      text-align: right;
+    }
+
+    /* --- Mobile Tweaks --- */
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.5rem; }
+      .blog-item { flex-direction: column; gap: 0.5rem; }
+      .blog-date { text-align: left; }
+    }
+  </style>
+</head>
   <body>
-    <main class="wrap">
+    <main>
       <h1>brain rot</h1>
 
       <p>brain rot isn't some scary disease from a horror movie; it's what happens when you spend too much time on mindless activities like scrolling, binge-watching, or endlessly clicking on clickbait. that feeling when you watch so much short content that you start dreaming in 15-second clips—that's brain rot creeping in.</p>
@@ -23,11 +217,10 @@
 
       <p>now for some good news. you can fight brain rot. unfollow pages that make you feel like a potato. fill your feed with positivity. better yet, put down the phone. call a friend. go for a walk. pick up a new hobby. invest in real connections. deep conversations, real laughs, true understanding—these beat 100 likes on a post any day.</p>
 
-      <p><a class="u" href="../index.html">← back to home</a></p>
+      <p><a class="social-link" href="../index.html">← back to home</a></p>
 
-      <footer class="foot">
+      <footer>
         made with ♥ by sujal
       </footer>
     </main>
   </body>
-</html>
