@@ -195,29 +195,26 @@
       font-weight: 600;
     }
 
-    /* Social Links */
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
+    /* Social Text */
+    .social-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
       color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.5rem 0;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 2px solid transparent;
     }
 
-    .social-link:hover {
+    .inline-link {
       color: var(--accent-primary);
-      border-bottom-color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid var(--accent-primary);
+      transition: all 0.2s ease;
+      padding-bottom: 2px;
+    }
+
+    .inline-link:hover {
+      color: var(--accent-hover);
+      border-bottom-color: var(--accent-hover);
+      background: var(--accent-light);
     }
 
     /* Sections */
@@ -255,76 +252,19 @@
       overflow-x: auto;
     }
 
-    /* Projects - No boxes, clean list */
-    .project-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-
-    .project-item {
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 2rem;
-      transition: all 0.2s ease;
-    }
-
-    .project-item:last-child {
-      border-bottom: none;
-    }
-
-    .project-link {
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 1.05rem;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      transition: color 0.2s ease;
-      position: relative;
-    }
-
-    .project-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-primary);
-      transition: width 0.3s ease;
-    }
-
-    .project-link:hover {
-      color: var(--accent-primary);
-    }
-
-    .project-link:hover::after {
-      width: 100%;
-    }
-
-    .project-desc {
+    /* Lab link */
+    .lab-link {
       color: var(--text-secondary);
-      line-height: 1.7;
-      font-size: 0.9rem;
-    }
-
-    /* View all link */
-    .view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--accent-primary);
       text-decoration: none;
-      font-weight: 600;
       font-size: 0.95rem;
-      margin-top: 1rem;
+      font-weight: 500;
+      display: inline-block;
       transition: all 0.2s ease;
     }
 
-    .view-all:hover {
-      gap: 0.75rem;
-      color: var(--accent-hover);
+    .lab-link:hover {
+      color: var(--accent-primary);
+      transform: translateX(4px);
     }
 
     /* Tech tags - simple colored text */
@@ -458,8 +398,8 @@
         font-size: 0.95rem;
       }
 
-      .social-links {
-        justify-content: center;
+      .social-text {
+        text-align: center;
       }
 
       .blog-item {
@@ -469,6 +409,19 @@
 
       .blog-date {
         align-self: flex-start;
+      }
+
+      /* ASCII art responsive */
+      .ascii-name {
+        font-size: 0.28rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+
+      .ascii-title {
+        font-size: 0.35rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
       }
     }
 
@@ -489,6 +442,20 @@
         width: 40px;
         height: 40px;
         font-size: 1rem;
+      }
+
+      /* Smaller ASCII art for mobile */
+      .ascii-name {
+        font-size: 0.22rem;
+      }
+
+      .ascii-title {
+        font-size: 0.28rem;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
       }
     }
 
@@ -543,20 +510,9 @@
           class="highlight-text">ML</span> systems.
       </p>
 
-      <div class="social-links">
-        <a href="https://github.com/5usu/" target="_blank" class="social-link">
-          <i class="fab fa-github"></i>
-          GitHub
-        </a>
-        <a href="https://x.com/bos0nN" target="_blank" class="social-link">
-          <i class="fab fa-twitter"></i>
-          Twitter
-        </a>
-        <a href="mailto:sujal1114@gmail.com" class="social-link">
-          <i class="fas fa-envelope"></i>
-          Email
-        </a>
-      </div>
+      <p class="social-text">
+        I handle version control as <a href="https://github.com/5usu/" target="_blank" class="inline-link">@5usu</a>, ship hot takes as <a href="https://x.com/bos0nN" target="_blank" class="inline-link">@bos0nN</a>, and resolve exceptions via <a href="mailto:sujal1114@gmail.com" class="inline-link">@mail</a>.
+      </p>
     </header>
 
     <main>
@@ -568,39 +524,7 @@
    ██║   ██╔══██║██╔══╝      ██║     ██╔══██║██╔══██╗
    ██║   ██║  ██║███████╗    ███████╗██║  ██║██████╔╝
    ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═════╝</pre>
-        <ul class="project-list">
-
-          <li class="project-item">
-            <a href="images/WhatsApp Image 2025-11-15 at 9.35.38 PM.jpeg" target="_blank"
-              class="project-link">Auto-Bot</a>
-            <p class="project-desc">
-              Half-scale autonomous robot model featuring full kinematic simulation and embedded control systems, built
-              in <span class="tech-robotics">C++ & ROS</span>
-            </p>
-          </li>
-
-          <li class="project-item">
-            <a href="https://github.com/5usu/convolutions-on-fpga" target="_blank" class="project-link">Image
-              Convolution on FPGA</a>
-            <p class="project-desc">
-              Hardware accelerated image processing pipeline with custom memory controllers, implemented in <span
-                class="tech-fpga">Verilog</span>
-            </p>
-          </li>
-
-          <li class="project-item">
-            <a href="https://github.com/5usu/mjkurma" target="_blank" class="project-link">MuJoCo Simulation</a>
-            <p class="project-desc">
-              Advanced physics simulation environment for testing robotic control algorithms and reinforcement learning
-              agents, built in <span class="tech-python">Python</span>
-            </p>
-          </li>
-
-        </ul>
-        <a href="project.html" class="view-all">
-          View all projects
-          <i class="fas fa-arrow-right"></i>
-        </a>
+        <a href="project.html" class="lab-link">→ view lab brewing material</a>
       </section>
 
       <section id="writing">
