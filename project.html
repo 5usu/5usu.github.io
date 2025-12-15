@@ -1,96 +1,504 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* lightweight hover image preview */
-      #hover-preview {
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: none;
-        pointer-events: none;
-        border: 1px solid #111;
-        background: #fff;
-        padding: 4px;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
-        z-index: 1000;
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Lab — Sujal Dwivedi</title>
+  <meta name="description" content="Projects and Research by Sujal Dwivedi" />
+
+  <!-- Fonts: Inter for headings, JetBrains Mono for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      /* Light theme (default) */
+      --bg-primary: #ffffff;
+      --text-primary: #0a0a0a;
+      --text-secondary: #525252;
+      --text-muted: #737373;
+      --border-color: #e5e5e5;
+      --accent-primary: #2563eb;
+      --accent-hover: #1d4ed8;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+      /* Tech tag colors */
+      --tag-robotics: #10b981;
+      --tag-fpga: #3b82f6;
+      --tag-python: #f59e0b;
+      --tag-pytorch: #ef4444;
+      --tag-ml: #8b5cf6;
+      --tag-js: #eab308;
+      --tag-go: #06b6d4;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0a0a0a;
+      --text-primary: #fafafa;
+      --text-secondary: #a3a3a3;
+      --text-muted: #737373;
+      --border-color: #262626;
+      --accent-primary: #60a5fa;
+      --accent-hover: #93c5fd;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      --tag-robotics: #34d399;
+      --tag-fpga: #60a5fa;
+      --tag-python: #fbbf24;
+      --tag-pytorch: #f87171;
+      --tag-ml: #a78bfa;
+      --tag-js: #fde047;
+      --tag-go: #22d3ee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+      font-size: 15px;
+      font-weight: 400;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle-container {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+
+    #theme-toggle {
+      background: transparent;
+      border: 2px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 1.1rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.25s ease;
+    }
+
+    #theme-toggle:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: rotate(180deg);
+    }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+
+    /* Headings use Inter font */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+      gap: 0.75rem;
+    }
+
+    h1 {
+      color: var(--text-primary);
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-description {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Section */
+    section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .ascii-title {
+      font-size: 0.5rem;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 2.5rem;
+      white-space: pre;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      overflow-x: auto;
+    }
+
+    /* Projects List */
+    .project-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .project-item {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-link {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .project-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .project-link:hover::after {
+      width: 100%;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .tag {
+      font-weight: 500;
+    }
+
+    .tag-robotics { color: var(--tag-robotics); }
+    .tag-fpga { color: var(--tag-fpga); }
+    .tag-python { color: var(--tag-python); }
+    .tag-pytorch { color: var(--tag-pytorch); }
+    .tag-ml { color: var(--tag-ml); }
+    .tag-js { color: var(--tag-js); }
+    .tag-go { color: var(--tag-go); }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
-      #hover-preview img {
-        display: block;
-        max-width: 320px;
-        max-height: 220px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-      @media (max-width: 720px) { #hover-preview { display: none !important; } }
-    </style>
-  </head>
-  <body>
-    <main class="wrap">
-      <h1>projects</h1>
+    }
 
-      <h2>serious projects</h2>
-      <ul>
-        <li><a class="u" href="#">Auto-Bot</a> — Worked with this project and made a half scale model for this bot and worked on the simulation of this bot — Robotics, Embedded systems</li>
-        <li><a class="u" href="https://github.com/5usu/convolutions-on-fpga" data-preview="images/screenshot-2.png">Image Convolution on FPGA</a> — Verilog, Image Processing</li>
-        <li><a class="u" href="https://github.com/5usu/mjkurma" data-preview="images/kurma.png">MuJoCo Robotics Simulation</a> — Python, MuJoCo, Robotics</li>
-        <li><a class="u" href="#">nvfp4 implementation- paper by nvidia</a> — PyTorch, Deep Learning</li>
-        <li><a class="u" href="https://github.com/5usu/onyx" data-preview="images/hyper1.jpg">Hyperspectral Anomaly Detection System</a> — Python, Machine Learning, Deep Learning</li>
-      </ul>
+    main {
+      animation: fadeIn 0.5s ease-out;
+    }
 
-      <h2>fun projects</h2>
-      <ul>
-        <li><a class="u" href="https://github.com/5usu/video-chat-app">Video Chat Application</a> — JavaScript, Go, CSS, HTML</li>
-        <li><a class="u" href="https://github.com/5usu/lekh-e-awaz">Speech-to-Text Transcription Application</a> — Whisper AI, Python</li>
-      </ul>
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem;
+      }
 
-      <p><a class="u" href="index.html">← back to home</a></p>
+      .theme-toggle-container {
+        top: 1rem;
+        right: 1rem;
+      }
 
-      <footer class="foot">made with ♥ by sujal</footer>
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      #theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+
+    /* Smooth transitions */
+    * {
+      transition-property: background-color, color, border-color;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+    }
+
+    a, button {
+      transition-property: all;
+      transition-duration: 0.2s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="theme-toggle-container">
+    <button id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+
+  <div class="container">
+    <header class="page-header">
+      <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to home
+      </a>
+      <pre class="ascii-title">████████╗██╗  ██╗███████╗    ██╗      █████╗ ██████╗ 
+╚══██╔══╝██║  ██║██╔════╝    ██║     ██╔══██╗██╔══██╗
+   ██║   ███████║█████╗      ██║     ███████║██████╔╝
+   ██║   ██╔══██║██╔══╝      ██║     ██╔══██║██╔══██╗
+   ██║   ██║  ██║███████╗    ███████╗██║  ██║██████╔╝
+   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═════╝</pre>
+      <p class="page-description">
+        A collection of projects spanning robotics, machine learning, and hardware acceleration.
+      </p>
+    </header>
+
+    <main>
+
+      <section id="serious">
+        <h2 class="section-title">Research Projects</h2>
+        <ul class="project-list">
+
+          <li class="project-item">
+            <a href="images/WhatsApp Image 2025-11-15 at 9.35.38 PM.jpeg" target="_blank"
+              class="project-link">Auto-Bot</a>
+            <p class="project-desc">
+              Half-scale autonomous robot model featuring full kinematic simulation and embedded control systems.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-robotics">Robotics</span>
+              <span class="tag tag-robotics">C++ & ROS</span>
+              <span class="tag tag-robotics">Embedded Systems</span>
+            </div>
+          </li>
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/convolutions-on-fpga" target="_blank" class="project-link">Image
+              Convolution on FPGA</a>
+            <p class="project-desc">
+              Hardware accelerated image processing pipeline with custom memory controllers.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-fpga">Verilog</span>
+              <span class="tag tag-fpga">Image Processing</span>
+              <span class="tag tag-fpga">FPGA</span>
+            </div>
+          </li>
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/mjkurma" target="_blank" class="project-link">MuJoCo Simulation</a>
+            <p class="project-desc">
+              Advanced physics simulation environment for testing robotic control algorithms and reinforcement learning
+              agents.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-python">Python</span>
+              <span class="tag tag-robotics">MuJoCo</span>
+              <span class="tag tag-robotics">Robotics</span>
+            </div>
+          </li>
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/nvfp4-mae-playground" target="_blank" class="project-link">NVFP4
+              Implementation</a>
+            <p class="project-desc">
+              Implementation of NVIDIA's quantization paper for optimized deep learning inference on edge devices.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-pytorch">PyTorch</span>
+              <span class="tag tag-ml">Deep Learning</span>
+              <span class="tag tag-ml">Quantization</span>
+            </div>
+          </li>
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/onyx" target="_blank" class="project-link">Hyperspectral Anomaly
+              Detection</a>
+            <p class="project-desc">
+              Machine learning algorithms to detect anomalies in hyperspectral imaging data for remote sensing.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-python">Python</span>
+              <span class="tag tag-ml">Machine Learning</span>
+              <span class="tag tag-ml">Scikit-Learn</span>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+      <section id="fun">
+        <h2 class="section-title">Side Projects</h2>
+        <ul class="project-list">
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/video-chat-app" target="_blank" class="project-link">Video Chat Application</a>
+            <p class="project-desc">
+              Real-time video communication platform with peer-to-peer connectivity.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-go">Go</span>
+              <span class="tag tag-js">WebRTC</span>
+            </div>
+          </li>
+
+          <li class="project-item">
+            <a href="https://github.com/5usu/lekh-e-awaz" target="_blank" class="project-link">Speech-to-Text Transcription</a>
+            <p class="project-desc">
+              AI-powered speech transcription application using OpenAI's Whisper model.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-python">Python</span>
+              <span class="tag tag-ml">Whisper AI</span>
+              <span class="tag tag-ml">NLP</span>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
     </main>
-    <div id="hover-preview"><img alt="project preview"></div>
-    <script>
-      (function () {
-        const preview = document.getElementById('hover-preview');
-        const img = preview.querySelector('img');
-        const pad = 16;
 
-        function place(e) {
-          let x = e.clientX + pad;
-          let y = e.clientY + pad;
-          const vw = window.innerWidth, vh = window.innerHeight;
-          const w = preview.offsetWidth || 320;
-          const h = preview.offsetHeight || 220;
-          if (x + w > vw) x = e.clientX - w - pad;
-          if (y + h > vh) y = e.clientY - h - pad;
-          preview.style.left = x + 'px';
-          preview.style.top = y + 'px';
-        }
+    <footer>
+      made with ♥ by sujal
+    </footer>
+  </div>
 
-        function onEnter(e) {
-          const src = e.currentTarget.getAttribute('data-preview');
-          if (!src) return;
-          img.src = src;
-          preview.style.display = 'block';
-          place(e);
-          window.addEventListener('mousemove', place);
-        }
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const docElement = document.documentElement;
+    const themeIcon = themeToggle.querySelector('i');
 
-        function onLeave() {
-          preview.style.display = 'none';
-          img.removeAttribute('src');
-          window.removeEventListener('mousemove', place);
-        }
+    // Check for saved theme in localStorage, default to dark
+    const savedTheme = localStorage.getItem('theme');
+    const currentTheme = savedTheme || 'dark';
 
-        document.querySelectorAll('a.u[data-preview]').forEach(a => {
-          a.addEventListener('mouseenter', onEnter);
-          a.addEventListener('mouseleave', onLeave);
-          a.addEventListener('touchstart', onLeave, { passive: true });
-        });
-      })();
-    </script>
-  </body>
+    // Apply the theme on page load
+    docElement.setAttribute('data-theme', currentTheme);
+    updateIcon(currentTheme);
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = docElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      docElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    // Update icon based on theme
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
+  </script>
+
+</body>
+
 </html>
