@@ -166,6 +166,76 @@
       margin-bottom: 4rem;
     }
 
+    .theme-toggle-container,
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .lab-background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .lab-background::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--bg-primary);
+      opacity: 0.5;
+    }
+
+    .lab-bg-image {
+      position: absolute;
+      width: min(280px, 38vw);
+      height: auto;
+      opacity: 0.32;
+      filter: blur(6px) brightness(0.75) contrast(1.05);
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      object-fit: cover;
+      user-select: none;
+    }
+
+    .lab-bg-image:nth-child(1) {
+      top: 4%;
+      left: -2%;
+      transform: rotate(-14deg);
+    }
+
+    .lab-bg-image:nth-child(2) {
+      top: 8%;
+      right: -3%;
+      transform: rotate(11deg);
+    }
+
+    .lab-bg-image:nth-child(3) {
+      top: 34%;
+      left: 18%;
+      transform: rotate(-8deg);
+    }
+
+    .lab-bg-image:nth-child(4) {
+      top: 45%;
+      right: 10%;
+      transform: rotate(13deg);
+    }
+
+    .lab-bg-image:nth-child(5) {
+      bottom: 12%;
+      left: -1%;
+      transform: rotate(7deg);
+    }
+
+    .lab-bg-image:nth-child(6) {
+      bottom: 2%;
+      right: -4%;
+      transform: rotate(-12deg);
+    }
+
     .section-title {
       font-size: 1.3rem;
       font-weight: 700;
@@ -417,6 +487,11 @@
         height: 40px;
         font-size: 1rem;
       }
+
+      .lab-bg-image {
+        width: min(180px, 45vw);
+        opacity: 0.26;
+      }
     }
 
     /* Smooth transitions */
@@ -434,6 +509,15 @@
 </head>
 
 <body>
+
+  <div class="lab-background" aria-hidden="true">
+    <img src="images/Screencast from 02-26-2026 05_03_07 PM.gif" alt="" class="lab-bg-image">
+    <img src="images/WhatsApp Image 2025-11-15 at 9.35.38 PM.jpeg" alt="" class="lab-bg-image">
+    <img src="images/Kria.png" alt="" class="lab-bg-image">
+    <img src="images/kurma.png" alt="" class="lab-bg-image">
+    <img src="images/nvfp4.jpg" alt="" class="lab-bg-image">
+    <img src="images/hyper1.jpg" alt="" class="lab-bg-image">
+  </div>
 
   <div class="theme-toggle-container">
     <button id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">
@@ -463,6 +547,24 @@
       <section id="serious">
         <h2 class="section-title">Research Projects</h2>
         <ul class="project-list">
+
+          <li class="project-item" id="eyecandy-rl">
+            <div class="project-image-wrapper">
+              <img src="images/Screencast from 02-26-2026 05_03_07 PM.gif" alt="Eyecandy Robotics Reinforcement Learning" class="project-image">
+            </div>
+            <div class="project-content">
+              <a href="images/Screencast from 02-26-2026 05_03_07 PM.gif" target="_blank" class="project-link">Eyecandy Robotics RL Pipeline</a>
+              <p class="project-desc">
+                reinforcement learning effort for Eyecandy Robotics, building and iterating policies in Isaac Lab, validating transfer through sim-2-sim workflows, and integrating control with Feetech actuators for reliable behavior across the stack.
+              </p>
+              <div class="project-tags">
+                <span class="tag tag-robotics">Reinforcement Learning</span>
+                <span class="tag tag-python">Isaac Lab</span>
+                <span class="tag tag-robotics">Sim-2-Sim</span>
+                <span class="tag tag-robotics">Feetech Actuators</span>
+              </div>
+            </div>
+          </li>
 
           <li class="project-item" id="autobot">
             <div class="project-image-wrapper">
