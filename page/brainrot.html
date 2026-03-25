@@ -1,28 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>brain rot</title>
-  
-  <!-- Fonts: JetBrains Mono for the code/terminal aesthetic -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Sim-to-Sim Transfer from Newton to PhysX - Sujal Dwivedi</title>
+  <meta
+    name="description"
+    content="Why joint-order alignment had to be solved before Newton-to-PhysX sim-to-sim transfer meant anything for a custom Tensaur robot in Isaac Lab."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
 
   <style>
     :root {
-      --bg: #ffffff;
-      --text-main: #18181b; /* zinc-900 */
-      --text-muted: #52525b; /* zinc-600 */
-      --link-underline: #d4d4d8; /* zinc-300 */
-      
-      /* Syntax Highlighting Colors */
-      --color-blue: #60a5fa;
-      --color-red: #f87171;
-      --color-yellow: #facc15;
-      --color-green: #4ade80;
-      --color-purple: #c084fc;
-      --color-orange: #fb923c;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f5;
+      --text-primary: #0a0a0a;
+      --text-secondary: #525252;
+      --text-muted: #737373;
+      --border-color: #e5e5e5;
+      --accent-primary: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-secondary: #f1e472;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --tag-robotics: #10b981;
+      --tag-fpga: #3b82f6;
+      --tag-python: #f59e0b;
+      --tag-pytorch: #ef4444;
+      --tag-ml: #8b5cf6;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #171717;
+      --text-primary: #fafafa;
+      --text-secondary: #a3a3a3;
+      --text-muted: #737373;
+      --border-color: #262626;
+      --accent-primary: #60a5fa;
+      --accent-hover: #93c5fd;
+      --accent-secondary: #f1e472;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --tag-robotics: #34d399;
+      --tag-fpga: #60a5fa;
+      --tag-python: #fbbf24;
+      --tag-pytorch: #f87171;
+      --tag-ml: #a78bfa;
     }
 
     * {
@@ -31,196 +70,624 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg);
-      color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
-      line-height: 1.6;
-      font-size: 0.95rem;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      font-family: "JetBrains Mono", monospace;
+      line-height: 1.75;
+      font-size: 15px;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* --- Header --- */
-    header {
-      margin-bottom: 5rem;
-      border-bottom: 1px solid #18181b;
-      padding-bottom: 3rem;
-    }
-
-    .profile-section {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      transition: filter 0.3s ease;
-    }
-
-    .avatar:hover {
-      filter: grayscale(0%);
-    }
-
-    h1 {
-      color: var(--text-main);
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .bio {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 600px;
-    }
-
-    .highlight-text {
-      color: var(--text-main);
-    }
-
-    /* --- Navigation / Socials --- */
-    .social-links {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.9rem;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     a {
       color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
     }
 
-    .social-link {
-      font-weight: 700;
-      color: var(--color-blue);
+    .theme-toggle-container {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
     }
 
-    .social-link:hover {
-      text-decoration: underline;
-    }
-
-    /* --- Section Styles --- */
-    section {
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-    }
-
-    /* --- Projects List --- */
-    .project-list {
-      list-style: none;
-    }
-
-    .project-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .project-link {
-      color: var(--text-main);
-      font-weight: 700;
-      text-decoration: underline;
-      text-decoration-color: var(--link-underline);
-      text-underline-offset: 4px;
-      margin-right: 0.5rem;
-    }
-
-    .project-link:hover {
-      color: var(--color-blue);
-      text-decoration-color: var(--color-blue);
-    }
-
-    .project-desc {
-      display: inline;
-    }
-
-    /* Tech Colors */
-    .tech-robotics { color: var(--color-green); font-weight: 700; }
-    .tech-fpga { color: var(--color-blue); font-weight: 700; }
-    .tech-python { color: var(--color-yellow); font-weight: 700; }
-    .tech-pytorch { color: var(--color-orange); font-weight: 700; }
-    .tech-ml { color: var(--color-purple); font-weight: 700; }
-
-    /* --- Blogs List --- */
-    .blog-item {
+    #theme-toggle {
+      background: transparent;
+      border: 2px solid var(--border-color);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 1.1rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.25s ease;
+    }
+
+    #theme-toggle:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: rotate(180deg);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .back-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--accent-primary);
+      transform: translateX(-4px);
+    }
+
+    .eyebrow {
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article-title {
+      color: var(--text-primary);
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+
+    .article-dek {
+      font-size: 1rem;
+      max-width: 720px;
       margin-bottom: 1.5rem;
-      align-items: baseline;
-    }
-    
-    .blog-title-wrap {
-      flex: 1;
     }
 
-    .blog-link {
-      color: var(--text-main);
-      font-weight: 700;
-      text-decoration: underline;
-      text-decoration-color: var(--link-underline);
-      text-underline-offset: 4px;
-      display: block;
-      margin-bottom: 0.25rem;
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    .blog-link:hover {
-      color: var(--color-blue);
-      text-decoration-color: var(--color-blue);
-    }
-
-    .blog-desc {
-      font-size: 0.9rem;
+    .meta-pill {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
+      background: var(--bg-secondary);
     }
 
-    .blog-date {
-      font-size: 0.85rem;
-      color: #52525b; /* zinc-600 */
-      min-width: 100px;
-      text-align: right;
+    .meta-pill.robotics {
+      color: var(--tag-robotics);
     }
 
-    /* --- Mobile Tweaks --- */
-    @media (max-width: 600px) {
-      body { padding: 2rem 1.5rem; }
-      .blog-item { flex-direction: column; gap: 0.5rem; }
-      .blog-date { text-align: left; }
+    .meta-pill.fpga {
+      color: var(--tag-fpga);
+    }
+
+    .meta-pill.python {
+      color: var(--tag-python);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .post-content {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .post-content section {
+      scroll-margin-top: 2rem;
+    }
+
+    .post-content h2 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .post-content p {
+      margin-bottom: 1rem;
+    }
+
+    .post-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .post-content ul,
+    .post-content ol {
+      margin: 1rem 0 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      margin-bottom: 0.7rem;
+    }
+
+    .post-content strong {
+      color: var(--text-primary);
+    }
+
+    .inline-link {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid var(--accent-primary);
+      transition: all 0.2s ease;
+      padding-bottom: 2px;
+    }
+
+    .inline-link:hover {
+      color: var(--accent-hover);
+      border-bottom-color: var(--accent-hover);
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.9em;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.1rem 0.35rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    pre code {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      display: block;
+      line-height: 1.65;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent-primary);
+      background: var(--bg-secondary);
+      border-radius: 0 14px 14px 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      color: var(--text-secondary);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem 2.5rem;
+      }
+
+      .theme-toggle-container {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      .article-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      #theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    * {
+      transition-property: background-color, color, border-color;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+    }
+
+    a,
+    button {
+      transition-property: all;
+      transition-duration: 0.2s;
     }
   </style>
 </head>
-  <body>
+<body>
+  <div class="theme-toggle-container">
+    <button id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+
+  <div class="container">
+    <header class="article-header">
+      <a href="../index.html" class="back-link">&larr; back to home</a>
+      <p class="eyebrow">Robotics / Isaac Lab / Sim-to-Sim</p>
+      <h1 class="article-title">
+        Sim-to-Sim Transfer from Newton to PhysX: The Joint-Order Problem I Had to Solve for a Custom Robot
+      </h1>
+      <p class="article-dek">
+        Before comparing solver fidelity, I had to make sure a Newton-trained policy and a PhysX deployment agreed on what each joint index actually meant.
+      </p>
+      <div class="meta-row" aria-label="Article topics">
+        <span class="meta-pill robotics">custom robot</span>
+        <span class="meta-pill fpga">newton -> physx</span>
+        <span class="meta-pill python">joint-order auditing</span>
+      </div>
+    </header>
+
     <main>
-      <h1>brain rot</h1>
+      <article class="post-content">
+        <section>
+          <p>
+            When people talk about sim-to-sim transfer, the conversation usually jumps straight to physics fidelity. Contact models, solver stability, actuator realism, friction tuning, integration error, domain randomization. All of that matters. But when I was moving a custom robot workflow from Newton to PhysX in Isaac Lab, the first issue I had to solve was much more fundamental: <strong>joint order</strong>.
+          </p>
+          <p>I was working on a custom robot defined in:</p>
+          <pre><code>source/isaaclab_assets/isaaclab_assets/robots/tensaur.py</code></pre>
+          <p>
+            At first glance, joint ordering sounds like a bookkeeping detail. In reinforcement learning and motion tracking, it is not. A policy does not understand robot semantics through names like <code>left_knee</code> or <code>right_hip_roll</code>. It understands them through tensor positions. If index 7 meant <code>right_knee</code> during training but means <code>left_hip_pitch</code> during deployment, the policy is no longer controlling the same robot it learned. It is controlling a scrambled version of that robot.
+          </p>
+          <p>
+            That is the real reason joint ordering matters in sim-to-sim transfer. Before you can ask whether Newton and PhysX produce comparable dynamics, you have to guarantee that the policy is sending the right command to the right degree of freedom.
+          </p>
+        </section>
 
-      <p>brain rot isn't some scary disease from a horror movie; it's what happens when you spend too much time on mindless activities like scrolling, binge-watching, or endlessly clicking on clickbait. that feeling when you watch so much short content that you start dreaming in 15-second clips—that's brain rot creeping in.</p>
+        <section>
+          <h2>Why This Problem Shows Up</h2>
+          <p>
+            In Isaac Lab, the articulation exposes joints in the order defined by how the simulator parses the kinematic tree. The repo documentation already hints at this broader issue: articulation joint order is meaningful, and indexing follows the articulation ordering. In practice, that means you should never assume that a motion clip, a learned policy, a USD articulation, and two different physics backends will all agree on the same ordering unless you explicitly make them agree.
+          </p>
+          <p>For my Tensaur setup, there were really two related but distinct ordering problems:</p>
+          <ol>
+            <li>Motion-data order versus articulation order.</li>
+            <li>Newton policy order versus PhysX policy order.</li>
+          </ol>
+          <p>
+            Those are easy to conflate, but they happen at different boundaries in the stack. The first is an asset integration problem. A motion clip such as a jump trajectory can store joints in one order, while the Isaac Lab articulation built from the USD can expose them in another.
+          </p>
+          <p>
+            The second is a backend transfer problem. A policy trained in Newton may expect observations and actions in Newton's joint ordering, while the PhysX environment exposes a different ordering.
+          </p>
+          <p>Both issues are solved the same way: define the mapping explicitly and apply it consistently.</p>
+        </section>
 
-      <p>on a normal day, when you are trying to study for an upcoming exam, you have your textbooks open, something to drink, and you are determined to make this study session count. just as you are about to start, you want to check your phone, just to quickly check a few things. you open instagram and watch one reel, then swipe up, and then the next, and then the next. before you know it, an hour has passed. your textbooks are still lying there, and you can't remember what you were supposed to be reading or studying. that's brain rot in action.</p>
+        <section>
+          <h2>The Tensaur Fix in the Robot Asset</h2>
+          <p>The core change for my custom robot lives in:</p>
+          <pre><code>source/isaaclab_assets/isaaclab_assets/robots/tensaur.py</code></pre>
+          <p>There, I added an explicit canonical joint list:</p>
+          <pre><code>TENSAUR_JOINT_NAMES = (
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "tail",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle",
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+)</code></pre>
+          <p>
+            That list is important because it does not merely document the robot. It defines the intended semantic order of the robot for downstream consumers. In this case, the comment in the file makes the purpose clear: these names match the order used in <code>jump.npz</code>, which in turn matches the motion source used by the controller stack.
+          </p>
+          <p>
+            This is a subtle but important design choice. Instead of asking the motion system to adapt to whatever order the simulator happens to emit, I anchored the task to the order that the motion data was authored in. That gives me a stable reference frame.
+          </p>
+          <p>This is especially useful in robotics workflows that mix:</p>
+          <ul>
+            <li>authored trajectories,</li>
+            <li>tracking objectives,</li>
+            <li>reinforcement learning policies,</li>
+            <li>multiple simulators,</li>
+            <li>and custom robot assets.</li>
+          </ul>
+          <p>
+            Without a canonical ordering, each interface silently makes its own assumptions. The result is usually not a clean failure. The result is a robot that behaves badly for reasons that are hard to diagnose.
+          </p>
+        </section>
 
-      <p>you're trying to get back into your study groove, but it's hard to focus. it takes about 20 minutes to regain full focus after a distraction. every time you see something online, you're setting yourself back even further. this distraction doesn't just affect your study session; it starts to spill over into the rest of your day. you decide to take a break, grab lunch, and while eating, you absentmindedly scroll again. before you know it, another hour has passed. you feel sluggish, and the next morning you wake up groggy because you were up late making up for lost time. the cycle continues.</p>
+        <section>
+          <h2>Where the Mapping Actually Gets Used</h2>
+          <p>In the Tensaur tracking environment, that happens here:</p>
+          <pre><code>source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/tracking/config/tensaur/flat_env_cfg.py</code></pre>
+          <p>The relevant line is:</p>
+          <pre><code>self.commands.motion.joint_names = TENSAUR_JOINT_NAMES</code></pre>
+          <p>
+            That line is doing more work than it appears to. It tells the motion command system, "treat the motion clip as being ordered according to this exact joint list."
+          </p>
+          <p>From there, the actual remapping happens inside:</p>
+          <pre><code>source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/tracking/mdp/commands.py</code></pre>
+          <p>The key mechanism is this:</p>
+          <ul>
+            <li>the command reads the configured <code>joint_names</code>,</li>
+            <li>it calls <code>find_joints(..., preserve_order=True)</code>,</li>
+            <li>and it builds a permutation from motion-clip order to articulation order.</li>
+          </ul>
+          <p>
+            Conceptually, the code is saying: "For each joint in the authored motion clip, find where that same named joint lives in the robot articulation, and use that index when reading or comparing joint states."
+          </p>
+          <p>
+            That is the right abstraction. The policy or tracking term does not need to care whether the articulation is breadth-first, alphabetical, backend-specific, or USD-parser-dependent. It only needs a correct semantic mapping.
+          </p>
+          <p>
+            Once that mapping exists, the robot-side tensors can be reordered to match the motion clip. That preserves the meaning of the state vector and keeps tracking losses aligned with the intended joints.
+          </p>
+        </section>
 
-      <p>excessive information leads to cognitive overload. our brains aren't built to handle constant information bombardment. it's like trying to drink from a firehose—too much, too fast. over time, this reduces brain activity in areas responsible for decision-making and impulse control. social media delivers quick dopamine hits—like a drug. the more you use it, the more you crave. it also messes with your self-esteem. remember: you're comparing your behind-the-scenes to someone else's highlight reel.</p>
+        <section>
+          <h2>Why This Matters More in Sim-to-Sim Transfer</h2>
+          <p>
+            Motion tracking already makes joint-order bugs visible, because a tracking objective has a clear reference. Sim-to-sim transfer is less forgiving because a deployed policy has no built-in explanation for failure.
+          </p>
+          <p>If a Newton-trained policy is deployed in PhysX with mismatched joint order, several things can happen:</p>
+          <ul>
+            <li>actions are applied to the wrong joints,</li>
+            <li>joint positions and velocities are observed in the wrong order,</li>
+            <li>observation normalization becomes invalid,</li>
+            <li>gait symmetry breaks in strange ways,</li>
+            <li>and the resulting behavior looks like poor transfer, even when the policy itself is fine.</li>
+          </ul>
+          <p>
+            This is why I think joint-order auditing should be treated as a first-class step in any sim-to-sim robotics pipeline.
+          </p>
+          <p>
+            There is a tendency to blame solver differences too early. But if the policy is effectively commanding the wrong robot because the indexing changed, you are not yet evaluating transfer across physics engines. You are evaluating transfer across a permutation bug.
+          </p>
+        </section>
 
-      <p>social media destroys attention spans. you read an article, a notification pops up, and soon you forget what you were even doing. this constant interruption trains your brain to crave distractions. ironically, "social" media can make you feel isolated. real human interaction—hearing someone's voice, seeing expressions—is irreplaceable.</p>
+        <section>
+          <h2>How Isaac Lab Handles Newton-to-PhysX Policy Transfer</h2>
+          <p>Isaac Lab already contains a clean pattern for cross-backend remapping in:</p>
+          <pre><code>scripts/sim2sim_transfer/rsl_rl_transfer.py</code></pre>
+          <p>This script takes a YAML file with two lists:</p>
+          <ul>
+            <li><code>source_joint_names</code></li>
+            <li><code>target_joint_names</code></li>
+          </ul>
+          <p>
+            The source list is the order the policy was trained on. The target list is the order exposed by the environment where the policy will be executed.
+          </p>
+          <p>The script then computes two mappings:</p>
+          <ul>
+            <li>one for observations,</li>
+            <li>one for actions.</li>
+          </ul>
+          <p>The runtime logic is the important part:</p>
+          <ol>
+            <li>Remap observations from the target environment into the source policy's expected ordering.</li>
+            <li>Run the policy in that source ordering.</li>
+            <li>Remap the policy's output actions back into the target environment's ordering.</li>
+          </ol>
+          <p>
+            This is exactly what sim-to-sim transfer needs. The policy remains mentally inside its training simulator, while the wrapper translates between the two articulation conventions.
+          </p>
+          <p>
+            In other words, the transfer script does not fix physics. It fixes meaning. Physics transfer only becomes meaningful after semantic alignment is correct.
+          </p>
+        </section>
 
-      <p>now for some good news. you can fight brain rot. unfollow pages that make you feel like a potato. fill your feed with positivity. better yet, put down the phone. call a friend. go for a walk. pick up a new hobby. invest in real connections. deep conversations, real laughs, true understanding—these beat 100 likes on a post any day.</p>
+        <section>
+          <h2>What a Mapping File Represents</h2>
+          <p>
+            A mapping YAML in this workflow is not just metadata. It is a contract.
+          </p>
+          <p>For example, the Newton-to-PhysX configs under:</p>
+          <pre><code>scripts/sim2sim_transfer/config/</code></pre>
+          <p>list the same joints twice, but in two different orders:</p>
+          <ul>
+            <li>the order expected by the source backend,</li>
+            <li>and the order presented by the target backend.</li>
+          </ul>
+          <p>
+            That means the YAML is effectively a declaration of joint-space isomorphism between two simulators. The joints are the same physical degrees of freedom. Only the indexing differs.
+          </p>
+          <p>For a custom robot like Tensaur, that is the file I would create next for a full Newton-to-PhysX transfer pipeline. The structure is straightforward:</p>
+          <pre><code>source_joint_names:
+  - ...
+target_joint_names:
+  - ...</code></pre>
+          <p>
+            The harder part is not the syntax. The harder part is being disciplined enough to verify that both lists refer to the same semantic joints exactly once, with no missing entries, no duplicates, and no naming drift.
+          </p>
+        </section>
 
-      <p><a class="social-link" href="../index.html">← back to home</a></p>
+        <section>
+          <h2>What I Learned from Doing This on a Custom Robot</h2>
+          <p>Working on a custom robot exposes problems that standard benchmark robots hide.</p>
+          <p>
+            With common platforms such as G1, Go2, or ANYmal, a lot of the naming, articulation assumptions, and transfer scripts already exist. With a custom robot, you have to define that layer yourself. That forces you to answer questions that are easy to postpone in a mature stack:
+          </p>
+          <ul>
+            <li>What is the canonical joint order for this robot?</li>
+            <li>Is that order coming from the motion source, the USD, the controller, or the trained policy?</li>
+            <li>Are body names also ordered, or only joint names?</li>
+            <li>Does every consumer of robot state agree on the same convention?</li>
+          </ul>
+          <p>
+            In my Tensaur case, the motion clip ordering mattered enough that I encoded it directly in the asset configuration and passed it into the motion command. That is a good pattern because it localizes the robot-specific convention near the robot definition instead of scattering ad hoc permutations throughout the training code.
+          </p>
+          <p>
+            It also makes the system easier to reason about later. If I revisit the robot after a few months, I can see immediately that the task depends on a specific authored order and that the remapping is intentional.
+          </p>
+        </section>
+
+        <section>
+          <h2>The Robotics Lesson Here</h2>
+          <p>
+            There is a broader robotics lesson in all of this: interfaces fail at the level of conventions before they fail at the level of algorithms.
+          </p>
+          <p>
+            A locomotion policy can be excellent. A simulator can be physically stable. A robot asset can be visually correct.
+          </p>
+          <p>
+            And the whole system can still fail because one module thinks index 4 is the left ankle while another thinks it is the tail.
+          </p>
+          <p>
+            This is why production robotics stacks tend to accumulate a lot of explicit interface contracts. Frame conventions. Quaternion conventions. Actuator directions. Sensor axes. Joint limits. Unit systems. Joint ordering. These details are not peripheral. They are the glue that makes model-based control, reinforcement learning, simulation, and deployment actually line up.
+          </p>
+          <p>
+            Sim-to-sim transfer is often presented as a question of domain gap. That is true, but only after representation gap has been solved.
+          </p>
+        </section>
+
+        <section>
+          <h2>How I Would Describe the Final Pipeline</h2>
+          <div class="callout">
+            <strong>Engineering principle</strong>
+            First establish a canonical semantic ordering. Then remap every interface to that ordering. Only then evaluate transfer.
+          </div>
+          <p>For my setup, that means:</p>
+          <ol>
+            <li>Define the intended joint order explicitly in the robot asset.</li>
+            <li>Use that order when loading and replaying motion data.</li>
+            <li>If the training and deployment backends disagree, create a source-to-target mapping YAML.</li>
+            <li>Remap observations before policy inference.</li>
+            <li>Remap actions before stepping the target simulator.</li>
+          </ol>
+          <p>
+            At that point, if the policy still degrades, the remaining gap is much more likely to be a real physics gap rather than a bookkeeping bug.
+          </p>
+        </section>
+
+        <section>
+          <h2>Conclusion</h2>
+          <p>
+            The biggest insight from this Newton-to-PhysX transfer work was that sim-to-sim transfer starts earlier than physics. It starts at representation.
+          </p>
+          <p>
+            For my custom Tensaur robot, changing the joint order was not a cosmetic cleanup. It was the step that made the rest of the pipeline interpretable. By defining <code>TENSAUR_JOINT_NAMES</code> in the asset config, using that order in the tracking environment, and following Isaac Lab's explicit observation and action remapping pattern for cross-backend transfer, I turned a fragile implicit assumption into a reproducible interface.
+          </p>
+          <p>
+            That is the kind of fix that looks small in code but large in effect. A few lines of ordering metadata can decide whether a policy transfers cleanly or appears to fail for mysterious reasons.
+          </p>
+          <p>
+            In robotics, that is often how progress looks: not a dramatic new algorithm, but a clearer agreement about what each index actually means.
+          </p>
+        </section>
+      </article>
 
       <footer>
-        made with ♥ by sujal
+        <span>Made with intent by Sujal</span>
+        <a class="inline-link" href="../index.html">Return to homepage</a>
       </footer>
     </main>
-  </body>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const docElement = document.documentElement;
+    const themeIcon = themeToggle.querySelector("i");
+
+    const savedTheme = localStorage.getItem("theme");
+    const currentTheme = savedTheme || "dark";
+
+    docElement.setAttribute("data-theme", currentTheme);
+    updateIcon(currentTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const activeTheme = docElement.getAttribute("data-theme");
+      const newTheme = activeTheme === "light" ? "dark" : "light";
+
+      docElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      if (theme === "dark") {
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      } else {
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+      }
+    }
+  </script>
+</body>
+</html>
