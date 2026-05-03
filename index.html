@@ -1,65 +1,26 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sujal Dwivedi — Robotics & ML</title>
+  <title>Sujal Dwivedi</title>
   <meta name="description" content="Sujal Dwivedi" />
 
-  <!-- Fonts: Inter for headings, JetBrains Mono for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script>
-    // Set theme before page renders to prevent flash
-    (function() {
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    })();
-  </script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap">
+  </noscript>
 
   <style>
     :root {
-      /* Light theme (default) */
-      --bg-primary: #ffffff;
-      --text-primary: #0a0a0a;
-      --text-secondary: #525252;
-      --text-muted: #737373;
-      --border-color: #e5e5e5;
-      --accent-primary: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent-secondary: #F1E472;
-      --accent-tertiary: #F1E472;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-
-      /* Tech tag colors */
-      --tag-robotics: #10b981;
-      --tag-fpga: #3b82f6;
-      --tag-python: #f59e0b;
-      --tag-pytorch: #ef4444;
-      --tag-ml: #8b5cf6;
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: #0a0a0a;
-      --text-primary: #fafafa;
-      --text-secondary: #a3a3a3;
-      --text-muted: #737373;
-      --border-color: #262626;
-      --accent-primary: #60a5fa;
-      --accent-hover: #93c5fd;
-      --accent-secondary: #F1E472;
-      --accent-tertiary: #F1E472;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-
-      --tag-robotics: #34d399;
-      --tag-fpga: #60a5fa;
-      --tag-python: #fbbf24;
-      --tag-pytorch: #f87171;
-      --tag-ml: #a78bfa;
+      --bg: #0a0a0a;
+      --fg: #e8e8e8;
+      --muted: #7a7a7a;
+      --link: #e8e8e8;
+      --hand: #8a8a8a;
     }
 
     * {
@@ -68,565 +29,342 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-secondary);
-      font-family: 'JetBrains Mono', monospace;
-      line-height: 1.7;
-      font-size: 15px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 400;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-size: 16px;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      padding: 8rem 2rem 5rem;
     }
 
-    /* Theme Toggle */
-    .theme-toggle-container {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      z-index: 1000;
-    }
-
-    #theme-toggle {
-      background: transparent;
-      border: 2px solid var(--border-color);
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 1.1rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.25s ease;
-    }
-
-    #theme-toggle:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
-      transform: rotate(180deg);
-    }
-
-    /* Container */
-    .container {
-      max-width: 800px;
+    .wrap {
+      max-width: 540px;
       margin: 0 auto;
-      padding: 5rem 2rem 3rem;
+      text-align: center;
     }
 
-    /* Headings use Inter font */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fafafa;
+      margin-bottom: 0.45rem;
     }
 
-    /* Header */
-    header {
-      margin-bottom: 5rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border-color);
+    .contact {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 2.25rem;
     }
 
-    .profile-section {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    /* Avatar with slow loading/rendering effect */
-    @keyframes slowRender {
-      0% {
-        clip-path: inset(100% 0 0 0);
-        filter: brightness(0.3) contrast(0.5);
-      }
-      100% {
-        clip-path: inset(0 0 0 0);
-        filter: brightness(1) contrast(1);
-      }
-    }
-
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 8px;
-      object-fit: cover;
-      border: 2px solid var(--border-color);
-      transition: all 0.3s ease;
-      animation: slowRender 3s ease-out forwards;
-    }
-
-    .avatar:hover {
-      transform: scale(1.05);
-      border-color: var(--accent-primary);
-    }
-
-    .profile-info h1 {
-      color: var(--text-primary);
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 0.5rem;
-    }
-
-    .location {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .bio {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 650px;
-    }
-
-    .highlight-text {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    /* Special accent colors for key terms */
-    .accent-embodied {
-      color: var(--accent-secondary);
-      font-weight: 600;
-    }
-
-    .accent-world-models {
-      color: var(--accent-tertiary);
-      font-weight: 600;
-    }
-
-    /* Social Text */
-    .social-text {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-secondary);
-    }
-
-    .inline-link {
-      color: var(--accent-primary);
+    .contact a {
+      color: var(--fg);
       text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid var(--accent-primary);
-      transition: all 0.2s ease;
-      padding-bottom: 2px;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
     }
 
-    .inline-link:hover {
-      color: var(--accent-hover);
-      border-bottom-color: var(--accent-hover);
-      background: var(--accent-light);
-    }
+    .contact a:hover { border-bottom-color: var(--fg); }
 
-    /* CATS button (luthira-style) */
-    .cats-button-wrap {
-      margin: 2rem 0 0;
-      display: flex;
-    }
-
-    .cats-button {
+    .pill {
       display: inline-block;
-      padding: 0.55rem 1.6rem;
-      border: 1px solid var(--text-secondary);
-      color: var(--text-primary);
+      padding: 0.5rem 1.5rem;
+      border: 1px solid #555;
+      color: var(--fg);
       text-decoration: none;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
       font-weight: 500;
-      letter-spacing: 2px;
       transition: all 0.2s ease;
+      margin-bottom: 3.5rem;
     }
 
-    .cats-button:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
+    .pill:hover {
+      border-color: #fafafa;
+      color: #fafafa;
     }
+
+    .prose {
+      text-align: left;
+      color: var(--fg);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .prose p {
+      margin-bottom: 1.4rem;
+    }
+
+    .prose a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
+    }
+
+    .prose a:hover { border-bottom-color: var(--fg); }
+
+    .accent { color: #F1E472; font-weight: 500; }
+    .strong { color: #fafafa; font-weight: 500; }
 
     /* Sections */
-    section {
-      margin-bottom: 5rem;
+    .section {
+      margin-top: 4rem;
+      text-align: left;
     }
 
     .section-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 2.5rem;
-      letter-spacing: -0.5px;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid #1f1f1f;
     }
 
-    .ascii-title {
-      font-size: 0.5rem;
-      line-height: 1.2;
-      color: var(--text-primary);
-      margin-bottom: 2.5rem;
-      white-space: pre;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      overflow-x: auto;
-    }
-
-    .ascii-name {
-      font-size: 0.4rem;
-      line-height: 1.2;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      white-space: pre;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      overflow-x: auto;
-    }
-
-    /* Lab link */
     .lab-link {
-      color: var(--text-secondary);
+      color: var(--fg);
       text-decoration: none;
       font-size: 0.95rem;
-      font-weight: 500;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
       display: inline-block;
-      transition: all 0.2s ease;
     }
 
-    .lab-link:hover {
-      color: var(--accent-primary);
-      transform: translateX(4px);
-    }
+    .lab-link:hover { border-bottom-color: var(--fg); }
 
-    /* Tech tags - simple colored text */
-    [class^="tech-"] {
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .tech-robotics {
-      color: var(--tag-robotics);
-    }
-
-    .tech-fpga {
-      color: var(--tag-fpga);
-    }
-
-    .tech-python {
-      color: var(--tag-python);
-    }
-
-    .tech-pytorch {
-      color: var(--tag-pytorch);
-    }
-
-    .tech-ml {
-      color: var(--tag-ml);
-    }
-
-    /* Blogs - No boxes, clean list */
-    .blog-item {
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
+    .post {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-      transition: all 0.2s ease;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #1a1a1a;
     }
 
-    .blog-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
+    .post:last-child { border-bottom: none; }
 
-    .blog-title-wrap {
+    .post-title {
       flex: 1;
     }
 
-    .blog-link {
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 1.05rem;
+    .post a {
+      color: var(--fg);
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      transition: color 0.2s ease;
-      position: relative;
+      font-size: 0.98rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
     }
 
-    .blog-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-primary);
-      transition: width 0.3s ease;
-    }
+    .post a:hover { border-bottom-color: var(--fg); }
 
-    .blog-link:hover {
-      color: var(--accent-primary);
-    }
-
-    .blog-link:hover::after {
-      width: 100%;
-    }
-
-    .blog-desc {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-size: 0.9rem;
-    }
-
-    .blog-date {
+    .post-desc {
+      color: var(--muted);
       font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    .post-date {
+      color: var(--muted);
+      font-size: 0.8rem;
       white-space: nowrap;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Doodle */
+    .doodle {
+      margin: 3rem auto 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      position: relative;
     }
 
-    main {
-      animation: fadeIn 0.5s ease-out;
+    .doodle svg {
+      width: 64px;
+      height: 64px;
+      stroke: var(--hand);
+      fill: none;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      cursor: pointer;
+      transition: stroke 0.2s ease, transform 0.3s ease;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container {
-        padding: 3rem 1.5rem;
-      }
-
-      .theme-toggle-container {
-        top: 1rem;
-        right: 1rem;
-      }
-
-      .profile-section {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .profile-info h1 {
-        font-size: 1.75rem;
-      }
-
-      .bio {
-        font-size: 0.95rem;
-      }
-
-      .social-text {
-        text-align: center;
-      }
-
-      .blog-item {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .blog-date {
-        align-self: flex-start;
-      }
-
-      /* ASCII art responsive */
-      .ascii-name {
-        font-size: 0.28rem;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-      }
-
-      .ascii-title {
-        font-size: 0.35rem;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-      }
+    .doodle a:hover svg {
+      stroke: var(--fg);
+      transform: rotate(-4deg);
     }
 
-    @media (max-width: 480px) {
-      body {
-        font-size: 14px;
-      }
-
-      .profile-info h1 {
-        font-size: 1.5rem;
-      }
-
-      .section-title {
-        font-size: 1.3rem;
-      }
-
-      #theme-toggle {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-      }
-
-      /* Smaller ASCII art for mobile */
-      .ascii-name {
-        font-size: 0.22rem;
-      }
-
-      .ascii-title {
-        font-size: 0.28rem;
-      }
-
-      .avatar {
-        width: 100px;
-        height: 100px;
-      }
+    .pet-me {
+      font-family: 'Caveat', cursive;
+      color: var(--hand);
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      transform: translateY(2px);
     }
 
-    /* Smooth transitions */
-    * {
-      transition-property: background-color, color, border-color;
-      transition-duration: 0.3s;
-      transition-timing-function: ease;
+    /* Bottom nav */
+    .nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 460px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    a, button {
-      transition-property: all;
-      transition-duration: 0.2s;
+    .nav a {
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 1px;
+      display: inline-block;
+    }
+
+    .nav a:hover { border-bottom-color: var(--fg); }
+
+    .nav .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav .arrow {
+      color: var(--hand);
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+
+    .nav .caption {
+      font-family: 'Caveat', cursive;
+      color: var(--hand);
+      font-size: 1rem;
+      line-height: 1.2;
+      max-width: 14ch;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 4rem 1.5rem 3rem; }
+      h1 { font-size: 1.85rem; }
+      .nav { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+      .nav .caption { font-size: 0.9rem; }
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <h1>Sujal Dwivedi</h1>
+    <p class="contact">
+      Contact intercept &bull;
+      <a href="mailto:sujal1114@gmail.com">sujal1114@gmail.com</a>
+    </p>
 
-  <div class="theme-toggle-container">
-    <button id="theme-toggle" title="Toggle light/dark theme" aria-label="Toggle theme">
-      <i class="fas fa-sun"></i>
-    </button>
-  </div>
+    <a href="page/cats.html" class="pill">CATS</a>
 
-  <div class="container">
-    <header>
-      <div class="profile-section">
-        <img src="images/profile.jpeg" alt="Sujal Dwivedi" class="avatar">
-        <div class="profile-info">
-          <pre class="ascii-name">███████╗██╗   ██╗     ██╗ █████╗ ██╗     
-██╔════╝██║   ██║     ██║██╔══██╗██║     
-███████╗██║   ██║     ██║███████║██║     
-╚════██║██║   ██║██   ██║██╔══██║██║     
-███████║╚██████╔╝╚█████╔╝██║  ██║███████╗
-╚══════╝ ╚═════╝  ╚════╝ ╚═╝  ╚═╝╚══════╝
-                                         
-██████╗ ██╗    ██╗██╗██╗   ██╗███████╗██████╗ ██╗
-██╔══██╗██║    ██║██║██║   ██║██╔════╝██╔══██╗██║
-██║  ██║██║ █╗ ██║██║██║   ██║█████╗  ██║  ██║██║
-██║  ██║██║███╗██║██║╚██╗ ██╔╝██╔══╝  ██║  ██║██║
-██████╔╝╚███╔███╔╝██║ ╚████╔╝ ███████╗██████╔╝██║
-╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝  ╚══════╝╚═════╝ ╚═╝</pre>
-          <p class="location">Mumbai, India</p>
-        </div>
-      </div>
-
-      <p class="bio">
-        I am exploring the frontiers of <span class="accent-embodied">Embodied Cognition</span>.
-        From writing low-level programs to designing complex <span class="accent-world-models">World Models</span>, I build infrastructure that allows robots to
-        perceive, plan, and act using high-performance <span class="highlight-text">FPGA</span> and <span
-          class="highlight-text">ML</span> systems.
+    <div class="prose">
+      <p>
+        I am exploring the frontiers of <span class="accent">Embodied Cognition</span>. From writing
+        <span class="strong">low-level programs</span> to designing complex <span class="accent">World Models</span>,
+        I build infrastructure that allows robots to perceive, plan, and act using high-performance
+        <span class="strong">FPGA</span> and <span class="strong">ML</span> systems.
       </p>
 
-      <p class="social-text">
-        I handle version control as <a href="https://github.com/5usu/" target="_blank" class="inline-link">@5usu</a>, ship hot takes as <a href="https://x.com/bos0nN" target="_blank" class="inline-link">@bos0nN</a>, and resolve exceptions via <a href="mailto:sujal1114@gmail.com" class="inline-link">@mail</a>.
+      <p>
+        I handle version control as
+        <a href="https://github.com/5usu/" target="_blank" rel="noopener">@5usu</a>,
+        ship hot takes as
+        <a href="https://x.com/sujalDweD" target="_blank" rel="noopener">@sujalDweD</a>,
+        and resolve exceptions via
+        <a href="mailto:sujal1114@gmail.com">@mail</a>.
       </p>
+    </div>
 
-      <div class="cats-button-wrap">
-        <a href="page/cats.html" class="cats-button">CATS</a>
+    <section class="section">
+      <h2 class="section-title">Lab</h2>
+      <a href="project.html" class="lab-link">&rarr; view lab brewing material</a>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Writing</h2>
+
+      <div class="post">
+        <div class="post-title">
+          <a href="page/USGPORT.html">FPGA-based Portable Ultrasound</a>
+          <p class="post-desc">Architecture, beamforming algorithms, and DSP techniques on hardware.</p>
+        </div>
+        <span class="post-date">July 2025</span>
       </div>
-    </header>
 
-    <main>
-
-      <section id="research">
-        <pre class="ascii-title">████████╗██╗  ██╗███████╗    ██╗      █████╗ ██████╗ 
-╚══██╔══╝██║  ██║██╔════╝    ██║     ██╔══██╗██╔══██╗
-   ██║   ███████║█████╗      ██║     ███████║██████╔╝
-   ██║   ██╔══██║██╔══╝      ██║     ██╔══██║██╔══██╗
-   ██║   ██║  ██║███████╗    ███████╗██║  ██║██████╔╝
-   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═╝╚═════╝</pre>
-        <a href="project.html" class="lab-link">→ view lab brewing material</a>
-      </section>
-
-      <section id="writing">
-        <pre class="ascii-title">██╗    ██╗██████╗ ██╗████████╗██╗███╗   ██╗ ██████╗ 
-██║    ██║██╔══██╗██║╚══██╔══╝██║████╗  ██║██╔════╝ 
-██║ █╗ ██║██████╔╝██║   ██║   ██║██╔██╗ ██║██║  ███╗
-██║███╗██║██╔══██╗██║   ██║   ██║██║╚██╗██║██║   ██║
-╚███╔███╔╝██║  ██║██║   ██║   ██║██║ ╚████║╚██████╔╝
- ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝</pre>
-
-        <div class="blog-item">
-          <div class="blog-title-wrap">
-            <a href="page/USGPORT.html" class="blog-link">FPGA-based Portable Ultrasound</a>
-            <p class="blog-desc">Architecture, beamforming algorithms, and DSP techniques on hardware.</p>
-          </div>
-          <span class="blog-date">July 2025</span>
+      <div class="post">
+        <div class="post-title">
+          <a href="page/brainrot.html">Sim-to-Sim Transfer from Newton to PhysX</a>
+          <p class="post-desc">Why joint-order alignment mattered more than physics fidelity for my custom Tensaur robot in Isaac Lab.</p>
         </div>
+        <span class="post-date">Mar 2026</span>
+      </div>
+    </section>
 
-        <div class="blog-item">
-          <div class="blog-title-wrap">
-            <a href="page/brainrot.html" class="blog-link">Sim-to-Sim Transfer from Newton to PhysX</a>
-            <p class="blog-desc">Why joint-order alignment mattered more than physics fidelity for my custom Tensaur robot in Isaac Lab. <strong>Read more..</strong></p>
-          </div>
-          <span class="blog-date">Mar 2026</span>
-        </div>
+    <div class="doodle">
+      <a href="page/cats.html" aria-label="cats">
+        <svg viewBox="0 0 64 64">
+          <!-- ears -->
+          <path d="M14 22 L18 8 L26 18" />
+          <path d="M50 22 L46 8 L38 18" />
+          <!-- head -->
+          <path d="M14 22 C10 32, 12 44, 22 50 C28 53, 36 53, 42 50 C52 44, 54 32, 50 22" />
+          <!-- eyes (closed/squinting) -->
+          <path d="M22 32 q3 -3 6 0" />
+          <path d="M36 32 q3 -3 6 0" />
+          <!-- nose -->
+          <path d="M30 38 q2 2 4 0" />
+          <!-- mouth -->
+          <path d="M32 39 q-3 5 -7 4" />
+          <path d="M32 39 q3 5 7 4" />
+          <!-- whiskers -->
+          <path d="M14 38 L24 39" />
+          <path d="M14 42 L24 41" />
+          <path d="M50 38 L40 39" />
+          <path d="M50 42 L40 41" />
+        </svg>
+      </a>
+      <span class="pet-me">&larr; pet me</span>
+    </div>
 
-      </section>
-
-    </main>
+    <nav class="nav">
+      <div class="col">
+        <a href="https://github.com/5usu/" target="_blank" rel="noopener">GitHub</a>
+        <span class="arrow">&uarr;</span>
+        <span class="caption">code &amp; experiments</span>
+      </div>
+      <div class="col">
+        <a href="https://x.com/sujalDweD" target="_blank" rel="noopener">X [dot] com</a>
+        <span class="arrow">&uarr;</span>
+        <span class="caption">updates, builds, whatever I&rsquo;m thinking about that day</span>
+      </div>
+      <div class="col">
+        <a href="project.html">Lab</a>
+        <span class="arrow">&uarr;</span>
+        <span class="caption">research &amp; brewing material</span>
+      </div>
+    </nav>
   </div>
-
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const docElement = document.documentElement;
-    const themeIcon = themeToggle.querySelector('i');
-
-    // Check for saved theme in localStorage, default to dark
-    const savedTheme = localStorage.getItem('theme');
-    const currentTheme = savedTheme || 'dark';
-
-    // Apply the theme on page load
-    docElement.setAttribute('data-theme', currentTheme);
-    updateIcon(currentTheme);
-
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = docElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
-      docElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateIcon(newTheme);
-    });
-
-    // Update icon based on theme
-    function updateIcon(theme) {
-      if (theme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      }
-    }
-  </script>
-
 </body>
 
 </html>
