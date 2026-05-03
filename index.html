@@ -225,6 +225,30 @@
       background: var(--accent-light);
     }
 
+    /* CATS button (luthira-style) */
+    .cats-button-wrap {
+      margin: 2rem 0 0;
+      display: flex;
+    }
+
+    .cats-button {
+      display: inline-block;
+      padding: 0.55rem 1.6rem;
+      border: 1px solid var(--text-secondary);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .cats-button:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
     /* Sections */
     section {
       margin-bottom: 5rem;
@@ -521,6 +545,10 @@
       <p class="social-text">
         I handle version control as <a href="https://github.com/5usu/" target="_blank" class="inline-link">@5usu</a>, ship hot takes as <a href="https://x.com/bos0nN" target="_blank" class="inline-link">@bos0nN</a>, and resolve exceptions via <a href="mailto:sujal1114@gmail.com" class="inline-link">@mail</a>.
       </p>
+
+      <div class="cats-button-wrap">
+        <a href="page/cats.html" class="cats-button">CATS</a>
+      </div>
     </header>
 
     <main>

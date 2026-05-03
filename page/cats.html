@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cats</title>
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0a0a0a;
+      --muted: #737373;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --fg: #fafafa;
+      --muted: #6b6b6b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 6rem 2rem 6rem;
+    }
+
+    .back {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      z-index: 10;
+      transition: color 0.2s ease;
+    }
+
+    .back:hover { color: var(--fg); }
+
+    .gallery {
+      max-width: 1200px;
+      margin: 0 auto;
+      column-count: 3;
+      column-gap: 1.25rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 0 1.25rem;
+      break-inside: avoid;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .gallery img.loaded {
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 5rem 1rem 4rem; }
+      .gallery { column-count: 2; column-gap: 0.75rem; }
+      .gallery img { margin-bottom: 0.75rem; }
+      .back { top: 1.25rem; left: 1.25rem; }
+    }
+
+    @media (max-width: 540px) {
+      .gallery { column-count: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="../index.html" class="back">← back</a>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    const images = [
+      '../images/cats/IMG_20250509_161017020.jpg',
+      '../images/cats/IMG_20250723_100743726.jpg',
+      '../images/cats/IMG_20250726_195355988.jpg',
+      '../images/cats/IMG_20250726_195905911.jpg',
+      '../images/cats/IMG_20250811_182604197.jpg',
+      '../images/cats/IMG_20250904_221649114.jpg',
+      '../images/cats/IMG_20250906_195821154.jpg',
+      '../images/cats/IMG_20250913_132437149.jpg',
+      '../images/cats/IMG_20250917_130716950.jpg',
+      '../images/cats/IMG_20250918_191147920.jpg',
+      '../images/cats/IMG_20251112_180930717.jpg',
+      '../images/cats/IMG_20260325_194740602.jpg',
+      '../images/cats/Snapchat-1753012498.jpg',
+    ];
+
+    for (let i = images.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [images[i], images[j]] = [images[j], images[i]];
+    }
+
+    const gallery = document.getElementById('gallery');
+    images.forEach((src) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      gallery.appendChild(img);
+    });
+  </script>
+
+</body>
+
+</html>
