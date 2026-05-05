@@ -21,6 +21,7 @@
       --muted: #7a7a7a;
       --link: #e8e8e8;
       --hand: #8a8a8a;
+      --accent: #F1E472;
     }
 
     * {
@@ -32,6 +33,7 @@
     html, body {
       background: var(--bg);
       color: var(--fg);
+      overflow-x: hidden;
     }
 
     body {
@@ -48,7 +50,29 @@
       max-width: 540px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
+
+    /* Abstract background */
+    .bg-art {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.22;
+      mix-blend-mode: screen;
+      will-change: transform;
+    }
+
+    .wrap { transform-origin: center top; }
 
     h1 {
       font-size: 2.25rem;
@@ -111,7 +135,7 @@
 
     .prose a:hover { border-bottom-color: var(--fg); }
 
-    .accent { color: #F1E472; font-weight: 500; }
+    .accent { color: var(--accent); font-weight: 500; }
     .strong { color: #fafafa; font-weight: 500; }
 
     /* Sections */
@@ -269,6 +293,12 @@
 </head>
 
 <body>
+  <div class="bg-art" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
   <div class="wrap">
     <h1>Sujal Dwivedi</h1>
     <p class="contact">
@@ -365,6 +395,76 @@
       </div>
     </nav>
   </div>
+
+  <script>
+    (function () {
+      const pick = a => a[Math.floor(Math.random() * a.length)];
+
+      const palettes  = ['#F1E472', '#A7E8BD', '#FFB4A2', '#C7B8FF', '#9DDFD3', '#F4A261', '#FFD6E0'];
+      const petMe     = ['← pet me', '← boop', '← scratch here', '← say hi', '← pspsps', '← hi friend'];
+      const pillText  = ['CATS', 'MEOW', 'PURR', 'ZOOMIES', 'KITTY', 'NYAN'];
+      const aligns    = ['left', 'center', 'right'];
+      const justifies = ['flex-start', 'center', 'flex-end'];
+
+      document.documentElement.style.setProperty('--accent', pick(palettes));
+
+      // Tiered ranges so mobile/tablet stay readable
+      const w = window.innerWidth;
+      const tier =
+        w <= 480 ? { maxX: 2,  maxY: 2,  proseAligns: aligns }            :
+        w <= 700 ? { maxX: 4,  maxY: 3,  proseAligns: aligns }            :
+                   { maxX: 18, maxY: 12, proseAligns: [...aligns, 'justify'] };
+
+      // Free-form position (no rotation — keep info upright)
+      const wrap = document.querySelector('.wrap');
+      const tx = (Math.random() * tier.maxX * 2 - tier.maxX).toFixed(1);
+      const ty = (Math.random() * tier.maxY * 1.4 - tier.maxY * 0.4).toFixed(1);
+      wrap.style.transform = `translate(${tx}vw, ${ty}vh)`;
+
+      // Random alignments per region
+      wrap.style.textAlign = pick(aligns);
+      const prose = document.querySelector('.prose');
+      if (prose) prose.style.textAlign = pick(tier.proseAligns);
+      document.querySelectorAll('.section').forEach(s => { s.style.textAlign = pick(aligns); });
+      const doodle = document.querySelector('.doodle');
+      if (doodle) doodle.style.justifyContent = pick(justifies);
+
+      const blobUnit = w <= 700 ? 'vmin' : 'vmax';   // smaller blobs on mobile
+      const blobMin  = w <= 700 ? 50 : 35;
+      const blobRng  = w <= 700 ? 35 : 45;
+      document.querySelectorAll('.blob').forEach(b => {
+        const hue   = Math.floor(Math.random() * 360);
+        const sat   = 60 + Math.random() * 25;
+        const light = 50 + Math.random() * 15;
+        const size  = blobMin + Math.random() * blobRng;
+        const top   = Math.random() * 110 - 20;
+        const left  = Math.random() * 110 - 20;
+        b.style.background = `radial-gradient(circle, hsl(${hue} ${sat}% ${light}%) 0%, transparent 70%)`;
+        b.style.width  = `${size}${blobUnit}`;
+        b.style.height = `${size}${blobUnit}`;
+        b.style.top    = `${top}%`;
+        b.style.left   = `${left}%`;
+      });
+
+      const pm = document.querySelector('.pet-me');
+      if (pm) pm.textContent = pick(petMe);
+
+      const pill = document.querySelector('.pill');
+      if (pill) pill.textContent = pick(pillText);
+
+      document.querySelectorAll('.prose .accent, .prose .strong').forEach(s => {
+        s.className = Math.random() < 0.5 ? 'accent' : 'strong';
+      });
+
+      const svg = document.querySelector('.doodle svg');
+      if (svg) {
+        const deg = (Math.random() * 12 - 6).toFixed(1);
+        const sw  = (1.2 + Math.random() * 0.8).toFixed(2);
+        svg.style.transform = `rotate(${deg}deg)`;
+        svg.style.strokeWidth = sw;
+      }
+    })();
+  </script>
 </body>
 
 </html>
