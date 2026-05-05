@@ -101,19 +101,19 @@
 
   <script>
     const images = [
-      '../images/cats/IMG_20250509_161017020.jpg',
-      '../images/cats/IMG_20250723_100743726.jpg',
-      '../images/cats/IMG_20250726_195355988.jpg',
-      '../images/cats/IMG_20250726_195905911.jpg',
-      '../images/cats/IMG_20250811_182604197.jpg',
-      '../images/cats/IMG_20250904_221649114.jpg',
-      '../images/cats/IMG_20250906_195821154.jpg',
-      '../images/cats/IMG_20250913_132437149.jpg',
-      '../images/cats/IMG_20250917_130716950.jpg',
-      '../images/cats/IMG_20250918_191147920.jpg',
-      '../images/cats/IMG_20251112_180930717.jpg',
-      '../images/cats/IMG_20260325_194740602.jpg',
-      '../images/cats/Snapchat-1753012498.jpg',
+      '../images/cats/sm/IMG_20250509_161017020.jpg',
+      '../images/cats/sm/IMG_20250723_100743726.jpg',
+      '../images/cats/sm/IMG_20250726_195355988.jpg',
+      '../images/cats/sm/IMG_20250726_195905911.jpg',
+      '../images/cats/sm/IMG_20250811_182604197.jpg',
+      '../images/cats/sm/IMG_20250904_221649114.jpg',
+      '../images/cats/sm/IMG_20250906_195821154.jpg',
+      '../images/cats/sm/IMG_20250913_132437149.jpg',
+      '../images/cats/sm/IMG_20250917_130716950.jpg',
+      '../images/cats/sm/IMG_20250918_191147920.jpg',
+      '../images/cats/sm/IMG_20251112_180930717.jpg',
+      '../images/cats/sm/IMG_20260325_194740602.jpg',
+      '../images/cats/sm/Snapchat-1753012498.jpg',
     ];
 
     for (let i = images.length - 1; i > 0; i--) {
@@ -122,11 +122,13 @@
     }
 
     const gallery = document.getElementById('gallery');
-    images.forEach((src) => {
+    images.forEach((src, i) => {
       const img = document.createElement('img');
       img.src = src;
       img.alt = '';
-      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.loading = i < 6 ? 'eager' : 'lazy';
+      if (i < 3) img.fetchPriority = 'high';
       img.addEventListener('load', () => img.classList.add('loaded'));
       gallery.appendChild(img);
     });
