@@ -1,470 +1,741 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Sujal Dwivedi</title>
+        <meta name="description" content="Sujal Dwivedi" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sujal Dwivedi</title>
-  <meta name="description" content="Sujal Dwivedi" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap"
+            onload="
+                this.onload = null;
+                this.rel = 'stylesheet';
+            "
+        />
+        <noscript>
+            <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap"
+            />
+        </noscript>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap">
-  </noscript>
+        <style>
+            :root {
+                --bg: #0a0a0a;
+                --fg: #e8e8e8;
+                --muted: #7a7a7a;
+                --link: #e8e8e8;
+                --hand: #8a8a8a;
+                --accent: #f1e472;
+            }
 
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #e8e8e8;
-      --muted: #7a7a7a;
-      --link: #e8e8e8;
-      --hand: #8a8a8a;
-      --accent: #F1E472;
-    }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+            html,
+            body {
+                background: var(--bg);
+                color: var(--fg);
+                overflow-x: hidden;
+            }
 
-    html, body {
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: hidden;
-    }
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    Helvetica,
+                    Arial,
+                    sans-serif;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+                min-height: 100vh;
+                padding: 8rem 2rem 5rem;
+            }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      padding: 8rem 2rem 5rem;
-    }
+            .wrap {
+                max-width: 540px;
+                margin: 0 auto;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
 
-    .wrap {
-      max-width: 540px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+            /* Abstract background */
+            .bg-art {
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+                overflow: hidden;
+                pointer-events: none;
+            }
 
-    /* Abstract background */
-    .bg-art {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
+            .blob {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(90px);
+                opacity: 0.22;
+                mix-blend-mode: screen;
+                will-change: transform;
+                animation: blob-drift var(--dur, 28s) ease-in-out infinite
+                    alternate;
+            }
 
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.22;
-      mix-blend-mode: screen;
-      will-change: transform;
-    }
+            @keyframes blob-drift {
+                0% {
+                    transform: translate(0, 0) scale(1);
+                }
+                50% {
+                    transform: translate(var(--dx, 4vw), var(--dy, -3vh))
+                        scale(1.08);
+                }
+                100% {
+                    transform: translate(
+                            calc(var(--dx, 4vw) * -0.6),
+                            var(--dy2, 4vh)
+                        )
+                        scale(0.94);
+                }
+            }
 
-    .wrap { transform-origin: center top; }
+            /* Doodle idle animations (one is picked at random per load) */
+            @keyframes anim-bob {
+                0%,
+                100% {
+                    transform: translateY(0) rotate(var(--deg, 0deg));
+                }
+                50% {
+                    transform: translateY(-6px) rotate(var(--deg, 0deg));
+                }
+            }
+            @keyframes anim-sway {
+                0%,
+                100% {
+                    transform: rotate(calc(var(--deg, 0deg) - 5deg));
+                }
+                50% {
+                    transform: rotate(calc(var(--deg, 0deg) + 5deg));
+                }
+            }
+            @keyframes anim-wiggle {
+                0%,
+                100% {
+                    transform: translateX(0) rotate(var(--deg, 0deg));
+                }
+                25% {
+                    transform: translateX(-3px)
+                        rotate(calc(var(--deg, 0deg) - 3deg));
+                }
+                75% {
+                    transform: translateX(3px)
+                        rotate(calc(var(--deg, 0deg) + 3deg));
+                }
+            }
+            @keyframes anim-breathe {
+                0%,
+                100% {
+                    transform: scale(1) rotate(var(--deg, 0deg));
+                }
+                50% {
+                    transform: scale(1.06) rotate(var(--deg, 0deg));
+                }
+            }
+            @keyframes anim-spin {
+                0% {
+                    transform: rotate(var(--deg, 0deg));
+                }
+                50% {
+                    transform: rotate(calc(var(--deg, 0deg) + 360deg));
+                }
+                100% {
+                    transform: rotate(var(--deg, 0deg));
+                }
+            }
 
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #fafafa;
-      margin-bottom: 0.45rem;
-    }
+            @media (prefers-reduced-motion: reduce) {
+                .blob,
+                .doodle svg {
+                    animation: none !important;
+                }
+            }
 
-    .contact {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 2.25rem;
-    }
+            .wrap {
+                transform-origin: center top;
+            }
 
-    .contact a {
-      color: var(--fg);
-      text-decoration: none;
-      border-bottom: 1px solid var(--muted);
-      padding-bottom: 1px;
-    }
+            h1 {
+                font-size: 2.25rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: #fafafa;
+                margin-bottom: 0.45rem;
+            }
 
-    .contact a:hover { border-bottom-color: var(--fg); }
+            .contact {
+                color: var(--muted);
+                font-size: 0.92rem;
+                margin-bottom: 2.25rem;
+            }
 
-    .pill {
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      border: 1px solid #555;
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      margin-bottom: 3.5rem;
-    }
+            .contact a {
+                color: var(--fg);
+                text-decoration: none;
+                border-bottom: 1px solid var(--muted);
+                padding-bottom: 1px;
+            }
 
-    .pill:hover {
-      border-color: #fafafa;
-      color: #fafafa;
-    }
+            .contact a:hover {
+                border-bottom-color: var(--fg);
+            }
 
-    .prose {
-      text-align: left;
-      color: var(--fg);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
+            .pill {
+                display: inline-block;
+                padding: 0.5rem 1.5rem;
+                border: 1px solid #555;
+                color: var(--fg);
+                text-decoration: none;
+                font-size: 0.78rem;
+                letter-spacing: 0.18em;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                margin-bottom: 3.5rem;
+            }
 
-    .prose p {
-      margin-bottom: 1.4rem;
-    }
+            .pill:hover {
+                border-color: #fafafa;
+                color: #fafafa;
+            }
 
-    .prose a {
-      color: var(--fg);
-      text-decoration: none;
-      border-bottom: 1px solid var(--muted);
-      padding-bottom: 1px;
-    }
+            .prose {
+                text-align: left;
+                color: var(--fg);
+                font-size: 1rem;
+                line-height: 1.7;
+            }
 
-    .prose a:hover { border-bottom-color: var(--fg); }
+            .prose p {
+                margin-bottom: 1.4rem;
+            }
 
-    .accent { color: var(--accent); font-weight: 500; }
-    .strong { color: #fafafa; font-weight: 500; }
+            .prose a {
+                color: var(--fg);
+                text-decoration: none;
+                border-bottom: 1px solid var(--muted);
+                padding-bottom: 1px;
+            }
 
-    /* Sections */
-    .section {
-      margin-top: 4rem;
-      text-align: left;
-    }
+            .prose a:hover {
+                border-bottom-color: var(--fg);
+            }
 
-    .section-title {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 1px solid #1f1f1f;
-    }
+            .accent {
+                color: var(--accent);
+                font-weight: 500;
+            }
+            .strong {
+                color: #fafafa;
+                font-weight: 500;
+            }
 
-    .lab-link {
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 0.95rem;
-      border-bottom: 1px solid var(--muted);
-      padding-bottom: 1px;
-      display: inline-block;
-    }
+            /* Sections */
+            .section {
+                margin-top: 4rem;
+                text-align: left;
+            }
 
-    .lab-link:hover { border-bottom-color: var(--fg); }
+            .section-title {
+                font-size: 0.78rem;
+                letter-spacing: 0.22em;
+                color: var(--muted);
+                text-transform: uppercase;
+                font-weight: 500;
+                margin-bottom: 1.25rem;
+                padding-bottom: 0.65rem;
+                border-bottom: 1px solid #1f1f1f;
+            }
 
-    .post {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1.5rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid #1a1a1a;
-    }
+            .lab-link {
+                color: var(--fg);
+                text-decoration: none;
+                font-size: 0.95rem;
+                border-bottom: 1px solid var(--muted);
+                padding-bottom: 1px;
+                display: inline-block;
+            }
 
-    .post:last-child { border-bottom: none; }
+            .lab-link:hover {
+                border-bottom-color: var(--fg);
+            }
 
-    .post-title {
-      flex: 1;
-    }
+            .post {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 1.5rem;
+                padding: 0.9rem 0;
+                border-bottom: 1px solid #1a1a1a;
+            }
 
-    .post a {
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 0.98rem;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
+            .post:last-child {
+                border-bottom: none;
+            }
 
-    .post a:hover { border-bottom-color: var(--fg); }
+            .post-title {
+                flex: 1;
+            }
 
-    .post-desc {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 0.25rem;
-      line-height: 1.5;
-    }
+            .post a {
+                color: var(--fg);
+                text-decoration: none;
+                font-size: 0.98rem;
+                border-bottom: 1px solid transparent;
+                transition: border-color 0.2s ease;
+            }
 
-    .post-date {
-      color: var(--muted);
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
+            .post a:hover {
+                border-bottom-color: var(--fg);
+            }
 
-    /* Doodle */
-    .doodle {
-      margin: 3rem auto 4.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-      position: relative;
-    }
+            .post-desc {
+                color: var(--muted);
+                font-size: 0.85rem;
+                margin-top: 0.25rem;
+                line-height: 1.5;
+            }
 
-    .doodle svg {
-      width: 64px;
-      height: 64px;
-      stroke: var(--hand);
-      fill: none;
-      stroke-width: 1.4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      cursor: pointer;
-      transition: stroke 0.2s ease, transform 0.3s ease;
-    }
+            .post-date {
+                color: var(--muted);
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
 
-    .doodle a:hover svg {
-      stroke: var(--fg);
-      transform: rotate(-4deg);
-    }
+            /* Doodle */
+            .doodle {
+                margin: 3rem auto 4.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem;
+                position: relative;
+            }
 
-    .pet-me {
-      font-family: 'Caveat', cursive;
-      color: var(--hand);
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
-      transform: translateY(2px);
-    }
+            .doodle svg {
+                width: 64px;
+                height: 64px;
+                stroke: var(--hand);
+                fill: none;
+                stroke-width: 1.4;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                cursor: pointer;
+                transition:
+                    stroke 0.2s ease,
+                    transform 0.3s ease;
+            }
 
-    /* Bottom nav */
-    .nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 460px;
-      margin: 0 auto;
-      text-align: center;
-    }
+            .doodle a:hover svg {
+                stroke: var(--fg);
+                transform: rotate(-4deg);
+            }
 
-    .nav a {
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 0.95rem;
-      border-bottom: 1px solid var(--muted);
-      padding-bottom: 1px;
-      display: inline-block;
-    }
+            .pet-me {
+                font-family: "Caveat", cursive;
+                color: var(--hand);
+                font-size: 1.05rem;
+                letter-spacing: 0.02em;
+                transform: translateY(2px);
+            }
 
-    .nav a:hover { border-bottom-color: var(--fg); }
+            /* Bottom nav */
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                max-width: 460px;
+                margin: 0 auto;
+                text-align: center;
+            }
 
-    .nav .col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
+            .nav a {
+                color: var(--fg);
+                text-decoration: none;
+                font-size: 0.95rem;
+                border-bottom: 1px solid var(--muted);
+                padding-bottom: 1px;
+                display: inline-block;
+            }
 
-    .nav .arrow {
-      color: var(--hand);
-      font-family: 'Caveat', cursive;
-      font-size: 1.4rem;
-      line-height: 1;
-      margin-top: 0.1rem;
-    }
+            .nav a:hover {
+                border-bottom-color: var(--fg);
+            }
 
-    .nav .caption {
-      font-family: 'Caveat', cursive;
-      color: var(--hand);
-      font-size: 1rem;
-      line-height: 1.2;
-      max-width: 14ch;
-    }
+            .nav .col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-    @media (max-width: 600px) {
-      body { padding: 4rem 1.5rem 3rem; }
-      h1 { font-size: 1.85rem; }
-      .nav { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-      .nav .caption { font-size: 0.9rem; }
-    }
-  </style>
-</head>
+            .nav .arrow {
+                color: var(--hand);
+                font-family: "Caveat", cursive;
+                font-size: 1.4rem;
+                line-height: 1;
+                margin-top: 0.1rem;
+            }
 
-<body>
-  <div class="bg-art" aria-hidden="true">
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-  </div>
+            .nav .caption {
+                font-family: "Caveat", cursive;
+                color: var(--hand);
+                font-size: 1rem;
+                line-height: 1.2;
+                max-width: 14ch;
+            }
 
-  <div class="wrap">
-    <h1>Sujal Dwivedi</h1>
-    <p class="contact">
-      Contact intercept &bull;
-      <a href="mailto:sujal1114@gmail.com">sujal1114@gmail.com</a>
-    </p>
+            @media (max-width: 600px) {
+                body {
+                    padding: 4rem 1.5rem 3rem;
+                }
+                h1 {
+                    font-size: 1.85rem;
+                }
+                .nav {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 0.75rem;
+                }
+                .nav .caption {
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
+    </head>
 
-    <a href="page/cats.html" class="pill">CATS</a>
-
-    <div class="prose">
-      <p>
-        I am exploring the frontiers of <span class="accent">Embodied Cognition</span>. From writing
-        <span class="strong">low-level programs</span> to designing complex <span class="accent">World Models</span>,
-        I build infrastructure that allows robots to perceive, plan, and act using high-performance
-        <span class="strong">FPGA</span> and <span class="strong">ML</span> systems.
-      </p>
-
-      <p>
-        I handle version control as
-        <a href="https://github.com/5usu/" target="_blank" rel="noopener">@5usu</a>,
-        ship hot takes as
-        <a href="https://x.com/sujalDweD" target="_blank" rel="noopener">@sujalDweD</a>,
-        and resolve exceptions via
-        <a href="mailto:sujal1114@gmail.com">@mail</a>.
-      </p>
-    </div>
-
-    <section class="section">
-      <h2 class="section-title">Lab</h2>
-      <a href="project.html" class="lab-link">&rarr; view lab brewing material</a>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Writing</h2>
-
-      <div class="post">
-        <div class="post-title">
-          <a href="page/USGPORT.html">FPGA-based Portable Ultrasound</a>
-          <p class="post-desc">Architecture, beamforming algorithms, and DSP techniques on hardware.</p>
+    <body>
+        <div class="bg-art" aria-hidden="true">
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            From writing
         </div>
-        <span class="post-date">July 2025</span>
-      </div>
 
-      <div class="post">
-        <div class="post-title">
-          <a href="page/brainrot.html">Sim-to-Sim Transfer from Newton to PhysX</a>
-          <p class="post-desc">Why joint-order alignment mattered more than physics fidelity for my custom Tensaur robot in Isaac Lab.</p>
+        <div class="wrap">
+            <h1>Sujal Dwivedi</h1>
+            <p class="contact">
+                Contact intercept &bull;
+                <a href="mailto:sujal1114@gmail.com">sujal1114@gmail.com</a>
+            </p>
+
+            <a href="page/cats.html" class="pill">CATS</a>
+
+            <div class="prose">
+                <p>
+                    I am <span class="strong" id="age">21</span>, exploring the frontiers
+                    of <span class="accent">Embodied Cognition</span>. writing
+                    <span class="strong">low-level programs</span> to designing
+                    complex <span class="accent">World Models</span>, I build
+                    infrastructure that allows robots to perceive, plan, and act
+                    using high-performance <span class="strong">FPGA</span> and
+                    <span class="strong">ML</span> systems.
+                </p>
+
+                <p>
+                    I handle version control as
+                    <a
+                        href="https://github.com/5usu/"
+                        target="_blank"
+                        rel="noopener"
+                        >@5usu</a
+                    >, ship hot takes as
+                    <a
+                        href="https://x.com/sujalDweD"
+                        target="_blank"
+                        rel="noopener"
+                        >@sujalDweD</a
+                    >, and resolve exceptions via
+                    <a href="mailto:sujal1114@gmail.com">@mail</a>.
+                </p>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">Lab</h2>
+                <a href="project.html" class="lab-link"
+                    >&rarr; view lab brewing material</a
+                >
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Writing</h2>
+
+                <div class="post">
+                    <div class="post-title">
+                        <a href="page/USGPORT.html"
+                            >FPGA-based Portable Ultrasound</a
+                        >
+                        <p class="post-desc">
+                            Architecture, beamforming algorithms, and DSP
+                            techniques on hardware.
+                        </p>
+                    </div>
+                    <span class="post-date">July 2025</span>
+                </div>
+
+                <div class="post">
+                    <div class="post-title">
+                        <a href="page/brainrot.html"
+                            >Sim-to-Sim Transfer from Newton to PhysX</a
+                        >
+                        <p class="post-desc">
+                            Why joint-order alignment mattered more than physics
+                            fidelity for my custom Tensaur robot in Isaac Lab.
+                        </p>
+                    </div>
+                    <span class="post-date">Mar 2026</span>
+                </div>
+            </section>
+
+            <div class="doodle">
+                <a href="page/cats.html" aria-label="cats">
+                    <svg viewBox="0 0 64 64">
+                        <!-- ears -->
+                        <path d="M14 22 L18 8 L26 18" />
+                        <path d="M50 22 L46 8 L38 18" />
+                        <!-- head -->
+                        <path
+                            d="M14 22 C10 32, 12 44, 22 50 C28 53, 36 53, 42 50 C52 44, 54 32, 50 22"
+                        />
+                        <!-- eyes (closed/squinting) -->
+                        <path d="M22 32 q3 -3 6 0" />
+                        <path d="M36 32 q3 -3 6 0" />
+                        <!-- nose -->
+                        <path d="M30 38 q2 2 4 0" />
+                        <!-- mouth -->
+                        <path d="M32 39 q-3 5 -7 4" />
+                        <path d="M32 39 q3 5 7 4" />
+                        <!-- whiskers -->
+                        <path d="M14 38 L24 39" />
+                        <path d="M14 42 L24 41" />
+                        <path d="M50 38 L40 39" />
+                        <path d="M50 42 L40 41" />
+                    </svg>
+                </a>
+                <span class="pet-me">&larr; pet me</span>
+            </div>
+
+            <nav class="nav">
+                <div class="col">
+                    <a
+                        href="https://github.com/5usu/"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub</a
+                    >
+                    <span class="arrow">&uarr;</span>
+                    <span class="caption">code &amp; experiments</span>
+                </div>
+                <div class="col">
+                    <a
+                        href="https://x.com/sujalDweD"
+                        target="_blank"
+                        rel="noopener"
+                        >X [dot] com</a
+                    >
+                    <span class="arrow">&uarr;</span>
+                    <span class="caption"
+                        >updates, builds, whatever I&rsquo;m thinking about that
+                        day</span
+                    >
+                </div>
+                <div class="col">
+                    <a href="project.html">Lab</a>
+                    <span class="arrow">&uarr;</span>
+                    <span class="caption">research &amp; brewing material</span>
+                </div>
+            </nav>
         </div>
-        <span class="post-date">Mar 2026</span>
-      </div>
-    </section>
 
-    <div class="doodle">
-      <a href="page/cats.html" aria-label="cats">
-        <svg viewBox="0 0 64 64">
-          <!-- ears -->
-          <path d="M14 22 L18 8 L26 18" />
-          <path d="M50 22 L46 8 L38 18" />
-          <!-- head -->
-          <path d="M14 22 C10 32, 12 44, 22 50 C28 53, 36 53, 42 50 C52 44, 54 32, 50 22" />
-          <!-- eyes (closed/squinting) -->
-          <path d="M22 32 q3 -3 6 0" />
-          <path d="M36 32 q3 -3 6 0" />
-          <!-- nose -->
-          <path d="M30 38 q2 2 4 0" />
-          <!-- mouth -->
-          <path d="M32 39 q-3 5 -7 4" />
-          <path d="M32 39 q3 5 7 4" />
-          <!-- whiskers -->
-          <path d="M14 38 L24 39" />
-          <path d="M14 42 L24 41" />
-          <path d="M50 38 L40 39" />
-          <path d="M50 42 L40 41" />
-        </svg>
-      </a>
-      <span class="pet-me">&larr; pet me</span>
-    </div>
+        <script>
+            (function () {
+                const pick = (a) => a[Math.floor(Math.random() * a.length)];
 
-    <nav class="nav">
-      <div class="col">
-        <a href="https://github.com/5usu/" target="_blank" rel="noopener">GitHub</a>
-        <span class="arrow">&uarr;</span>
-        <span class="caption">code &amp; experiments</span>
-      </div>
-      <div class="col">
-        <a href="https://x.com/sujalDweD" target="_blank" rel="noopener">X [dot] com</a>
-        <span class="arrow">&uarr;</span>
-        <span class="caption">updates, builds, whatever I&rsquo;m thinking about that day</span>
-      </div>
-      <div class="col">
-        <a href="project.html">Lab</a>
-        <span class="arrow">&uarr;</span>
-        <span class="caption">research &amp; brewing material</span>
-      </div>
-    </nav>
-  </div>
+                const ageEl = document.getElementById("age");
+                if (ageEl) {
+                    const birth = new Date(2004, 10, 1);
+                    const tick = () => {
+                        const now = new Date();
+                        let years = now.getFullYear() - birth.getFullYear();
+                        let last = new Date(
+                            now.getFullYear(),
+                            birth.getMonth(),
+                            birth.getDate(),
+                        );
+                        if (now < last) {
+                            years--;
+                            last = new Date(
+                                now.getFullYear() - 1,
+                                birth.getMonth(),
+                                birth.getDate(),
+                            );
+                        }
+                        const next = new Date(
+                            last.getFullYear() + 1,
+                            last.getMonth(),
+                            last.getDate(),
+                        );
+                        const frac = (now - last) / (next - last);
+                        ageEl.textContent = (years + frac).toFixed(8);
+                    };
+                    tick();
+                    setInterval(tick, 1000);
+                }
 
-  <script>
-    (function () {
-      const pick = a => a[Math.floor(Math.random() * a.length)];
+                const palettes = [
+                    "#F1E472",
+                    "#A7E8BD",
+                    "#FFB4A2",
+                    "#C7B8FF",
+                    "#9DDFD3",
+                    "#F4A261",
+                    "#FFD6E0",
+                ];
+                const petMe = [
+                    "← pet me",
+                    "← boop",
+                    "← scratch here",
+                    "← say hi",
+                    "← pspsps",
+                    "← hi friend",
+                ];
+                const pillText = [
+                    "CATS",
+                    "MEOW",
+                    "PURR",
+                    "ZOOMIES",
+                    "KITTY",
+                    "NYAN",
+                ];
+                const aligns = ["left", "center", "right"];
+                const justifies = ["flex-start", "center", "flex-end"];
 
-      const palettes  = ['#F1E472', '#A7E8BD', '#FFB4A2', '#C7B8FF', '#9DDFD3', '#F4A261', '#FFD6E0'];
-      const petMe     = ['← pet me', '← boop', '← scratch here', '← say hi', '← pspsps', '← hi friend'];
-      const pillText  = ['CATS', 'MEOW', 'PURR', 'ZOOMIES', 'KITTY', 'NYAN'];
-      const aligns    = ['left', 'center', 'right'];
-      const justifies = ['flex-start', 'center', 'flex-end'];
+                document.documentElement.style.setProperty(
+                    "--accent",
+                    pick(palettes),
+                );
 
-      document.documentElement.style.setProperty('--accent', pick(palettes));
+                // Tiered ranges so mobile/tablet stay readable
+                const w = window.innerWidth;
+                const tier =
+                    w <= 480
+                        ? { maxX: 2, maxY: 2, proseAligns: aligns }
+                        : w <= 700
+                          ? { maxX: 4, maxY: 3, proseAligns: aligns }
+                          : {
+                                maxX: 18,
+                                maxY: 12,
+                                proseAligns: [...aligns, "justify"],
+                            };
 
-      // Tiered ranges so mobile/tablet stay readable
-      const w = window.innerWidth;
-      const tier =
-        w <= 480 ? { maxX: 2,  maxY: 2,  proseAligns: aligns }            :
-        w <= 700 ? { maxX: 4,  maxY: 3,  proseAligns: aligns }            :
-                   { maxX: 18, maxY: 12, proseAligns: [...aligns, 'justify'] };
+                // Free-form position (no rotation — keep info upright)
+                const wrap = document.querySelector(".wrap");
+                const tx = (Math.random() * tier.maxX * 2 - tier.maxX).toFixed(
+                    1,
+                );
+                const ty = (
+                    Math.random() * tier.maxY * 1.4 -
+                    tier.maxY * 0.4
+                ).toFixed(1);
+                wrap.style.transform = `translate(${tx}vw, ${ty}vh)`;
 
-      // Free-form position (no rotation — keep info upright)
-      const wrap = document.querySelector('.wrap');
-      const tx = (Math.random() * tier.maxX * 2 - tier.maxX).toFixed(1);
-      const ty = (Math.random() * tier.maxY * 1.4 - tier.maxY * 0.4).toFixed(1);
-      wrap.style.transform = `translate(${tx}vw, ${ty}vh)`;
+                // Random alignments per region
+                wrap.style.textAlign = pick(aligns);
+                const prose = document.querySelector(".prose");
+                if (prose) prose.style.textAlign = pick(tier.proseAligns);
+                document.querySelectorAll(".section").forEach((s) => {
+                    s.style.textAlign = pick(aligns);
+                });
+                const doodle = document.querySelector(".doodle");
+                if (doodle) doodle.style.justifyContent = pick(justifies);
 
-      // Random alignments per region
-      wrap.style.textAlign = pick(aligns);
-      const prose = document.querySelector('.prose');
-      if (prose) prose.style.textAlign = pick(tier.proseAligns);
-      document.querySelectorAll('.section').forEach(s => { s.style.textAlign = pick(aligns); });
-      const doodle = document.querySelector('.doodle');
-      if (doodle) doodle.style.justifyContent = pick(justifies);
+                const blobUnit = w <= 700 ? "vmin" : "vmax"; // smaller blobs on mobile
+                const blobMin = w <= 700 ? 50 : 35;
+                const blobRng = w <= 700 ? 35 : 45;
+                document.querySelectorAll(".blob").forEach((b) => {
+                    const hue = Math.floor(Math.random() * 360);
+                    const sat = 60 + Math.random() * 25;
+                    const light = 50 + Math.random() * 15;
+                    const size = blobMin + Math.random() * blobRng;
+                    const top = Math.random() * 110 - 20;
+                    const left = Math.random() * 110 - 20;
+                    b.style.background = `radial-gradient(circle, hsl(${hue} ${sat}% ${light}%) 0%, transparent 70%)`;
+                    b.style.width = `${size}${blobUnit}`;
+                    b.style.height = `${size}${blobUnit}`;
+                    b.style.top = `${top}%`;
+                    b.style.left = `${left}%`;
+                    b.style.setProperty(
+                        "--dx",
+                        `${(Math.random() * 12 - 6).toFixed(1)}vw`,
+                    );
+                    b.style.setProperty(
+                        "--dy",
+                        `${(Math.random() * 10 - 5).toFixed(1)}vh`,
+                    );
+                    b.style.setProperty(
+                        "--dy2",
+                        `${(Math.random() * 10 - 5).toFixed(1)}vh`,
+                    );
+                    b.style.setProperty(
+                        "--dur",
+                        `${(20 + Math.random() * 18).toFixed(1)}s`,
+                    );
+                    b.style.animationDelay = `-${(Math.random() * 20).toFixed(1)}s`;
+                });
 
-      const blobUnit = w <= 700 ? 'vmin' : 'vmax';   // smaller blobs on mobile
-      const blobMin  = w <= 700 ? 50 : 35;
-      const blobRng  = w <= 700 ? 35 : 45;
-      document.querySelectorAll('.blob').forEach(b => {
-        const hue   = Math.floor(Math.random() * 360);
-        const sat   = 60 + Math.random() * 25;
-        const light = 50 + Math.random() * 15;
-        const size  = blobMin + Math.random() * blobRng;
-        const top   = Math.random() * 110 - 20;
-        const left  = Math.random() * 110 - 20;
-        b.style.background = `radial-gradient(circle, hsl(${hue} ${sat}% ${light}%) 0%, transparent 70%)`;
-        b.style.width  = `${size}${blobUnit}`;
-        b.style.height = `${size}${blobUnit}`;
-        b.style.top    = `${top}%`;
-        b.style.left   = `${left}%`;
-      });
+                const pm = document.querySelector(".pet-me");
+                if (pm) pm.textContent = pick(petMe);
 
-      const pm = document.querySelector('.pet-me');
-      if (pm) pm.textContent = pick(petMe);
+                const pill = document.querySelector(".pill");
+                if (pill) pill.textContent = pick(pillText);
 
-      const pill = document.querySelector('.pill');
-      if (pill) pill.textContent = pick(pillText);
+                document
+                    .querySelectorAll(".prose .accent, .prose .strong")
+                    .forEach((s) => {
+                        s.className = Math.random() < 0.5 ? "accent" : "strong";
+                    });
 
-      document.querySelectorAll('.prose .accent, .prose .strong').forEach(s => {
-        s.className = Math.random() < 0.5 ? 'accent' : 'strong';
-      });
+                const svg = document.querySelector(".doodle svg");
+                if (svg) {
+                    const deg = (Math.random() * 12 - 6).toFixed(1);
+                    const sw = (1.2 + Math.random() * 0.8).toFixed(2);
+                    svg.style.setProperty("--deg", `${deg}deg`);
+                    svg.style.transform = `rotate(${deg}deg)`;
+                    svg.style.strokeWidth = sw;
 
-      const svg = document.querySelector('.doodle svg');
-      if (svg) {
-        const deg = (Math.random() * 12 - 6).toFixed(1);
-        const sw  = (1.2 + Math.random() * 0.8).toFixed(2);
-        svg.style.transform = `rotate(${deg}deg)`;
-        svg.style.strokeWidth = sw;
-      }
-    })();
-  </script>
-</body>
-
+                    const anims = [
+                        "anim-bob",
+                        "anim-sway",
+                        "anim-wiggle",
+                        "anim-breathe",
+                        "anim-spin",
+                    ];
+                    const chosen = pick(anims);
+                    const dur =
+                        chosen === "anim-spin"
+                            ? (6 + Math.random() * 4).toFixed(1)
+                            : (2.4 + Math.random() * 2.2).toFixed(1);
+                    svg.style.animation = `${chosen} ${dur}s ease-in-out infinite`;
+                }
+            })();
+        </script>
+    </body>
 </html>
