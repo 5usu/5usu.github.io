@@ -11,7 +11,7 @@
         <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@500&display=swap"
             onload="
                 this.onload = null;
                 this.rel = 'stylesheet';
@@ -20,21 +20,21 @@
         <noscript>
             <link
                 rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@400;500;600&display=swap"
+                href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@500&display=swap"
             />
         </noscript>
 
         <style>
             :root {
-                --bg: #f6f2e9;
-                --fg: #2c2820;
-                --muted: #8b8174;
-                --hand: #a89b86;
-                --accent: #5e8a73;
-                --strong: #15110a;
-                --border: #e4ddca;
-                --border-soft: #ece6d4;
-                --pill-border: #d4c9ad;
+                --bg: #0d0d0f;
+                --fg: #e7e5df;
+                --muted: #8c8a82;
+                --faint: #56544e;
+                --strong: #f6f4ee;
+                --accent: #c9a227;
+                --accent-soft: rgba(201, 162, 39, 0.14);
+                --border: #232327;
+                --border-soft: #1a1a1d;
             }
 
             * {
@@ -45,89 +45,112 @@
 
             html,
             body {
-                background:
-                    radial-gradient(
-                        ellipse at top,
-                        #f9f5ec 0%,
-                        var(--bg) 55%,
-                        #f1ecd9 100%
-                    );
+                background: var(--bg);
                 color: var(--fg);
                 overflow-x: hidden;
             }
 
             body {
                 font-family:
-                    "Inter",
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    "Segoe UI",
-                    Roboto,
-                    Helvetica,
-                    Arial,
-                    sans-serif;
+                    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
+                    Consolas, monospace;
                 font-weight: 400;
-                font-size: 16px;
-                line-height: 1.6;
+                font-size: 15px;
+                line-height: 1.7;
                 -webkit-font-smoothing: antialiased;
                 min-height: 100vh;
-                padding: 6rem 2rem 5rem;
+                padding: 7rem 2rem 5rem;
             }
 
             .wrap {
-                max-width: 1280px;
+                max-width: 1080px;
                 margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* double-slit interference field — pure canvas, drawn behind content */
+            #field {
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                -webkit-mask-image: radial-gradient(
+                    ellipse 110% 95% at 50% 4%,
+                    #000 0%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    transparent 88%
+                );
+                mask-image: radial-gradient(
+                    ellipse 110% 95% at 50% 4%,
+                    #000 0%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    transparent 88%
+                );
             }
 
             .header {
-                text-align: center;
-                margin-bottom: 4.5rem;
+                margin-bottom: 5rem;
+            }
+
+            .prompt {
+                display: block;
+                font-size: 0.78rem;
+                letter-spacing: 0.04em;
+                color: var(--faint);
+                margin-bottom: 1.4rem;
+            }
+
+            .prompt .accent {
+                color: var(--accent);
             }
 
             h1 {
-                font-size: 2.25rem;
-                font-weight: 700;
+                font-size: clamp(1.9rem, 4vw, 2.5rem);
+                font-weight: 600;
                 letter-spacing: -0.02em;
                 color: var(--strong);
-                margin-bottom: 0.45rem;
+                margin-bottom: 0.6rem;
             }
 
             .contact {
                 color: var(--muted);
-                font-size: 0.92rem;
-                margin-bottom: 1.75rem;
+                font-size: 0.85rem;
+                margin-bottom: 1.9rem;
             }
 
             .contact a {
                 color: var(--fg);
                 text-decoration: none;
-                border-bottom: 1px solid var(--muted);
-                padding-bottom: 1px;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 2px;
+                transition: border-color 0.2s ease;
             }
 
             .contact a:hover {
-                border-bottom-color: var(--fg);
+                border-bottom-color: var(--accent);
             }
 
             .pill {
                 display: inline-block;
-                padding: 0.5rem 1.5rem;
-                border: 1px solid var(--pill-border);
-                color: var(--fg);
+                padding: 0.45rem 1.4rem;
+                border: 1px solid var(--border);
+                border-radius: 2px;
+                color: var(--muted);
                 text-decoration: none;
-                font-size: 0.78rem;
-                letter-spacing: 0.18em;
+                font-size: 0.72rem;
+                letter-spacing: 0.24em;
                 font-weight: 500;
                 transition:
                     border-color 0.2s ease,
-                    color 0.2s ease,
-                    background-color 0.2s ease;
+                    color 0.2s ease;
             }
 
             .pill:hover {
-                border-color: var(--strong);
-                color: var(--strong);
-                background-color: rgba(94, 138, 115, 0.08);
+                border-color: var(--accent);
+                color: var(--accent);
             }
 
             .content {
@@ -138,8 +161,8 @@
 
             @media (min-width: 900px) {
                 .content {
-                    grid-template-columns: 1.05fr 1fr;
-                    column-gap: 5rem;
+                    grid-template-columns: 1.1fr 1fr;
+                    column-gap: 6rem;
                     row-gap: 2rem;
                     align-items: start;
                 }
@@ -147,12 +170,12 @@
 
             .prose {
                 color: var(--fg);
-                font-size: 1rem;
-                line-height: 1.7;
+                font-size: 0.95rem;
+                line-height: 1.9;
             }
 
             .prose p {
-                margin-bottom: 1.4rem;
+                margin-bottom: 1.5rem;
             }
 
             .prose p:last-child {
@@ -162,12 +185,13 @@
             .prose a {
                 color: var(--fg);
                 text-decoration: none;
-                border-bottom: 1px solid var(--muted);
-                padding-bottom: 1px;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 2px;
+                transition: border-color 0.2s ease;
             }
 
             .prose a:hover {
-                border-bottom-color: var(--fg);
+                border-bottom-color: var(--accent);
             }
 
             .accent {
@@ -180,34 +204,41 @@
                 font-weight: 600;
             }
 
+            #age {
+                color: var(--accent);
+                font-weight: 500;
+                font-variant-numeric: tabular-nums;
+            }
+
             .sections {
                 display: flex;
                 flex-direction: column;
-                gap: 3rem;
+                gap: 3.25rem;
             }
 
             .section-title {
-                font-size: 0.78rem;
-                letter-spacing: 0.22em;
-                color: var(--muted);
+                font-size: 0.7rem;
+                letter-spacing: 0.26em;
+                color: var(--faint);
                 text-transform: uppercase;
                 font-weight: 500;
-                margin-bottom: 1.25rem;
-                padding-bottom: 0.65rem;
-                border-bottom: 1px solid var(--border);
+                margin-bottom: 1.4rem;
+                padding-bottom: 0.7rem;
+                border-bottom: 1px solid var(--border-soft);
             }
 
             .lab-link {
                 color: var(--fg);
                 text-decoration: none;
-                font-size: 0.95rem;
-                border-bottom: 1px solid var(--muted);
-                padding-bottom: 1px;
+                font-size: 0.9rem;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 2px;
                 display: inline-block;
+                transition: border-color 0.2s ease;
             }
 
             .lab-link:hover {
-                border-bottom-color: var(--fg);
+                border-bottom-color: var(--accent);
             }
 
             .post {
@@ -215,7 +246,7 @@
                 justify-content: space-between;
                 align-items: baseline;
                 gap: 1.5rem;
-                padding: 0.9rem 0;
+                padding: 1rem 0;
                 border-bottom: 1px solid var(--border-soft);
             }
 
@@ -230,59 +261,60 @@
             .post a {
                 color: var(--fg);
                 text-decoration: none;
-                font-size: 0.98rem;
+                font-size: 0.92rem;
+                font-weight: 500;
                 border-bottom: 1px solid transparent;
                 transition: border-color 0.2s ease;
             }
 
             .post a:hover {
-                border-bottom-color: var(--fg);
+                border-bottom-color: var(--accent);
             }
 
             .post-desc {
                 color: var(--muted);
-                font-size: 0.85rem;
-                margin-top: 0.25rem;
-                line-height: 1.5;
+                font-size: 0.8rem;
+                margin-top: 0.35rem;
+                line-height: 1.6;
             }
 
             .post-date {
-                color: var(--muted);
-                font-size: 0.8rem;
+                color: var(--faint);
+                font-size: 0.74rem;
                 white-space: nowrap;
             }
 
             .doodle {
-                margin: 4.5rem auto 4rem;
+                margin: 6rem auto 5rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 0.35rem;
+                gap: 0.5rem;
             }
 
             .doodle svg {
-                width: 64px;
-                height: 64px;
-                stroke: var(--hand);
+                width: 58px;
+                height: 58px;
+                stroke: var(--faint);
                 fill: none;
-                stroke-width: 1.4;
+                stroke-width: 1.3;
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 cursor: pointer;
                 transition:
-                    stroke 0.2s ease,
+                    stroke 0.25s ease,
                     transform 0.3s ease;
             }
 
             .doodle a:hover svg {
-                stroke: var(--fg);
-                transform: rotate(-4deg);
+                stroke: var(--accent);
+                transform: rotate(-3deg);
             }
 
             .pet-me {
                 font-family: "Caveat", cursive;
-                color: var(--hand);
-                font-size: 1.05rem;
+                color: var(--faint);
+                font-size: 1.1rem;
                 letter-spacing: 0.02em;
                 transform: translateY(2px);
             }
@@ -299,48 +331,44 @@
             .nav a {
                 color: var(--fg);
                 text-decoration: none;
-                font-size: 0.95rem;
-                border-bottom: 1px solid var(--muted);
-                padding-bottom: 1px;
+                font-size: 0.88rem;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 2px;
                 display: inline-block;
+                transition: border-color 0.2s ease;
             }
 
             .nav a:hover {
-                border-bottom-color: var(--fg);
+                border-bottom-color: var(--accent);
             }
 
             .nav .col {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.55rem;
             }
 
             .nav .arrow {
-                color: var(--hand);
-                font-family: "Caveat", cursive;
-                font-size: 1.4rem;
+                color: var(--faint);
+                font-size: 0.9rem;
                 line-height: 1;
-                margin-top: 0.1rem;
+                margin-top: 0.15rem;
             }
 
             .nav .caption {
-                font-family: "Caveat", cursive;
-                color: var(--hand);
-                font-size: 1rem;
-                line-height: 1.2;
-                max-width: 14ch;
+                color: var(--muted);
+                font-size: 0.76rem;
+                line-height: 1.45;
+                max-width: 18ch;
             }
 
             @media (max-width: 600px) {
                 body {
-                    padding: 4rem 1.5rem 3rem;
-                }
-                h1 {
-                    font-size: 1.85rem;
+                    padding: 4.5rem 1.5rem 3rem;
                 }
                 .header {
-                    margin-bottom: 3rem;
+                    margin-bottom: 3.5rem;
                 }
                 .content {
                     gap: 3rem;
@@ -349,19 +377,23 @@
                     gap: 0.75rem;
                 }
                 .nav .caption {
-                    font-size: 0.9rem;
+                    font-size: 0.72rem;
                 }
             }
         </style>
     </head>
 
     <body>
+        <canvas id="field" aria-hidden="true"></canvas>
         <div class="wrap">
             <header class="header">
+                <span class="prompt"
+                    ><span class="accent">~</span>/sujal $ whoami</span
+                >
                 <h1>Sujal Dwivedi</h1>
                 <p class="contact">
                     Contact intercept &bull;
-                    <a href="mailto:sujal1114@gmail.com">sujal1114@gmail.com</a>
+                    <a href="mailto:sujal1114@gmail.com">sujaldwed@gmail.com</a>
                 </p>
                 <a href="page/cats.html" class="pill">CATS</a>
             </header>
@@ -522,6 +554,108 @@
                 };
                 tick();
                 setInterval(tick, 1000);
+            })();
+        </script>
+
+        <script>
+            // Two-source (double-slit) wave interference, rendered to a
+            // low-res buffer and scaled up so the fringes stay soft.
+            (function () {
+                const canvas = document.getElementById("field");
+                if (!canvas) return;
+                const ctx = canvas.getContext("2d");
+                const low = document.createElement("canvas");
+                const lctx = low.getContext("2d");
+                const reduce = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+
+                const SCALE = 3; // pixels per low-res cell (sharper fringes)
+                const K = 0.12; // wavenumber → fringe spacing
+                const SPEED = 0.02; // temporal frequency (slow drift)
+                const PEAK = 54; // max fringe alpha (0–255), kept subtle
+
+                let W, H, lw, lh, buf, s1x, s1y, s2x, s2y;
+
+                function resize() {
+                    W = canvas.width = window.innerWidth;
+                    H = canvas.height = window.innerHeight;
+                    lw = low.width = Math.max(1, Math.ceil(W / SCALE));
+                    lh = low.height = Math.max(1, Math.ceil(H / SCALE));
+                    buf = ctx.createImageData(lw, lh);
+                    // two coherent "slits" near the upper-centre
+                    const cx = lw * 0.5;
+                    const sy = lh * 0.12;
+                    const sep = Math.max(7, lw * 0.045);
+                    s1x = cx - sep;
+                    s1y = sy;
+                    s2x = cx + sep;
+                    s2y = sy;
+                }
+
+                function render(t) {
+                    const d = buf.data;
+                    let i = 0;
+                    for (let y = 0; y < lh; y++) {
+                        for (let x = 0; x < lw; x++) {
+                            const dx1 = x - s1x,
+                                dy1 = y - s1y;
+                            const dx2 = x - s2x,
+                                dy2 = y - s2y;
+                            const r1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+                            const r2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                            const v =
+                                Math.sin(K * r1 - t) + Math.sin(K * r2 - t);
+                            let inten = (v + 2) * 0.25; // 0–1
+                            inten *= inten; // sharpen bright fringes
+                            d[i] = 201; // amber
+                            d[i + 1] = 162;
+                            d[i + 2] = 39;
+                            d[i + 3] = inten * PEAK;
+                            i += 4;
+                        }
+                    }
+                    lctx.putImageData(buf, 0, 0);
+                    ctx.clearRect(0, 0, W, H);
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.drawImage(low, 0, 0, lw, lh, 0, 0, W, H);
+                }
+
+                let t = 0;
+                let last = 0;
+                let running = true;
+                const FRAME_MS = 1000 / 30; // cap at ~30fps to spare the CPU
+                function frame(now) {
+                    if (!running) return;
+                    requestAnimationFrame(frame);
+                    if (now - last < FRAME_MS) return;
+                    last = now;
+                    t += SPEED;
+                    render(t);
+                }
+
+                document.addEventListener("visibilitychange", () => {
+                    if (document.hidden) {
+                        running = false;
+                    } else if (!reduce) {
+                        running = true;
+                        last = 0;
+                        requestAnimationFrame(frame);
+                    }
+                });
+
+                let rt;
+                window.addEventListener("resize", () => {
+                    clearTimeout(rt);
+                    rt = setTimeout(() => {
+                        resize();
+                        if (reduce) render(0);
+                    }, 150);
+                });
+
+                resize();
+                if (reduce) render(0);
+                else requestAnimationFrame(frame);
             })();
         </script>
     </body>

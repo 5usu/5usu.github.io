@@ -23,43 +23,45 @@
 
   <style>
     :root {
-      /* Light theme (default) */
-      --bg-primary: #ffffff;
-      --text-primary: #0a0a0a;
-      --text-secondary: #525252;
-      --text-muted: #737373;
-      --border-color: #e5e5e5;
-      --accent-primary: #2563eb;
-      --accent-hover: #1d4ed8;
+      /* Light theme — warm paper */
+      --bg-primary: #f4f1ea;
+      --text-primary: #1a1814;
+      --text-secondary: #4a4740;
+      --text-muted: #8a857a;
+      --border-color: #ddd6c8;
+      --accent-primary: #9c6b3f;
+      --accent-hover: #7c5230;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 
-      /* Tech tag colors */
-      --tag-robotics: #10b981;
-      --tag-fpga: #3b82f6;
-      --tag-python: #f59e0b;
-      --tag-pytorch: #ef4444;
-      --tag-ml: #8b5cf6;
-      --tag-js: #eab308;
-      --tag-go: #06b6d4;
+      /* Tech tag colors — muted */
+      --tag-robotics: #5f7a4a;
+      --tag-fpga: #4a6a86;
+      --tag-python: #9c7320;
+      --tag-pytorch: #9a5240;
+      --tag-ml: #6f5c86;
+      --tag-js: #8a7320;
+      --tag-go: #3f7a74;
     }
 
     [data-theme="dark"] {
-      --bg-primary: #0a0a0a;
-      --text-primary: #fafafa;
-      --text-secondary: #a3a3a3;
-      --text-muted: #737373;
-      --border-color: #262626;
-      --accent-primary: #60a5fa;
-      --accent-hover: #93c5fd;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      /* Dark theme (default) — refined, amber accent */
+      --bg-primary: #0d0d0f;
+      --text-primary: #f6f4ee;
+      --text-secondary: #b0aea6;
+      --text-muted: #8c8a82;
+      --border-color: #232327;
+      --accent-primary: #c9a227;
+      --accent-hover: #ddb84a;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
 
-      --tag-robotics: #34d399;
-      --tag-fpga: #60a5fa;
-      --tag-python: #fbbf24;
-      --tag-pytorch: #f87171;
-      --tag-ml: #a78bfa;
-      --tag-js: #fde047;
-      --tag-go: #22d3ee;
+      /* Tech tag colors — muted, desaturated */
+      --tag-robotics: #8a9a6b;
+      --tag-fpga: #7a93a8;
+      --tag-python: #c9a227;
+      --tag-pytorch: #b07a6b;
+      --tag-ml: #9285a8;
+      --tag-js: #b3a55f;
+      --tag-go: #6f9a96;
     }
 
     * {
@@ -247,7 +249,7 @@
     .ascii-title {
       font-size: 0.5rem;
       line-height: 1.2;
-      color: var(--text-primary);
+      color: var(--accent-primary);
       margin-bottom: 2.5rem;
       white-space: pre;
       font-family: 'JetBrains Mono', monospace;
